@@ -32,4 +32,6 @@
 
 ### Exercise
 
-#### Ex1:
+#### Ex1: Write function return top "n" of this array include random number from 0 to 100 ? 
+#### Ex2: Write function return intersection of two arrays ?
+#### Ex3: Write function with ommit parameter type Int and validate it is prime number ?
