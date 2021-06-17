@@ -7,7 +7,7 @@
 | Basic Swift           | Variables, simple data types, and string interpolation |
 |                       | Arrays, dictionaries, sets, and enums |
 |                       | Operators and conditions |
-|                       | Control flow |
+|                       | Loops |
 |                       | Functions, parameters, and errors |
 |                       | Access control, static properties and laziness |
 | Advance Swift         | Structs, properties, methods |
