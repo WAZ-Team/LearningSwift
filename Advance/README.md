@@ -26,9 +26,4 @@
 | 12 | What is typecasting ? When is type casting useful in Swift ? |
 | 13 | What is closure ? How many kind of closure ? |
 | 14 | When should we use closure in Swift ? List some sample about closure in Swift |
-| 14 | What is difference between escaping & non-escaping ? |
-
-
-### Exercise
-
-#### Ex1: ? 
+| 15 | What is difference between escaping & non-escaping ? |
