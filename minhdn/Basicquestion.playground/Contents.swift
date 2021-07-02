@@ -120,11 +120,13 @@ var cau8 = "What is the ternary operator in Swift ? When should you use ?"
 print("ternary operator: Đó là một phím tắt để đánh giá một trong hai biểu thức dựa trên việc đúng hay sai. Nếu đúng, nó đánh giá và trả về giá trị của nó; nếu không, nó đánh giá và trả về giá trị của nó.")
 
 /* Demo Ternary operator*/
-
-if countries.isEmpty {
-    print("khong co phan tu nao")
-}else{
-    print("co \(countries.count) phan tu")
+let firstCard = 11
+let secondCard = 10
+print(firstCard == secondCard ? "Cards are the same" : "Cards are different")
+if firstCard == secondCard {
+    print("Cards are the same")
+} else {
+    print("Cards are different")
 }
 
 //------------------------------------------
