@@ -23,6 +23,7 @@ class HomeMovie: UIViewController,UITableViewDelegate,UITableViewDataSource{
         }
 
     func setNavigationBar() {
+        self.navigationController?.navigationBar.backgroundColor = .none
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.view.backgroundColor = .clear
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "search"), style: .plain,target: self, action: #selector(SeachMovie))
@@ -89,7 +90,7 @@ class HomeMovie: UIViewController,UITableViewDelegate,UITableViewDataSource{
     }
 // ---------------------------------------------------------------------
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 7
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -101,14 +102,32 @@ class HomeMovie: UIViewController,UITableViewDelegate,UITableViewDataSource{
         case 1:
             self.tableview.register(UINib(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: "TitleTableViewCell")
             let cell = self.tableview.dequeueReusableCell(withIdentifier:"TitleTableViewCell" , for: indexPath) as! TitleTableViewCell
-            cell.TitleLable.text = "TV Series"
-            let vc = storyboard?.instantiateViewController(withIdentifier: "TVSeriesVC") as! TVSeriesVC
-            self.navigationController?.pushViewController(vc, animated: true)
+            cell.TitleLable.text = "TV Catalogy"
+            
             return cell
            
         case 2:
-            self.tableview.register(UINib(nibName: "HomeTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeTableViewCell")
-            let cell = self.tableview.dequeueReusableCell(withIdentifier:"HomeTableViewCell" , for: indexPath) as! HomeTableViewCell
+            self.tableview.register(UINib(nibName: "TvCatalogyTableViewCell", bundle: nil), forCellReuseIdentifier: "TvCatalogyTableViewCell")
+            let cell = self.tableview.dequeueReusableCell(withIdentifier:"TvCatalogyTableViewCell" , for: indexPath) as! TvCatalogyTableViewCell
+            return cell
+        case 3:
+            self.tableview.register(UINib(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: "TitleTableViewCell")
+            let cell = self.tableview.dequeueReusableCell(withIdentifier:"TitleTableViewCell" , for: indexPath) as! TitleTableViewCell
+            cell.TitleLable.text = "TV Series"
+            
+            return cell
+        case 4:
+            self.tableview.register(UINib(nibName: "TvSeriesTableViewCell", bundle: nil), forCellReuseIdentifier: "TvSeriesTableViewCell")
+            let cell = self.tableview.dequeueReusableCell(withIdentifier:"TvSeriesTableViewCell" , for: indexPath) as! TvSeriesTableViewCell
+            return cell
+        case 5:
+            self.tableview.register(UINib(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: "TitleTableViewCell")
+            let cell = self.tableview.dequeueReusableCell(withIdentifier:"TitleTableViewCell" , for: indexPath) as! TitleTableViewCell
+            cell.TitleLable.text = "Favorite"
+            return cell
+        case 6:
+            self.tableview.register(UINib(nibName: "FavoriteTableViewCell", bundle: nil), forCellReuseIdentifier: "FavoriteTableViewCell")
+            let cell = self.tableview.dequeueReusableCell(withIdentifier:"FavoriteTableViewCell" , for: indexPath) as! FavoriteTableViewCell
             return cell
 
         default:
@@ -119,10 +138,25 @@ class HomeMovie: UIViewController,UITableViewDelegate,UITableViewDataSource{
         }
 
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 1{
+            let vc = storyboard?.instantiateViewController(withIdentifier: "TvCatalogyVC") as! TvCatalogyVC
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        if indexPath.row == 3{
+            let vc = storyboard?.instantiateViewController(withIdentifier: "TVSeriesVC") as! TVSeriesVC
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        if indexPath.row == 5{
+            let vc = storyboard?.instantiateViewController(withIdentifier: "FavoriteVC") as! FavoriteVC
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
         case 0:
-            return  350
+            return  300
         case 1:
             return  30
         case 2:
@@ -130,17 +164,19 @@ class HomeMovie: UIViewController,UITableViewDelegate,UITableViewDataSource{
         case 3:
             return  30
         case 4:
-          return  220
+          return  200
         case 5:
-          return  45
-       
+          return  30
+        case 6:
+            return 200
         default:
-            return 220
+            return 200
         }
     }
 
 
    }
+
 ////-----------------------------------------------------
 
 extension HomeMovie: UIViewControllerTransitioningDelegate{
