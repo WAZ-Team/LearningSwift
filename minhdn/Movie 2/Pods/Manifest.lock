@@ -1,0 +1,39 @@
+PODS:
+  - Alamofire (5.4.3)
+  - AlamofireImage (4.2.0):
+    - Alamofire (~> 5.4)
+  - FSPagerView (0.8.3)
+  - HCSStarRatingView (1.5)
+  - Kingfisher (5.15.8):
+    - Kingfisher/Core (= 5.15.8)
+  - Kingfisher/Core (5.15.8)
+  - SwiftyJSON (5.0.1)
+
+DEPENDENCIES:
+  - Alamofire
+  - AlamofireImage
+  - FSPagerView
+  - HCSStarRatingView (~> 1.5)
+  - Kingfisher
+  - SwiftyJSON
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - AlamofireImage
+    - FSPagerView
+    - HCSStarRatingView
+    - Kingfisher
+    - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  AlamofireImage: 34a2d90b0e5fe6a5605f85ae4b7b01e784c60192
+  FSPagerView: 670405b2f18e2a87fa37f20b00de783e562c25a8
+  HCSStarRatingView: 1d18f79654735514cd6f00e6d90e38cb6320dc31
+  Kingfisher: a3c03d702433fa6cfedabb2bddbe076fb8f2e902
+  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
+
+PODFILE CHECKSUM: 45f788a08005a53cfa3c0000f412d40beb5910e6
+
+COCOAPODS: 1.8.4
