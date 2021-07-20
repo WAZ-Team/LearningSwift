@@ -35,7 +35,7 @@ class detaiViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+// anh check giúp em
        setupViews(movie: movieData)
 //      setupCollectionViewData(movie: movieData)
        movies =  APIService.load("Movie.json")

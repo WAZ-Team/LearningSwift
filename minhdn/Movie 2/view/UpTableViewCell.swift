@@ -19,6 +19,7 @@ class UpTableViewCell: UITableViewCell {
         }
     }
     //    MARK: - Veriables
+//    anh check giup em
     private var cellData = [MovieDataModel](){
         didSet{
             FSView.reloadData()
