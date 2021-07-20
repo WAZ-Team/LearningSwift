@@ -8,13 +8,9 @@
 import UIKit
 import FSPagerView
 
-protocol SelectedMovieDelegat: class {
-    func didSelectMovie(movie: MovieDataModel)
-}
-
 class UpTableViewCell: UITableViewCell {
     //  MARK: - IBoutlet
-    weak var movieDelegate:SelectedMovieDelegat?
+   
     
     @IBOutlet weak var FSView: FSPagerView!{
         didSet{
@@ -60,8 +56,3 @@ extension UpTableViewCell: FSPagerViewDataSource{
     }
 }
 
-extension UpTableViewCell: FSPagerViewDelegate {
-    func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
-        self.movieDelegate?.didSelectMovie(movie: cellData[index])
-    }
-}

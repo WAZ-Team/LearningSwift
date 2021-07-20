@@ -30,6 +30,7 @@ class HomeMovie: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         movies = APIService.load("Movie.json")
+        selectedMovie = APIService.load("Movie.json")
         setupNavigationBar()
     
     }
@@ -66,6 +67,7 @@ extension HomeMovie: SelectedMovieDelegate{
         if segue.identifier == "showDetail"{
             let controller = segue.destination as! detaiViewController
             controller.movieData = selectedMovie
+            
         }
     }
 }
@@ -91,9 +93,7 @@ extension HomeMovie: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0{
             guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier:"UpTableViewCell" , for: indexPath) as? UpTableViewCell else  { return UITableViewCell()}
-        
             cell.imageView?.downloaded(from: movies[indexPath.row].backdroppath ?? "")
-            
             return cell
         }
         else{

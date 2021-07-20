@@ -36,8 +36,8 @@ class detaiViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupViews(movie: movies)
-       setupCollectionViewData(movie: movieData)
+       setupViews(movie: movieData)
+//      setupCollectionViewData(movie: movieData)
        movies =  APIService.load("Movie.json")
         setupNavigationBar()
         self.coverView = coverView.roundedImage
@@ -50,9 +50,8 @@ class detaiViewController: UIViewController {
         movieTitle.text = movie.title?.uppercased()
         rateBar.value = CGFloat(movie.VoteAverage!/2)
         overView.text = movie.overview
-//    timeduration.text = "\(movie.duration) mins"
         let subStr =  movie.ReleaseDate!.prefix(4)
-//        yeatval.text = String(subStr)
+
     }
     
     
@@ -75,7 +74,6 @@ extension detaiViewController:UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "screenshots", for: indexPath)
         let image:UIImageView = cell.contentView.viewWithTag(1) as! UIImageView
-
         image.downloaded(from: movieData[indexPath.row].backdroppath ?? "")
         return cell
     }

@@ -77,7 +77,7 @@ extension HomeTableViewCell: UICollectionViewDelegateFlowLayout {
         return CGSize(width: contentView.bounds.size.width/3.4, height: contentView.bounds.size.height)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 24
+        return 10
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
