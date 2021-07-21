@@ -5,6 +5,9 @@
 //  Created by MinhDev on 7/15/21.
 //
 
+
+
+
 import UIKit
 import FSPagerView
 
@@ -31,6 +34,8 @@ class UpTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        FSView.dataSource = self
+        FSView.delegate = self
         // Initialization code
         //    FSView.reloadData()
         //   cellData = APIService.load("Movie.json")
@@ -46,7 +51,7 @@ extension UpTableViewCell: FSPagerViewDataSource{
     
     func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "UpTableViewCell", at: index)
-        //        cell.imageView?.downloaded(from: cellData[index].backdroppath ?? "")
+            cell.imageView?.downloaded(from: cellData[index].backdroppath ?? "")
         cell.textLabel?.text = (cellData[index].title)!
         cell.textLabel?.font = UIFont(name: "HelveticaNeue-Medium", size: 15.0)
         cell.textLabel?.textAlignment = .center
@@ -56,4 +61,14 @@ extension UpTableViewCell: FSPagerViewDataSource{
         
     }
 }
-
+//  MARK:   - Delegate
+extension UpTableViewCell {
+    func configurer(movies: [MovieDataModel]) {
+        self.cellData = movies
+    }
+}
+extension UpTableViewCell: FSPagerViewDelegate{
+    func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
+        
+    }
+}

@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		040356D226A67AFE00277966 /* homTabBarcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040356D126A67AFE00277966 /* homTabBarcontroller.swift */; };
+		040356E626A6CD7800277966 /* tabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040356E526A6CD7800277966 /* tabBarVC.swift */; };
+		0403570F26A7CB1100277966 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0403570E26A7CB1100277966 /* TestViewController.swift */; };
+		0403571226A7CFB200277966 /* SeachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0403571126A7CFB200277966 /* SeachViewController.swift */; };
+		0403571526A7CFC200277966 /* FavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0403571426A7CFC200277966 /* FavViewController.swift */; };
+		0403571C26A7DA3F00277966 /* SlideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0403571B26A7DA3F00277966 /* SlideMenu.swift */; };
+		0403572326A7DB7B00277966 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0403572226A7DB7B00277966 /* ProfileVC.swift */; };
+		0403572626A7DB9100277966 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0403572526A7DB9100277966 /* SettingsVC.swift */; };
+		0403572926A7DBAA00277966 /* LogoutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0403572826A7DBAA00277966 /* LogoutVC.swift */; };
+		0403572C26A7DD7A00277966 /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0403572B26A7DD7A00277966 /* SlideInTransition.swift */; };
 		040724D4269D277800DC690E /* Imagedownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040724D3269D277800DC690E /* Imagedownload.swift */; };
 		0407274F269E804900623B41 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0407274E269E804900623B41 /* Constants.swift */; };
 		04072771269FCDEF00623B41 /* ImageSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04072770269FCDEF00623B41 /* ImageSet.swift */; };
@@ -32,6 +41,15 @@
 
 /* Begin PBXFileReference section */
 		040356D126A67AFE00277966 /* homTabBarcontroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = homTabBarcontroller.swift; sourceTree = "<group>"; };
+		040356E526A6CD7800277966 /* tabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabBarVC.swift; sourceTree = "<group>"; };
+		0403570E26A7CB1100277966 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		0403571126A7CFB200277966 /* SeachViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeachViewController.swift; sourceTree = "<group>"; };
+		0403571426A7CFC200277966 /* FavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavViewController.swift; sourceTree = "<group>"; };
+		0403571B26A7DA3F00277966 /* SlideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideMenu.swift; sourceTree = "<group>"; };
+		0403572226A7DB7B00277966 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		0403572526A7DB9100277966 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		0403572826A7DBAA00277966 /* LogoutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutVC.swift; sourceTree = "<group>"; };
+		0403572B26A7DD7A00277966 /* SlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
 		040724D3269D277800DC690E /* Imagedownload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Imagedownload.swift; sourceTree = "<group>"; };
 		0407274E269E804900623B41 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		04072770269FCDEF00623B41 /* ImageSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSet.swift; sourceTree = "<group>"; };
@@ -124,6 +142,7 @@
 				0451C9632698589800FA4DAC /* HomeTableViewCell.xib */,
 				0451C9672698596200FA4DAC /* HomeCollectionViewCell.swift */,
 				0451C9682698596200FA4DAC /* HomeCollectionViewCell.xib */,
+				040356E526A6CD7800277966 /* tabBarVC.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -134,6 +153,13 @@
 				040356D126A67AFE00277966 /* homTabBarcontroller.swift */,
 				0451C95026984EC800FA4DAC /* HomeMovie.swift */,
 				042324F726A175BD00CD827E /* detaiViewController.swift */,
+				0403570E26A7CB1100277966 /* TestViewController.swift */,
+				0403571126A7CFB200277966 /* SeachViewController.swift */,
+				0403571426A7CFC200277966 /* FavViewController.swift */,
+				0403571B26A7DA3F00277966 /* SlideMenu.swift */,
+				0403572226A7DB7B00277966 /* ProfileVC.swift */,
+				0403572526A7DB9100277966 /* SettingsVC.swift */,
+				0403572826A7DBAA00277966 /* LogoutVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -144,6 +170,7 @@
 				040724D3269D277800DC690E /* Imagedownload.swift */,
 				0407274E269E804900623B41 /* Constants.swift */,
 				04072770269FCDEF00623B41 /* ImageSet.swift */,
+				0403572B26A7DD7A00277966 /* SlideInTransition.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -286,12 +313,21 @@
 				040356D226A67AFE00277966 /* homTabBarcontroller.swift in Sources */,
 				0451C9692698596200FA4DAC /* HomeCollectionViewCell.swift in Sources */,
 				0451C9642698589800FA4DAC /* HomeTableViewCell.swift in Sources */,
+				0403572326A7DB7B00277966 /* ProfileVC.swift in Sources */,
 				040724D4269D277800DC690E /* Imagedownload.swift in Sources */,
 				0451C95126984EC800FA4DAC /* HomeMovie.swift in Sources */,
 				0451C96F269BDF6A00FA4DAC /* MovieData.swift in Sources */,
 				0451C9322698432000FA4DAC /* AppDelegate.swift in Sources */,
+				0403572926A7DBAA00277966 /* LogoutVC.swift in Sources */,
+				0403571226A7CFB200277966 /* SeachViewController.swift in Sources */,
+				0403572626A7DB9100277966 /* SettingsVC.swift in Sources */,
+				0403571C26A7DA3F00277966 /* SlideMenu.swift in Sources */,
 				0451C94A2698497000FA4DAC /* MovieDataModel.swift in Sources */,
+				040356E626A6CD7800277966 /* tabBarVC.swift in Sources */,
 				04072775269FDE2800623B41 /* UpTableViewCell.swift in Sources */,
+				0403571526A7CFC200277966 /* FavViewController.swift in Sources */,
+				0403570F26A7CB1100277966 /* TestViewController.swift in Sources */,
+				0403572C26A7DD7A00277966 /* SlideInTransition.swift in Sources */,
 				0407274F269E804900623B41 /* Constants.swift in Sources */,
 				04072771269FCDEF00623B41 /* ImageSet.swift in Sources */,
 				042324F826A175BD00CD827E /* detaiViewController.swift in Sources */,

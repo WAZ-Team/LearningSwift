@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,17 +17,17 @@
                 <rect key="frame" x="0.0" y="0.0" width="166" height="192"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zjt-Kp-xQx">
-                        <rect key="frame" x="5" y="5" width="156" height="182"/>
+                    <imageView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zjt-Kp-xQx">
+                        <rect key="frame" x="0.0" y="0.0" width="166" height="192"/>
                     </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstItem="Zjt-Kp-xQx" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="Vox-OM-gfM"/>
-                <constraint firstAttribute="trailing" secondItem="Zjt-Kp-xQx" secondAttribute="trailing" constant="5" id="Xu9-lB-KkG"/>
-                <constraint firstItem="Zjt-Kp-xQx" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="r6c-fy-rpB"/>
-                <constraint firstAttribute="bottom" secondItem="Zjt-Kp-xQx" secondAttribute="bottom" constant="5" id="yga-7f-0fP"/>
+                <constraint firstItem="Zjt-Kp-xQx" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Vox-OM-gfM"/>
+                <constraint firstAttribute="trailing" secondItem="Zjt-Kp-xQx" secondAttribute="trailing" id="Xu9-lB-KkG"/>
+                <constraint firstItem="Zjt-Kp-xQx" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="r6c-fy-rpB"/>
+                <constraint firstAttribute="bottom" secondItem="Zjt-Kp-xQx" secondAttribute="bottom" id="yga-7f-0fP"/>
             </constraints>
             <size key="customSize" width="166" height="192"/>
             <connections>

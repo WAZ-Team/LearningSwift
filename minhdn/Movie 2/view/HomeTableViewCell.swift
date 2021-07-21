@@ -14,7 +14,8 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet private weak var homeCollectionview: UICollectionView!
 
     // MARK: - Variables
-    weak var movieDelegate:SelectedMovieDelegate?
+//    weak var movieDelegate:SelectedMovieDelegate?
+    
     private var movies: [MovieDataModel] = [] {
         didSet{
             
@@ -29,6 +30,7 @@ class HomeTableViewCell: UITableViewCell {
         homeCollectionview.delegate = self
         homeCollectionview.dataSource = self
         self.homeCollectionview.register(UINib(nibName: Constants.homeCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: Constants.homeCollectionViewCell)
+      
     }
     
 }
@@ -40,16 +42,29 @@ extension HomeTableViewCell {
     }
 }
 // MARK: - Delegate
-extension HomeTableViewCell: UICollectionViewDelegate {
+extension HomeMovie: UICollectionViewDelegate {
+   
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            self.movieDelegate?.didSelectMovie(movie: movies[indexPath.row])
+        navigateToDetailsViewController(indexPath: indexPath)
     }
+    func navigateToDetailsViewController (indexPath: IndexPath) {
+        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "detaiViewController") as! detaiViewController
+        detailController.movies = self.selectedMovie[indexPath.row]
+        self.navigationController!.pushViewController(detailController, animated: true)
+    }
+ 
 }
 
-protocol SelectedMovieDelegate: class {
-    func didSelectMovie(movie:MovieDataModel)
-    
-}
+//extension HomeTableViewCell: UICollectionViewDelegate {
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//            self.movieDelegate?.didSelectMovie(movie: movies[indexPath.row])
+//    }
+//}
+//
+//protocol SelectedMovieDelegate: class {
+//    func didSelectMovie(movie:MovieDataModel)
+//
+//}
 
 // MARK: - DataSource
 extension HomeTableViewCell: UICollectionViewDataSource {
@@ -64,8 +79,12 @@ extension HomeTableViewCell: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        let radius = cell.contentView.layer.cornerRadius
-        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: radius).cgPath
+//        let radius = cell.contentView.layer.cornerRadius
+//        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: radius).cgPath
+        cell.layer.cornerRadius = 10.0
+        cell.clipsToBounds = true
+        cell.layer.borderWidth = 1.0
+//       cell.translatesAutoresizingMaskIntoConstraints = false
     }
     
 }
@@ -74,7 +93,7 @@ extension HomeTableViewCell: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-        return CGSize(width: contentView.bounds.size.width/3.4, height: contentView.bounds.size.height)
+        return CGSize(width: contentView.bounds.size.width/2.4, height: contentView.bounds.size.height/1.2)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10
@@ -84,7 +103,7 @@ extension HomeTableViewCell: UICollectionViewDelegateFlowLayout {
         return 0
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets.init(top: 8, left: 8, bottom: 8, right: 8)
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+//        return UIEdgeInsets.init(top: 8, left: 8, bottom: 8, right: 8)
+//    }
 }

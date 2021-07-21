@@ -29,14 +29,14 @@ class detaiViewController: UIViewController {
     @IBOutlet weak var coverImage: UIImageView!
     //  MARK: - Variables
     var delegateView =  HomeTableViewCell()
-    var movieData = [MovieDataModel]()
-//    var movieData: [MovieDataModel] = []
-    var movies : [MovieDataModel] = []
+//    var movieData = [MovieDataModel]()
+    var movieData: [MovieDataModel] = []
+    var movies : MovieDataModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 // anh check giúp em
-       setupViews(movie: movieData)
+      setupViews(movie: movieData[0])
 //      setupCollectionViewData(movie: movieData)
        movies =  APIService.load("Movie.json")
         setupNavigationBar()

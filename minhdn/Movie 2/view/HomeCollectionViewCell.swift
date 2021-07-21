@@ -12,8 +12,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageHomeCell: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
-//        self.layer.giveShadowToTableViewCell(layer: self.layer, Bounds: self.bounds, cornerRadius: 10.0)
-        // Initialization code
+
     }
 //  MARK: - Variables
     func configure(model: MovieDataModel) {
