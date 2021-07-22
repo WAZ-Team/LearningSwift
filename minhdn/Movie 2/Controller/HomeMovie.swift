@@ -26,12 +26,11 @@ class HomeMovie: UIViewController, UITableViewDelegate {
     var movies: [MovieDataModel] = []
     var movi = [[String:[MovieDataModel]]]()
 //    var selectedMovie: [MovieDataModel] = []
-    var selectedMovie = [MovieDataModel]()
+    var selectedMovie : MovieDataModel?
     var moviessection : [String] = [ "NowPlaying" , "HightRate" , "PopularMovie" , "UpcommingMovie"]
     override func viewDidLoad() {
         super.viewDidLoad()
         movies = APIService.load("Movie.json")
-        selectedMovie = APIService.load("Movie.json")
         setupNavigationBar()
         
     
@@ -94,33 +93,21 @@ class HomeMovie: UIViewController, UITableViewDelegate {
     }
 }
 // MARK: - Delegate
-//extension HomeMovie: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        navigateToDetailsViewController(indexPath: indexPath)
-//    }
-//    
-//    func navigateToDetailsViewController (indexPath: IndexPath) {
-//        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "detaiViewController") as! detaiViewController
-//        detailController.movies = self.selectedMovie[indexPath.row]
-//        self.navigationController!.pushViewController(detailController, animated: true)
-//    }
-// 
-//}
 
-//extension HomeMovie: SelectedMovieDelegate{
-//    func didSelectMovie(movie: MovieDataModel) {
-//        self.selectedMovie = [movie]
-//        self.performSegue(withIdentifier: "showDetail", sender: self)
-//    }
-//
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "showDetail"{
-//            let controller = segue.destination as! detaiViewController
-//            controller.movieData = selectedMovie
-//
-//        }
-//    }
-//}
+extension HomeMovie: SelectedMovieDelegate{
+    func didSelectMovie(movie: MovieDataModel) {
+        self.selectedMovie = movie
+        self.performSegue(withIdentifier: "showDetail", sender: self)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetail"{
+            let controller = segue.destination as! detaiViewController
+            controller.movies = selectedMovie
+
+        }
+    }
+}
 extension HomeMovie: UIViewControllerTransitioningDelegate{
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.ispresenting = true
@@ -155,12 +142,13 @@ extension HomeMovie: UITableViewDataSource {
         if indexPath.section == 0{
             guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier:"UpTableViewCell" , for: indexPath) as? UpTableViewCell else  { return UITableViewCell()}
             cell.configurer(movies: movies)
+            
             return cell
         }
         else{
             guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier:"HomeTableViewCell" , for: indexPath) as? HomeTableViewCell else  { return UITableViewCell()}
            cell.configure(movies: movies)
-
+         cell.movieDelegate = self
         return cell
             
         }

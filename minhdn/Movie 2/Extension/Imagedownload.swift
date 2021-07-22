@@ -13,10 +13,10 @@ let imageCache = NSCache<NSString, UIImage>()
 
 extension UIImageView {
 
-    func imageFromServerURL(_ URLString: String, placeHolder: UIImage?) {
-
-        self.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w500\(URLString)"))
-    }
+//    func imageFromServerURL(_ URLString: String, placeHolder: UIImage?) {
+//
+//        self.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w500\(URLString)"))
+//    }
 }
 
 

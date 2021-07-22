@@ -14,7 +14,7 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet private weak var homeCollectionview: UICollectionView!
 
     // MARK: - Variables
-//    weak var movieDelegate:SelectedMovieDelegate?
+   weak var movieDelegate:SelectedMovieDelegate?
     
     private var movies: [MovieDataModel] = [] {
         didSet{
@@ -42,29 +42,30 @@ extension HomeTableViewCell {
     }
 }
 // MARK: - Delegate
-extension HomeMovie: UICollectionViewDelegate {
-   
+
+//extension HomeMovie: UICollectionViewDelegate {
+//   
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        navigateToDetailsViewController(indexPath: indexPath)
+//    }
+//    func navigateToDetailsViewController (indexPath: IndexPath) {
+//        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "detaiViewController") as! detaiViewController
+//        detailController.movies = self.selectedMovie[indexPath.row]
+//        self.navigationController!.pushViewController(detailController, animated: true)
+//    }
+// 
+//}
+
+extension HomeTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        navigateToDetailsViewController(indexPath: indexPath)
+            self.movieDelegate?.didSelectMovie(movie: movies[indexPath.row])
     }
-    func navigateToDetailsViewController (indexPath: IndexPath) {
-        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "detaiViewController") as! detaiViewController
-        detailController.movies = self.selectedMovie[indexPath.row]
-        self.navigationController!.pushViewController(detailController, animated: true)
-    }
- 
 }
 
-//extension HomeTableViewCell: UICollectionViewDelegate {
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//            self.movieDelegate?.didSelectMovie(movie: movies[indexPath.row])
-//    }
-//}
-//
-//protocol SelectedMovieDelegate: class {
-//    func didSelectMovie(movie:MovieDataModel)
-//
-//}
+protocol SelectedMovieDelegate: class {
+    func didSelectMovie(movie:MovieDataModel)
+
+}
 
 // MARK: - DataSource
 extension HomeTableViewCell: UICollectionViewDataSource {

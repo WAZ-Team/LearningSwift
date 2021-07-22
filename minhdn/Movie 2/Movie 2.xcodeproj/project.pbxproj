@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		040356D226A67AFE00277966 /* homTabBarcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040356D126A67AFE00277966 /* homTabBarcontroller.swift */; };
 		040356E626A6CD7800277966 /* tabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040356E526A6CD7800277966 /* tabBarVC.swift */; };
-		0403570F26A7CB1100277966 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0403570E26A7CB1100277966 /* TestViewController.swift */; };
 		0403571226A7CFB200277966 /* SeachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0403571126A7CFB200277966 /* SeachViewController.swift */; };
 		0403571526A7CFC200277966 /* FavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0403571426A7CFC200277966 /* FavViewController.swift */; };
 		0403571C26A7DA3F00277966 /* SlideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0403571B26A7DA3F00277966 /* SlideMenu.swift */; };
@@ -42,7 +41,6 @@
 /* Begin PBXFileReference section */
 		040356D126A67AFE00277966 /* homTabBarcontroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = homTabBarcontroller.swift; sourceTree = "<group>"; };
 		040356E526A6CD7800277966 /* tabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabBarVC.swift; sourceTree = "<group>"; };
-		0403570E26A7CB1100277966 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		0403571126A7CFB200277966 /* SeachViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeachViewController.swift; sourceTree = "<group>"; };
 		0403571426A7CFC200277966 /* FavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavViewController.swift; sourceTree = "<group>"; };
 		0403571B26A7DA3F00277966 /* SlideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideMenu.swift; sourceTree = "<group>"; };
@@ -153,7 +151,6 @@
 				040356D126A67AFE00277966 /* homTabBarcontroller.swift */,
 				0451C95026984EC800FA4DAC /* HomeMovie.swift */,
 				042324F726A175BD00CD827E /* detaiViewController.swift */,
-				0403570E26A7CB1100277966 /* TestViewController.swift */,
 				0403571126A7CFB200277966 /* SeachViewController.swift */,
 				0403571426A7CFC200277966 /* FavViewController.swift */,
 				0403571B26A7DA3F00277966 /* SlideMenu.swift */,
@@ -326,7 +323,6 @@
 				040356E626A6CD7800277966 /* tabBarVC.swift in Sources */,
 				04072775269FDE2800623B41 /* UpTableViewCell.swift in Sources */,
 				0403571526A7CFC200277966 /* FavViewController.swift in Sources */,
-				0403570F26A7CB1100277966 /* TestViewController.swift in Sources */,
 				0403572C26A7DD7A00277966 /* SlideInTransition.swift in Sources */,
 				0407274F269E804900623B41 /* Constants.swift in Sources */,
 				04072771269FCDEF00623B41 /* ImageSet.swift in Sources */,
