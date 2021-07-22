@@ -8,7 +8,7 @@
 import UIKit
 
 class SlideInTransition: NSObject,UIViewControllerAnimatedTransitioning {
-    var ispresenting = false
+    var ispresenting = true
     let dimmingView = UIView()
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.3

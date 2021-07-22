@@ -496,10 +496,10 @@
             </objects>
             <point key="canvasLocation" x="1968" y="-689"/>
         </scene>
-        <!--SettingsVC-->
+        <!--Login View Controller-->
         <scene sceneID="yM3-P5-9CH">
             <objects>
-                <viewController storyboardIdentifier="SettingsVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yHV-x4-Bv9" customClass="SettingsVC" customModule="Movie_2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yHV-x4-Bv9" customClass="LoginViewController" customModule="Movie_2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EcL-a3-1M9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

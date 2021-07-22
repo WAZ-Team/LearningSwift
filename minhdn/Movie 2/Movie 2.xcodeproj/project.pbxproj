@@ -16,6 +16,8 @@
 		0403572626A7DB9100277966 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0403572526A7DB9100277966 /* SettingsVC.swift */; };
 		0403572926A7DBAA00277966 /* LogoutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0403572826A7DBAA00277966 /* LogoutVC.swift */; };
 		0403572C26A7DD7A00277966 /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0403572B26A7DD7A00277966 /* SlideInTransition.swift */; };
+		0403578326A9711500277966 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0403578226A9711500277966 /* Login.swift */; };
+		0403578626A9714400277966 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0403578526A9714400277966 /* LoginViewController.swift */; };
 		040724D4269D277800DC690E /* Imagedownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040724D3269D277800DC690E /* Imagedownload.swift */; };
 		0407274F269E804900623B41 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0407274E269E804900623B41 /* Constants.swift */; };
 		04072771269FCDEF00623B41 /* ImageSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04072770269FCDEF00623B41 /* ImageSet.swift */; };
@@ -48,6 +50,8 @@
 		0403572526A7DB9100277966 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		0403572826A7DBAA00277966 /* LogoutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutVC.swift; sourceTree = "<group>"; };
 		0403572B26A7DD7A00277966 /* SlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
+		0403578226A9711500277966 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		0403578526A9714400277966 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		040724D3269D277800DC690E /* Imagedownload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Imagedownload.swift; sourceTree = "<group>"; };
 		0407274E269E804900623B41 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		04072770269FCDEF00623B41 /* ImageSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSet.swift; sourceTree = "<group>"; };
@@ -157,6 +161,8 @@
 				0403572226A7DB7B00277966 /* ProfileVC.swift */,
 				0403572526A7DB9100277966 /* SettingsVC.swift */,
 				0403572826A7DBAA00277966 /* LogoutVC.swift */,
+				0403578226A9711500277966 /* Login.swift */,
+				0403578526A9714400277966 /* LoginViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -310,12 +316,14 @@
 				040356D226A67AFE00277966 /* homTabBarcontroller.swift in Sources */,
 				0451C9692698596200FA4DAC /* HomeCollectionViewCell.swift in Sources */,
 				0451C9642698589800FA4DAC /* HomeTableViewCell.swift in Sources */,
+				0403578626A9714400277966 /* LoginViewController.swift in Sources */,
 				0403572326A7DB7B00277966 /* ProfileVC.swift in Sources */,
 				040724D4269D277800DC690E /* Imagedownload.swift in Sources */,
 				0451C95126984EC800FA4DAC /* HomeMovie.swift in Sources */,
 				0451C96F269BDF6A00FA4DAC /* MovieData.swift in Sources */,
 				0451C9322698432000FA4DAC /* AppDelegate.swift in Sources */,
 				0403572926A7DBAA00277966 /* LogoutVC.swift in Sources */,
+				0403578326A9711500277966 /* Login.swift in Sources */,
 				0403571226A7CFB200277966 /* SeachViewController.swift in Sources */,
 				0403572626A7DB9100277966 /* SettingsVC.swift in Sources */,
 				0403571C26A7DA3F00277966 /* SlideMenu.swift in Sources */,
