@@ -8,33 +8,81 @@
 import UIKit
 
 class homTabBarcontroller: UITabBarController,UITabBarControllerDelegate {
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
+    let tabBarOrderKey = "tabBarOrderKey"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.delegate = self
-        self.selectedIndex = 1
-        setupMiddleButton()
-    }
-    
-    func setupMiddleButton() {
-        let middleButton = UIButton(frame: CGRect(x: (self.view.bounds.width / 2) - 25, y: -10, width: 60, height: 60))
-        middleButton.setBackgroundImage(UIImage(named: "home-icon-bg"), for: .normal)
-        middleButton.layer.shadowColor = UIColor.black.cgColor
-        middleButton.layer.shadowOpacity = 0.1
-        middleButton.layer.shadowOffset = CGSize(width: 4, height: 4)
+        configItewControllers()
+        setUpTabBarItemTags()
         
-        self.tabBar.addSubview(middleButton)
-        middleButton.addTarget(self, action: #selector(menuButtonAction), for: .touchUpInside)
-        self.view.layoutIfNeeded()
+        guard AppDelegate.isDark else { return }
+        tabBar.tintColor = UIColor.green
+        tabBar.barTintColor = UIColor.black
     }
     
-    @objc func menuButtonAction(sender: UIButton) {
-        self.selectedIndex = 1
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        guard AppDelegate.isDark else { return }
+        configMoreViewController()
     }
     
+    func configItewControllers() {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        var conrollers = [NavigationViewController]()
+        for index in 0..<TabBarItemTag.allCases.count {
+            let conroller = storyBoard.instantiateViewController(withIdentifier: "NavigationViewController") as! NavigationViewController
+            let item = TabBarItemTag.allCases[index]
+            conroller.viewControllers.first?.tabBarItem = UITabBarItem.init(title: item.title, image: UIImage(named: item.image), selectedImage: UIImage(named: item.selectedImage))
+            conrollers.append(conroller)
+        }
+
+        self.viewControllers = conrollers
+    }
+   
+    func configMoreViewController() {
+        moreNavigationController.navigationBar.barStyle = .black
+        moreNavigationController.navigationBar.tintColor = UIColor.white
+        moreNavigationController.topViewController?.view.backgroundColor = UIColor.black
+        (moreNavigationController.topViewController?.view as? UITableView)?.separatorStyle = .none
+        (moreNavigationController.topViewController?.view as? UITableView)?.tintColor = UIColor.lightGray
+        if let cells = (moreNavigationController.topViewController?.view as? UITableView)?.visibleCells {
+            for cell in cells {
+                cell.backgroundColor = UIColor.clear
+                cell.textLabel?.textColor = UIColor.lightGray
+            }
+        }
+    }
+    
+    func setUpTabBarItemTags() {
+        guard let viewControllers = viewControllers else { return }
+        for (index, view) in viewControllers.enumerated() {
+            view.tabBarItem.tag = index
+        }
+    }
+    
+
+    func tabBarController(_ tabBarController: UITabBarController, willBeginCustomizing viewControllers: [UIViewController]) {
+        guard AppDelegate.isDark else { return }
+        (tabBarController.view.subviews[1].subviews[1] as? UINavigationBar)?.barStyle = .black
+        (tabBarController.view.subviews[1].subviews[1] as? UINavigationBar)?.tintColor = UIColor.white
+        tabBarController.view.subviews[1].backgroundColor = UIColor.black
+        tabBarController.view.subviews[1].tintColor = UIColor.green
+    }
+    func createTabbarView() {
+        let tabItemOne = UITabBarItem()
+        let tabControllerOne = HomeMovieViewControllers()
+        tabControllerOne.tabBarItem = tabItemOne
+        
+        let tabItemTwo = UITabBarItem()
+        let tabControllerTwo = FavViewController()
+        tabControllerTwo.tabBarItem = tabItemTwo
+        
+        let tabItemThree = UITabBarItem()
+        let tabControllerThree = SeachViewController()
+        tabControllerThree.tabBarItem = tabItemThree
+        
+        self.setViewControllers([tabControllerOne, tabControllerTwo, tabControllerThree], animated: true)
+    }
 }

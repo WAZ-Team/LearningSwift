@@ -7,21 +7,10 @@
 
 import Foundation
 import UIKit
-import Kingfisher
+
 
 let imageCache = NSCache<NSString, UIImage>()
 
-extension UIImageView {
-
-//    func imageFromServerURL(_ URLString: String, placeHolder: UIImage?) {
-//
-//        self.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w500\(URLString)"))
-//    }
-}
-
-
-private var baseURL: String { return "https://image.tmdb.org/t/p/w500" }
-//https://image.tmdb.org/t/p/original
 extension UIImageView {
     func downloaded(from url: URL, contentMode mode: ContentMode = .scaleAspectFit) {
         contentMode = mode
@@ -38,7 +27,7 @@ extension UIImageView {
         }.resume()
     }
     func downloaded(from link: String, contentMode mode: ContentMode = .scaleAspectFit) {
-        guard let url = URL(string: baseURL + link) else { return }
+        guard let url = URL(string: Constants.BACK_DROP_BASE_URL + link) else { return }
         downloaded(from: url, contentMode: mode)
     }
 }

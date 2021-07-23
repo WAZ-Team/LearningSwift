@@ -8,9 +8,5 @@ target 'Movie 2' do
   # Pods for Movie 2
 	pod 'FSPagerView'
 	pod 'HCSStarRatingView', '~> 1.5'
-  pod 'Alamofire'
-  pod 'Kingfisher'
-  pod 'SwiftyJSON'
-  pod 'AlamofireImage'
-
+  
 end

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import SwiftyJSON
+
 typealias Movie = MovieDataModel
 
  struct MovieDataModel: Codable{

@@ -10,17 +10,17 @@ extension LoginViewController {
     
     func logoView() -> UIImageView {
         let img = UIImageView()
-        img.frame = CGRect(x: 0, y: 0, width: 200, height: 100)
+        img.frame = CGRect(x: 0, y: 0, width: 300, height: 200)
         img.contentMode = .scaleAspectFit
         img.clipsToBounds = true
         img.image = UIImage(named: "Logo")
         img.center.x = view.center.x
-        img.center.y = 200
+        img.center.y = 200.0
         return img
     }
 
     func emailTextField() -> UITextField {
-        emailText.frame = CGRect(x: 0, y: 0, width: self.view!.bounds.width * 0.9, height: 50)
+        emailText.frame = CGRect(x: 0, y: 0, width: self.view!.bounds.width * 0.9, height: 50.0)
         emailText.placeholder = "Email"
         emailText.text = "Minhdev96@gmail.com"
         emailText.autocapitalizationType = .none
@@ -32,12 +32,12 @@ extension LoginViewController {
         emailText.clearButtonMode = UITextField.ViewMode.whileEditing
         emailText.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         emailText.center.x = view.center.x
-        emailText.center.y = 300
+        emailText.center.y = 300.0
         return emailText
     }
     
     func passwordTextField() -> UITextField {
-       passwordText.frame = CGRect(x: 0, y: 0, width: self.view!.bounds.width * 0.9, height: 50)
+        passwordText.frame = CGRect(x: 0, y: 0, width: self.view!.bounds.width * 0.9, height: 50.0)
        passwordText.placeholder = "Password"
        passwordText.text = "123456"
        passwordText.font = UIFont.systemFont(ofSize: 17)
@@ -49,7 +49,7 @@ extension LoginViewController {
        passwordText.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
        passwordText.isSecureTextEntry = true
        passwordText.center.x = view.center.x
-       passwordText.center.y = 360
+        passwordText.center.y = 360.0
        return passwordText
     }
     
@@ -62,7 +62,7 @@ extension LoginViewController {
         button.setTitleColor(UIColor.white, for: .normal)
         button.layer.cornerRadius = 3
         button.center.x = view.center.x
-        button.center.y = 440
+        button.center.y = 440.0
         button.addTarget(self, action: #selector(onSignInPress), for: .touchUpInside)
         return button
     }
