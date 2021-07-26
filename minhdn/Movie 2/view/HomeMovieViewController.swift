@@ -15,44 +15,43 @@ class HomeMovieViewControllers: UIViewController, UITableViewDelegate {
         didSet{
             self.homeTableview.delegate = self
             self.homeTableview.dataSource = self
-            homeTableview.register(UINib(nibName: "HomeTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeTableViewCell")
-            homeTableview.register(UINib(nibName: "UpTableViewCell", bundle: nil), forCellReuseIdentifier: "UpTableViewCell")
+            homeTableview.register(UINib(nibName: Constants.homeTableViewCell, bundle: nil), forCellReuseIdentifier: Constants.homeTableViewCell)
+            homeTableview.register(UINib(nibName: Constants.upTableViewCell, bundle: nil), forCellReuseIdentifier: Constants.upTableViewCell)
             homeTableview.reloadData()
         }
     }
     
     var topView: UIView?
-//  MARK: - Variables
-    var movies: [MovieDataModel] = []
-    var movi = [[String:[MovieDataModel]]]()
-//    var selectedMovie: [MovieDataModel] = []
-    var selectedMovie : MovieDataModel?
-   
+    //  MARK: - Variables
+   var movies: [MovieDataModel] = [MovieDataModel]()
+    var selectedMovie: MovieDataModel?
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         movies = APIService.load("Movie.json")
-        navigationController?.navigationItem.titleView?.tintColor = .black
-        guard AppDelegate.isDark else { return }
-        view.backgroundColor = UIColor.black
-        navigationController?.navigationBar.barStyle = .black
-        homeTableview.backgroundColor = .black
-        view.backgroundColor = .black
-        navigationItem.title = TabBarItemTag.allCases[tabBarItem.tag].title
+//        selectedMovie = APIService.load("Movie.json")
+//        guard AppDelegate.isDark else { return }
+//        view.backgroundColor = UIColor.black
+//        navigationController?.navigationBar.barStyle = .black
+//        homeTableview.backgroundColor = .black
+//        view.backgroundColor = .black
+//        navigationItem.title = TabBarItemTag.allCases[tabBarItem.tag].title
     }
 }
 
 //  MARK: - Config
-  
- 
+
+
 // MARK: - Delegate
 
 extension HomeMovieViewControllers: SelectedMovieDelegate{
     func didSelectMovie(movie: MovieDataModel) {
         self.selectedMovie = movie
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "detaiViewController") as! detaiViewController
+        guard let vc = storyboard.instantiateViewController(withIdentifier: Constants.detaiViewController) as? DetaiViewController else{return}
         vc.modalPresentationStyle = .fullScreen
+        vc.movieData = selectedMovie
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -69,25 +68,23 @@ extension HomeMovieViewControllers: UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0{
-            return 0
+            return 0.0
         } else{
-            return 40
+            return 40.0
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0{
-            guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier:"UpTableViewCell" , for: indexPath) as? UpTableViewCell else  { return UITableViewCell()}
+            guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier:Constants.upTableViewCell , for: indexPath) as? UpTableViewCell else {return UITableViewCell()}
             cell.configurer(movies: movies)
-            
             return cell
         }
         else{
-            guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier:"HomeTableViewCell" , for: indexPath) as? HomeTableViewCell else  { return UITableViewCell()}
-           cell.configure(movies: movies)
-         cell.movieDelegate = self
-        return cell
-            
+            guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier: Constants.homeTableViewCell , for: indexPath) as? HomeTableViewCell else  { return UITableViewCell()}
+            cell.configure(movies: movies)
+            cell.movieDelegate = self
+            return cell
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -117,17 +114,9 @@ extension HomeMovieViewControllers: UITableViewDataSource {
             label.text = "Upcoming"
         case 4:
             label.text = "Popular"
-        
         default:
             break
         }
         return headerView
-        }
-    
     }
-enum ListType: String{
-    case Popular
-    case HighestRated
-    case Upcoming
-    case NowPlaying
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-typealias Movie = MovieDataModel
+
 
  struct MovieDataModel: Codable{
     public var adult: Bool?

@@ -10,9 +10,7 @@ import UIKit
 class LoginViewController: UIViewController {
         var emailText =  UITextField()
         var passwordText =  UITextField()
-        
         var vSpinner : UIView?
-        
         override func viewDidLoad() {
             super.viewDidLoad()
             setupContentView()
@@ -32,7 +30,7 @@ class LoginViewController: UIViewController {
                 return
             }
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "homTabBarcontroller") as! homTabBarcontroller
+            guard let vc = storyboard.instantiateViewController(withIdentifier: Constants.homeTabBarController) as? HomeTabBarcontroller else {return}
             self.navigationController?.pushViewController(vc, animated: true)
                         }
             

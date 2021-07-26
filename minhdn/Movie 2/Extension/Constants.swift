@@ -20,4 +20,10 @@ struct Constants {
     static let KEY_TOP_RATED = "top_rated"
     static let KEY_NOW_PLAYING = "now_playing"
     static let homeCollectionViewCell = "HomeCollectionViewCell"
+    static let homeTableViewCell = "HomeTableViewCell"
+    static let upTableViewCell = "UpTableViewCell"
+    static let homeTabBarController = "HomeTabBarcontroller"
+    static let navigationViewController = "NavigationViewController"
+    static let detaiViewController = "DetaiViewController"
+    static let homeMovieViewControllers = "HomeMovieViewControllers"
 }

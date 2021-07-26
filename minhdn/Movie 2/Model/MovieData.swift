@@ -10,9 +10,6 @@
 import Foundation
 
 class APIService {
-
-static let shared = APIService()
-
 private init() {}
     static func load<T:Decodable>(_ filename: String, as type: T.Type = T.self) -> T {
         let data: Data

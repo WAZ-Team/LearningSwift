@@ -7,7 +7,7 @@
 
 import UIKit
 import HCSStarRatingView
-class detaiViewController: UIViewController {
+class DetaiViewController: UIViewController {
     //    MARK: - Outlet
     
     @IBOutlet weak var coverView: UIView!
@@ -29,15 +29,13 @@ class detaiViewController: UIViewController {
     @IBOutlet weak var coverImage: UIImageView!
     //  MARK: - Variables
     var delegateView =  HomeTableViewCell()
-    //    var movieData = [MovieDataModel]()
-    
-    var movies: MovieDataModel?
+ 
     var movieData: MovieDataModel?
     override func viewDidLoad() {
         super.viewDidLoad()
-    movies =  APIService.load("Movie.json")
+        movieData = APIService.load("Movie.json")
         setupNavigationBar()
-
+        setupViews(movie: movieData)
     }
     
     
@@ -62,7 +60,7 @@ class detaiViewController: UIViewController {
 }
 
 //  MARK: - DataSource
-extension detaiViewController:UICollectionViewDataSource{
+extension DetaiViewController:UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
     }

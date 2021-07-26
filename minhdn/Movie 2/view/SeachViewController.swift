@@ -14,7 +14,6 @@ class SeachViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
 //  MARK: - Variables
     private var timer:Timer?
-    
     // Controls if the list is loading more items
     private var isLoadingMore = false
 
@@ -27,10 +26,9 @@ class SeachViewController: UIViewController {
 //    var data = [MovieDataModel]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigationBar()
         movieData = APIService.load("Movie.json")
-        guard AppDelegate.isDark else { return }
-        view.backgroundColor = UIColor.black
+//        guard AppDelegate.isDark else { return }
+//        view.backgroundColor = UIColor.black
         
         searchController.loadViewIfNeeded()
         searchController.searchResultsUpdater = self
@@ -47,24 +45,7 @@ class SeachViewController: UIViewController {
         self.collectionView.register(UINib(nibName: Constants.homeCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: Constants.homeCollectionViewCell)
     }
     
-    func setupNavigationBar(){
-        navigationItem.searchController = searchController
-        self.navigationItem.title = TabBarItemTag.allCases[tabBarItem.tag].title
-        
-//        let label = UILabel(frame: CGRect(x:0, y:0, width:350.0, height:30.0))
-//        label.backgroundColor = .clear
-//        label.numberOfLines = 1
-////        label.font = UIFont (name: "Helvetica Neue", size: 20.0)!
-//        label.font = .boldSystemFont(ofSize: 30.0)
-////        label.textAlignment = .left
-//        label.textColor = .darkText
-//        label.sizeToFit()
-//        label.text = "Seach"
-//        self.navigationItem.titleView = label
-     
-//        self.navigationItem.leftBarButtonItem?.tintColor = .black
-//        self.navigationItem.leftBarButtonItem?.width = 20.0
-    }
+  
 }
 // MARK: - UISearchResultsUpdating
 extension SeachViewController:UISearchResultsUpdating{
