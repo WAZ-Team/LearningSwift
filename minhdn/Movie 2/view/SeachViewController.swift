@@ -26,7 +26,7 @@ class SeachViewController: UIViewController {
 //    var data = [MovieDataModel]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        movieData = APIService.load("Movie.json")
+//        movieData = APIService.load("Movie.json")
 //        guard AppDelegate.isDark else { return }
 //        view.backgroundColor = UIColor.black
         
@@ -73,7 +73,7 @@ extension SeachViewController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         if searchText.isEmpty == false {
-//            data = movieData.filter({ $0.title(searchText) })
+//          data = movieData.filter({ $0.title(searchText) })
         }
         
         collectionView.reloadData()

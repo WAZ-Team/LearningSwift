@@ -33,7 +33,10 @@ class DetaiViewController: UIViewController {
     var movieData: MovieDataModel?
     override func viewDidLoad() {
         super.viewDidLoad()
-        movieData = APIService.load("Movie.json")
+
+       
+       setupViews(movie: movieData)
+//      setupCollectionViewData(movie: movieData)
         setupNavigationBar()
         setupViews(movie: movieData)
     }
@@ -42,9 +45,9 @@ class DetaiViewController: UIViewController {
     func setupViews(movie: MovieDataModel?){
         coverImage.downloaded(from: movie?.backdroppath ?? "")
         movieTitle.text = movie?.title?.uppercased()
-//        rateBar.value = CGFloat(movie?.VoteAverage!/2)
+        rateBar.value = CGFloat((movie?.VoteAverage!)!/2)
         overView.text = movie?.overview
-//        let subStr =  movie.ReleaseDate!.prefix(4)
+       let subStr =  movie?.ReleaseDate!.prefix(4)
         
     }
     
