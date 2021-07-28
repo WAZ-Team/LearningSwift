@@ -22,7 +22,6 @@ extension LoginViewController {
     func emailTextField() -> UITextField {
         emailText.frame = CGRect(x: 0, y: 0, width: self.view!.bounds.width * 0.9, height: 50.0)
         emailText.placeholder = "Email"
-        emailText.text = "Minhdev96@gmail.com"
         emailText.autocapitalizationType = .none
         emailText.font = UIFont.systemFont(ofSize: 17)
         emailText.borderStyle = UITextField.BorderStyle.roundedRect
@@ -39,7 +38,6 @@ extension LoginViewController {
     func passwordTextField() -> UITextField {
         passwordText.frame = CGRect(x: 0, y: 0, width: self.view!.bounds.width * 0.9, height: 50.0)
        passwordText.placeholder = "Password"
-       passwordText.text = "123456"
        passwordText.font = UIFont.systemFont(ofSize: 17)
        passwordText.borderStyle = UITextField.BorderStyle.roundedRect
        passwordText.autocorrectionType = UITextAutocorrectionType.no
@@ -66,31 +64,27 @@ extension LoginViewController {
         button.addTarget(self, action: #selector(onSignInPress), for: .touchUpInside)
         return button
     }
-
-//    func navigationBar() -> UINavigationBar{
-//        let screenSize: CGRect = UIScreen.main.bounds
-//    let navBar = UINavigationBar(frame: CGRect(x: 0, y: UIDevice.isIphoneX ? 50 : 20, width: Int(screenSize.width), height: 44))
-//        navBar.tintColor = .white
-//
-//        UINavigationBar.appearance().shadowImage = UIImage()
-//
-//        navBar.barTintColor = .black
-//        navBar.isTranslucent = false
-//        let navigationItem = UINavigationItem(title: "")
-//
-//        navigationItem.leftBarButtonItem  = UIBarButtonItem(barButtonSystemItem: .cancel ,target: nil, action: #selector(goBack))
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Register", style: .plain, target: self, action: nil)
-//
-//        navBar.setItems([navigationItem], animated: false)
-//        return navBar
-//}
+    
+    func Register() -> UIButton {
+        let button = UIButton()
+        button.frame = CGRect(x: 0, y: 0, width: view!.bounds.width * 0.9, height: 50)
+        button.backgroundColor = .red
+        button.titleLabel?.font = UIFont(name: "Arial", size: 15)
+        button.setTitle("Register", for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.layer.cornerRadius = 3
+        button.center.x = view.center.x
+        button.center.y = 500.0
+        button.addTarget(self, action: #selector(onRegisterPress), for: .touchUpInside)
+        return button
+    }
     
     func setupContentView() {
         view.backgroundColor = .black
-//        view.addSubview(navigationBar())
         view.addSubview(logoView())
         view.addSubview(emailTextField())
         view.addSubview(passwordTextField())
         view.addSubview(signInButton())
+        view.addSubview( Register())
     }
 }

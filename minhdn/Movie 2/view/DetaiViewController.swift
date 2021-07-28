@@ -24,55 +24,54 @@ class DetaiViewController: UIViewController {
     //    @IBOutlet weak var yearlabel: UILabel!
     //    @IBOutlet weak var yeatval: UILabel!
     @IBOutlet weak var screenShort: UILabel!
-    @IBOutlet weak var scrShotCLV: UICollectionView!
-    
+    @IBOutlet weak var movieDifference: UICollectionView!
     @IBOutlet weak var coverImage: UIImageView!
     //  MARK: - Variables
     var delegateView =  HomeTableViewCell()
- 
+    private var moviesdata: [MovieDataModel] = [] {
+        didSet{
+            movieDifference.reloadData()
+        }
+    }
     var movieData: MovieDataModel?
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       
+        movieDifference.delegate = self
+        movieDifference.dataSource = self
+        self.movieDifference.register(UINib(nibName: Constants.homeCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: Constants.homeCollectionViewCell)
        setupViews(movie: movieData)
-//      setupCollectionViewData(movie: movieData)
-        setupNavigationBar()
+       setupNavigationBar()
         setupViews(movie: movieData)
+        self.coverImage = coverImage.roundImage
     }
-    
     
     func setupViews(movie: MovieDataModel?){
         coverImage.downloaded(from: movie?.backdroppath ?? "")
         movieTitle.text = movie?.title?.uppercased()
         rateBar.value = CGFloat((movie?.VoteAverage!)!/2)
         overView.text = movie?.overview
-       let subStr =  movie?.ReleaseDate!.prefix(4)
+//       let subStr =  movie?.ReleaseDate!.prefix(4)
         
     }
     
-    
     func setupNavigationBar(){
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.view.backgroundColor = .clear
-        self.navigationItem.backBarButtonItem?.title = ""
-        self.navigationController?.navigationBar.tintColor = .white
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        title = movieData?.title
+        self.navigationController?.navigationItem.backButtonTitle = "Home"
     }
 }
 
 //  MARK: - DataSource
 extension DetaiViewController:UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "screenshots", for: indexPath)
-//        let image:UIImageView = cell.contentView.viewWithTag(1) as! UIImageView
-//        image.downloaded(from: movieData[indexPath.row].backdroppath ?? "")
+        guard let cell = self.movieDifference.dequeueReusableCell(withReuseIdentifier: Constants.homeCollectionViewCell, for: indexPath) as? HomeCollectionViewCell else { return UICollectionViewCell() }
+        cell.imageHomeCell.downloaded(from: movieData?.backdroppath ?? "" )
         return cell
+      
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -81,8 +80,24 @@ extension DetaiViewController:UICollectionViewDataSource{
 }
 
 //  MARK:   - Delegate
+extension DetaiViewController: UICollectionViewDelegate{
+    
+}
+// MARK: - UICollectionViewDelegateFlowLayout
+extension DetaiViewController: UICollectionViewDelegateFlowLayout {
 
+    func collectionView(_ collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.bounds.size.width/2.4, height: view.bounds.size.height/1.1)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
 
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+}
 
 
 

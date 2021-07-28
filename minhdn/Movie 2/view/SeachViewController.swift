@@ -79,10 +79,11 @@ extension SeachViewController: UISearchBarDelegate{
         collectionView.reloadData()
     }
 }
-
+//  MARK:   - Delegate
 extension SeachViewController: UICollectionViewDelegate{
     
 }
+//  MARK:   - DataSource
 extension SeachViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movieData.count
@@ -92,6 +93,12 @@ extension SeachViewController: UICollectionViewDataSource{
         guard let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: Constants.homeCollectionViewCell, for: indexPath) as? HomeCollectionViewCell else { return UICollectionViewCell() }
         cell.configure(model: movieData[indexPath.row])
         return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        cell.layer.cornerRadius = 20.0
+        cell.clipsToBounds = true
+        cell.layer.borderWidth = 3.0
     }
 }
 // MARK: - UICollectionViewDelegateFlowLayout

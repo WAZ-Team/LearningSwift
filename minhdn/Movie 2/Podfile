@@ -6,7 +6,8 @@ target 'Movie 2' do
   use_frameworks!
 
   # Pods for Movie 2
-	pod 'FSPagerView'
-	pod 'HCSStarRatingView', '~> 1.5'
-  
-end
+	  pod 'FSPagerView'
+	  pod 'HCSStarRatingView', '~> 1.5'
+  	pod 'FaveButton'
+  	pod 'RealmSwift', '~> 5.5.0'
+    end

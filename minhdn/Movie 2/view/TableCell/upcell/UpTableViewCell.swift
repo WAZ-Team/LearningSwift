@@ -14,7 +14,7 @@ class UpTableViewCell: UITableViewCell {
     @IBOutlet weak var FSView: FSPagerView!{
         didSet{
             self.FSView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "UpTableViewCell")
-            self.FSView.transformer = FSPagerViewTransformer(type: .linear)
+            self.FSView.transformer = FSPagerViewTransformer(type: .overlap)
         }
     }
     //    MARK: - Veriables
@@ -29,6 +29,7 @@ class UpTableViewCell: UITableViewCell {
         super.awakeFromNib()
         FSView.dataSource = self
         FSView.delegate = self
+        FSView.reloadData()
         // Initialization code
         //    FSView.reloadData()
         //   cellData = APIService.load("Movie.json")

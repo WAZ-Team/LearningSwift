@@ -31,6 +31,9 @@
 		0451C96A2698596200FA4DAC /* HomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0451C9682698596200FA4DAC /* HomeCollectionViewCell.xib */; };
 		0451C96F269BDF6A00FA4DAC /* MovieData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0451C96E269BDF6A00FA4DAC /* MovieData.swift */; };
 		0451C97B269C173500FA4DAC /* Movie.json in Resources */ = {isa = PBXBuildFile; fileRef = 0451C97A269C173500FA4DAC /* Movie.json */; };
+		04BBF50F26B15E1C009C858B /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BBF50E26B15E1C009C858B /* UserData.swift */; };
+		04BBF54526B16FC8009C858B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BBF54426B16FC8009C858B /* RegisterViewController.swift */; };
+		04BBF54826B1706B009C858B /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BBF54726B1706B009C858B /* Register.swift */; };
 		88A7E5625B7FCBB6E3B1B301 /* Pods_Movie_2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 975C7E61E1AE536C7C0B40E2 /* Pods_Movie_2.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +64,9 @@
 		0451C9682698596200FA4DAC /* HomeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCollectionViewCell.xib; sourceTree = "<group>"; };
 		0451C96E269BDF6A00FA4DAC /* MovieData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieData.swift; sourceTree = "<group>"; };
 		0451C97A269C173500FA4DAC /* Movie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Movie.json; sourceTree = "<group>"; };
+		04BBF50E26B15E1C009C858B /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		04BBF54426B16FC8009C858B /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		04BBF54726B1706B009C858B /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
 		43D7C447DEBCDA8684EFDBB3 /* Pods-Movie 2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movie 2.release.xcconfig"; path = "Target Support Files/Pods-Movie 2/Pods-Movie 2.release.xcconfig"; sourceTree = "<group>"; };
 		86F4D2765AD70CDA9E9C7868 /* Pods-Movie 2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movie 2.debug.xcconfig"; path = "Target Support Files/Pods-Movie 2/Pods-Movie 2.debug.xcconfig"; sourceTree = "<group>"; };
 		975C7E61E1AE536C7C0B40E2 /* Pods_Movie_2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Movie_2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -156,6 +162,7 @@
 				0451C97A269C173500FA4DAC /* Movie.json */,
 				0451C9492698497000FA4DAC /* MovieDataModel.swift */,
 				0451C96E269BDF6A00FA4DAC /* MovieData.swift */,
+				04BBF50E26B15E1C009C858B /* UserData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -164,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				0403578526A9714400277966 /* LoginViewController.swift */,
+				04BBF54426B16FC8009C858B /* RegisterViewController.swift */,
 				040356D126A67AFE00277966 /* HomeTabBarcontroller.swift */,
 				0451C95026984EC800FA4DAC /* HomeMovieViewController.swift */,
 				042324F726A175BD00CD827E /* DetaiViewController.swift */,
@@ -178,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				0403578226A9711500277966 /* Login.swift */,
+				04BBF54726B1706B009C858B /* Register.swift */,
 				040242B726AA9927004AFE4E /* HomeMovie.swift */,
 			);
 			path = Controller;
@@ -331,6 +340,7 @@
 				0451C9692698596200FA4DAC /* HomeCollectionViewCell.swift in Sources */,
 				0451C9642698589800FA4DAC /* HomeTableViewCell.swift in Sources */,
 				0403578626A9714400277966 /* LoginViewController.swift in Sources */,
+				04BBF54526B16FC8009C858B /* RegisterViewController.swift in Sources */,
 				040724D4269D277800DC690E /* Imagedownload.swift in Sources */,
 				0451C95126984EC800FA4DAC /* HomeMovieViewController.swift in Sources */,
 				0451C96F269BDF6A00FA4DAC /* MovieData.swift in Sources */,
@@ -339,6 +349,8 @@
 				0403571226A7CFB200277966 /* SeachViewController.swift in Sources */,
 				0451C94A2698497000FA4DAC /* MovieDataModel.swift in Sources */,
 				040242B826AA9927004AFE4E /* HomeMovie.swift in Sources */,
+				04BBF50F26B15E1C009C858B /* UserData.swift in Sources */,
+				04BBF54826B1706B009C858B /* Register.swift in Sources */,
 				04072775269FDE2800623B41 /* UpTableViewCell.swift in Sources */,
 				0403571526A7CFC200277966 /* FavViewController.swift in Sources */,
 				0407274F269E804900623B41 /* Constants.swift in Sources */,

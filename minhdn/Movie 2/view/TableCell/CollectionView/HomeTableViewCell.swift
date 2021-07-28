@@ -64,9 +64,9 @@ extension HomeTableViewCell: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        cell.layer.cornerRadius = 10.0
+        cell.layer.cornerRadius = 20.0
         cell.clipsToBounds = true
-        cell.layer.borderWidth = 1.0
+        cell.layer.borderWidth = 3.0
     }
     
 }
@@ -79,6 +79,7 @@ extension HomeTableViewCell: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10
+        
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

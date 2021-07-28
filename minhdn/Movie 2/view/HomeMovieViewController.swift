@@ -11,16 +11,7 @@ import UIKit
 class HomeMovieViewControllers: UIViewController, UITableViewDelegate {
     
     //    MARK: - IBoutlet
-    @IBOutlet weak var homeTableview: UITableView!{
-        didSet{
-            self.homeTableview.delegate = self
-            self.homeTableview.dataSource = self
-            homeTableview.register(UINib(nibName: Constants.homeTableViewCell, bundle: nil), forCellReuseIdentifier: Constants.homeTableViewCell)
-            homeTableview.register(UINib(nibName: Constants.upTableViewCell, bundle: nil), forCellReuseIdentifier: Constants.upTableViewCell)
-            homeTableview.reloadData()
-        }
-    }
-    
+    @IBOutlet weak var homeTableview: UITableView!
     var topView: UIView?
     //  MARK: - Variables
    var movies: [MovieDataModel] = [MovieDataModel]()
@@ -30,19 +21,17 @@ class HomeMovieViewControllers: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         movies = APIService.load("Movie.json")
-//        selectedMovie = APIService.load("Movie.json")
-//        guard AppDelegate.isDark else { return }
-//        view.backgroundColor = UIColor.black
-//        navigationController?.navigationBar.barStyle = .black
-//        homeTableview.backgroundColor = .black
-//        view.backgroundColor = .black
-//        navigationItem.title = TabBarItemTag.allCases[tabBarItem.tag].title
+        navigationController?.navigationBar.prefersLargeTitles = true
+        title = "Movie TV"
+        self.homeTableview.delegate = self
+        self.homeTableview.dataSource = self
+        homeTableview.register(UINib(nibName: Constants.homeTableViewCell, bundle: nil), forCellReuseIdentifier: Constants.homeTableViewCell)
+        homeTableview.register(UINib(nibName: Constants.upTableViewCell, bundle: nil), forCellReuseIdentifier: Constants.upTableViewCell)
+        homeTableview.reloadData()
     }
 }
 
 //  MARK: - Config
-
-
 // MARK: - Delegate
 
 extension HomeMovieViewControllers: SelectedMovieDelegate{
@@ -50,7 +39,6 @@ extension HomeMovieViewControllers: SelectedMovieDelegate{
         self.selectedMovie = movie
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let vc = storyboard.instantiateViewController(withIdentifier: Constants.detaiViewController) as? DetaiViewController else{return}
-        vc.modalPresentationStyle = .fullScreen
         vc.movieData = selectedMovie
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -66,14 +54,6 @@ extension HomeMovieViewControllers: UITableViewDataSource {
         return 1
         
     }
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0{
-            return 0.0
-        } else{
-            return 40.0
-        }
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0{
             guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier:Constants.upTableViewCell , for: indexPath) as? UpTableViewCell else {return UITableViewCell()}
@@ -87,6 +67,14 @@ extension HomeMovieViewControllers: UITableViewDataSource {
             return cell
         }
     }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0{
+            return 0.0
+        } else{
+            return 40.0
+        }
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0{
             return 205.0

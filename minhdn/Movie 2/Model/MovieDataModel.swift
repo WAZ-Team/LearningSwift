@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-
  struct MovieDataModel: Codable{
     public var adult: Bool?
     public var backdroppath: String?

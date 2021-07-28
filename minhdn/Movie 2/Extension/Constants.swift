@@ -26,4 +26,6 @@ struct Constants {
     static let navigationViewController = "NavigationViewController"
     static let detaiViewController = "DetaiViewController"
     static let homeMovieViewControllers = "HomeMovieViewControllers"
+    static let loginViewController = "LoginViewController"
+    static let registerViewController = "RegisterViewController"
 }
