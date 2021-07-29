@@ -23,11 +23,11 @@ class SeachViewController: UIViewController {
     let searchController = UISearchController()
     var data = String()
     var selectmovie: MovieDataModel?
-    var movidata: [MovieDataModel] = [MovieDataModel]
+    var movidata: [MovieDataModel] = [MovieDataModel]()
 //    var data = [MovieDataModel]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        selectmovie = APIService.load("Movie.json")
+        movidata = APIService.load("Movie.json")
 //        guard AppDelegate.isDark else { return }
 //        view.backgroundColor = UIColor.black
         
@@ -75,7 +75,7 @@ extension SeachViewController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         if searchText.isEmpty == false {
-            data = movidata..filter({ $0.title(searchText) })
+//            data = movidata..filter({ $0.title(searchText) })
         }
         
         collectionView.reloadData()
@@ -88,12 +88,12 @@ extension SeachViewController: UICollectionViewDelegate{
     //  MARK:   - DataSource
 extension SeachViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return .count
+        return movidata.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: Constants.homeCollectionViewCell, for: indexPath) as? HomeCollectionViewCell else { return UICollectionViewCell() }
-        cell.imageHomeCell.downloaded(from: movieData?.Posterpath ?? "")
+        cell.imageHomeCell.downloaded(from: selectmovie?.Posterpath ?? "")
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -107,17 +107,15 @@ extension SeachViewController: UICollectionViewDataSource{
 extension SeachViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.bounds.width/3.2 , height: view.bounds.height/3)
+        return CGSize(width: view.bounds.width - 20.0 , height: view.bounds.height/4.3)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        return 10.0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        return 5.0
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets.init(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
-    }
+   
 }

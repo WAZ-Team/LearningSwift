@@ -38,7 +38,7 @@ class DetaiViewController: UIViewController {
     var favdata = Favorite()
     override func viewDidLoad() {
         super.viewDidLoad()
-        favdata.id = movieData!.id!
+        favdata.id = (movieData?.id)!
         movieDifference.delegate = self
         movieDifference.dataSource = self
         self.movieDifference.register(UINib(nibName: Constants.homeCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: Constants.homeCollectionViewCell)
