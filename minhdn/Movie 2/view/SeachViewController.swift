@@ -8,11 +8,11 @@
 import UIKit
 
 class SeachViewController: UIViewController {
-//  MARK:   - Outlet
+    //  MARK:   - Outlet
     
     
     @IBOutlet weak var collectionView: UICollectionView!
-//  MARK: - Variables
+    //  MARK: - Variables
     private var timer:Timer?
     // Controls if the list is loading more items
     private var isLoadingMore = false
@@ -22,14 +22,16 @@ class SeachViewController: UIViewController {
     
     let searchController = UISearchController()
     var data = String()
-    var movieData = [MovieDataModel]()
+    var selectmovie: MovieDataModel?
+    var movidata: [MovieDataModel] = [MovieDataModel]
 //    var data = [MovieDataModel]()
     override func viewDidLoad() {
         super.viewDidLoad()
-//        movieData = APIService.load("Movie.json")
+        selectmovie = APIService.load("Movie.json")
 //        guard AppDelegate.isDark else { return }
 //        view.backgroundColor = UIColor.black
         
+        print(data)
         searchController.loadViewIfNeeded()
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -47,7 +49,7 @@ class SeachViewController: UIViewController {
     
   
 }
-// MARK: - UISearchResultsUpdating
+    // MARK: - UISearchResultsUpdating
 extension SeachViewController:UISearchResultsUpdating{
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -73,25 +75,25 @@ extension SeachViewController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         if searchText.isEmpty == false {
-//          data = movieData.filter({ $0.title(searchText) })
+            data = movidata..filter({ $0.title(searchText) })
         }
         
         collectionView.reloadData()
     }
 }
-//  MARK:   - Delegate
+    //  MARK:   - Delegate
 extension SeachViewController: UICollectionViewDelegate{
     
 }
-//  MARK:   - DataSource
+    //  MARK:   - DataSource
 extension SeachViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movieData.count
+        return .count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: Constants.homeCollectionViewCell, for: indexPath) as? HomeCollectionViewCell else { return UICollectionViewCell() }
-        cell.configure(model: movieData[indexPath.row])
+        cell.imageHomeCell.downloaded(from: movieData?.Posterpath ?? "")
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -101,11 +103,11 @@ extension SeachViewController: UICollectionViewDataSource{
         cell.layer.borderWidth = 3.0
     }
 }
-// MARK: - UICollectionViewDelegateFlowLayout
+    // MARK: - UICollectionViewDelegateFlowLayout
 extension SeachViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.bounds.width/4 , height: view.bounds.height/3)
+        return CGSize(width: view.bounds.width/3.2 , height: view.bounds.height/3)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10

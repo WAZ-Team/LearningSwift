@@ -19,20 +19,20 @@ extension LoginViewController {
         return img
     }
 
-    func emailTextField() -> UITextField {
-        emailText.frame = CGRect(x: 0, y: 0, width: self.view!.bounds.width * 0.9, height: 50.0)
-        emailText.placeholder = "Email"
-        emailText.autocapitalizationType = .none
-        emailText.font = UIFont.systemFont(ofSize: 17)
-        emailText.borderStyle = UITextField.BorderStyle.roundedRect
-        emailText.autocorrectionType = UITextAutocorrectionType.no
-        emailText.keyboardType = UIKeyboardType.emailAddress
-        emailText.returnKeyType = UIReturnKeyType.next
-        emailText.clearButtonMode = UITextField.ViewMode.whileEditing
-        emailText.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
-        emailText.center.x = view.center.x
-        emailText.center.y = 300.0
-        return emailText
+    func usernameTextField() -> UITextField {
+        username.frame = CGRect(x: 0, y: 0, width: self.view!.bounds.width * 0.9, height: 50.0)
+        username.placeholder = "User Name"
+        username.autocapitalizationType = .none
+        username.font = UIFont.systemFont(ofSize: 17)
+        username.borderStyle = UITextField.BorderStyle.roundedRect
+        username.autocorrectionType = UITextAutocorrectionType.no
+        username.keyboardType = UIKeyboardType.emailAddress
+        username.returnKeyType = UIReturnKeyType.next
+        username.clearButtonMode = UITextField.ViewMode.whileEditing
+        username.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+        username.center.x = view.center.x
+        username.center.y = 300.0
+        return username
     }
     
     func passwordTextField() -> UITextField {
@@ -82,9 +82,38 @@ extension LoginViewController {
     func setupContentView() {
         view.backgroundColor = .black
         view.addSubview(logoView())
-        view.addSubview(emailTextField())
+        view.addSubview(usernameTextField())
         view.addSubview(passwordTextField())
         view.addSubview(signInButton())
         view.addSubview( Register())
     }
+    func showAlert(_ message: String) {
+        let alertController = UIAlertController(title: "Message", message: message, preferredStyle: UIAlertController.Style.alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    @objc func onSignInPress() {
+        guard self.username.text == UserData.init().username , self.passwordText.text == UserData.init().password else {
+            self.showAlert("wrong email/password ")
+            return
+        }
+       
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let vc = storyboard.instantiateViewController(withIdentifier: Constants.homeTabBarController) as? HomeTabBarcontroller else {return}
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+@objc func onRegisterPress() {
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    guard let vc = storyboard.instantiateViewController(withIdentifier: Constants.registerViewController) as? RegisterViewController else {return}
+    self.navigationController?.pushViewController(vc, animated: true)
 }
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+
+}
+
+
+
+

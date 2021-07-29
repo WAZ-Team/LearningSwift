@@ -7,6 +7,7 @@
 
 import UIKit
 import HCSStarRatingView
+import RealmSwift
 class DetaiViewController: UIViewController {
     //    MARK: - Outlet
     
@@ -34,8 +35,10 @@ class DetaiViewController: UIViewController {
         }
     }
     var movieData: MovieDataModel?
+    var favdata = Favorite()
     override func viewDidLoad() {
         super.viewDidLoad()
+        favdata.id = movieData!.id!
         movieDifference.delegate = self
         movieDifference.dataSource = self
         self.movieDifference.register(UINib(nibName: Constants.homeCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: Constants.homeCollectionViewCell)
@@ -43,6 +46,7 @@ class DetaiViewController: UIViewController {
        setupNavigationBar()
         setupViews(movie: movieData)
         self.coverImage = coverImage.roundImage
+        addbut.addTarget(self, action: #selector(onfav), for: .touchUpInside)
     }
     
     func setupViews(movie: MovieDataModel?){
@@ -61,7 +65,7 @@ class DetaiViewController: UIViewController {
     }
 }
 
-//  MARK: - DataSource
+    //  MARK: - DataSource
 extension DetaiViewController:UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 2
@@ -79,11 +83,11 @@ extension DetaiViewController:UICollectionViewDataSource{
     }
 }
 
-//  MARK:   - Delegate
+    //  MARK:   - Delegate
 extension DetaiViewController: UICollectionViewDelegate{
     
 }
-// MARK: - UICollectionViewDelegateFlowLayout
+    // MARK: - UICollectionViewDelegateFlowLayout
 extension DetaiViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

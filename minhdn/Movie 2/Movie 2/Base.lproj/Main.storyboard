@@ -342,7 +342,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nwq-ay-wOA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2933" y="1134"/>
+            <point key="canvasLocation" x="-3194" y="1134"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="pdf-fb-vQ8">
@@ -357,7 +357,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yek-33-DhW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2187" y="1134"/>
+            <point key="canvasLocation" x="-2238" y="1134"/>
         </scene>
         <!--Seach-->
         <scene sceneID="6hn-7m-hKv">
@@ -472,11 +472,6 @@
             <point key="canvasLocation" x="3108.6956521739135" y="77.678571428571431"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="ze1-T8-t6w">
-            <size key="intrinsicContentSize" width="240" height="44"/>
-        </designable>
-    </designables>
     <resources>
         <image name="add" width="24" height="24"/>
         <image name="favor" width="23" height="23"/>
