@@ -1,6 +1,5 @@
 ${PODS_ROOT}/Target Support Files/Pods-Movie 2/Pods-Movie 2-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework
-${BUILT_PRODUCTS_DIR}/FaveButton/FaveButton.framework
 ${BUILT_PRODUCTS_DIR}/HCSStarRatingView/HCSStarRatingView.framework
 ${BUILT_PRODUCTS_DIR}/Realm/Realm.framework
 ${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework

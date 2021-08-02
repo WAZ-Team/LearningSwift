@@ -8,6 +8,5 @@ target 'Movie 2' do
   # Pods for Movie 2
 	  pod 'FSPagerView'
 	  pod 'HCSStarRatingView', '~> 1.5'
-  	pod 'FaveButton'
   	pod 'RealmSwift', '~> 5.5.0'
     end

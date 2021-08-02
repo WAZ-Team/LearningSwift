@@ -1,5 +1,4 @@
 PODS:
-  - FaveButton (3.2.1)
   - FSPagerView (0.8.3)
   - HCSStarRatingView (1.5)
   - Realm (5.5.1):
@@ -9,26 +8,23 @@ PODS:
     - Realm (= 5.5.1)
 
 DEPENDENCIES:
-  - FaveButton
   - FSPagerView
   - HCSStarRatingView (~> 1.5)
   - RealmSwift (~> 5.5.0)
 
 SPEC REPOS:
   trunk:
-    - FaveButton
     - FSPagerView
     - HCSStarRatingView
     - Realm
     - RealmSwift
 
 SPEC CHECKSUMS:
-  FaveButton: 93cfebf6030336fa7653fad2068c3152ed668b39
   FSPagerView: 670405b2f18e2a87fa37f20b00de783e562c25a8
   HCSStarRatingView: 1d18f79654735514cd6f00e6d90e38cb6320dc31
   Realm: c2ffe0667f9c98c9ba65f608ba85684d39826145
   RealmSwift: 5a35c1c35c3e1925e6fcd092c881d5cc4a826bff
 
-PODFILE CHECKSUM: 36d8d4348618b6baef8405259e46d347b6cb04de
+PODFILE CHECKSUM: eff02e8d0f5ac0dbf19f9688a0e5301ba2f133b5
 
 COCOAPODS: 1.10.1
