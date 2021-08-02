@@ -63,8 +63,7 @@ extension SeachViewController:UISearchResultsUpdating{
         timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { [weak self] _ in
             print("Filtering movie with name: \(text)...")
             self?.data = text
-//            self?.presenter.searchTerm = text
-//            self?.presenter.getMovies()
+//           
         }
     }
 }
