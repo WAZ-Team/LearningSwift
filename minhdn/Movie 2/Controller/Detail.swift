@@ -17,7 +17,7 @@ extension DetaiViewController{
                 try realm.write {
                     self.favdata.fav = true
                     realm.add(self.favdata, update: .all)
-                    realm.add(favdata)
+                    
                 }
                 print("Data saved successfully!")
                 print(Realm.Configuration.defaultConfiguration.fileURL!)
@@ -34,7 +34,7 @@ extension DetaiViewController{
                 try realm.write {
                     self.favdata.fav = false
                     realm.add(self.favdata, update: .all)
-                    realm.add(favdata)
+                   
                 }
                 print("Data saved successfully!")
                 print(Realm.Configuration.defaultConfiguration.fileURL!)
@@ -46,8 +46,20 @@ extension DetaiViewController{
                 print("Error: \(error)")
             }
         }
-           
-            
-       
+    }
+    
+    func setupViews(movie: MovieDataModel?){
+        coverImage.downloaded(from: movie?.backdroppath ?? "")
+        movieTitle.text = movie?.title?.uppercased()
+        rateBar.value = CGFloat((movie?.VoteAverage!)!/2)
+        overView.text = movie?.overview
+//       let subStr =  movie?.ReleaseDate!.prefix(4)
+        
+    }
+    
+    func setupNavigationBar(){
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        title = movieData?.title
+        self.navigationController?.navigationItem.backButtonTitle = "Home"
     }
 }

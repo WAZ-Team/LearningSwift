@@ -34,7 +34,11 @@
 		04BBF54526B16FC8009C858B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BBF54426B16FC8009C858B /* RegisterViewController.swift */; };
 		04BBF54826B1706B009C858B /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BBF54726B1706B009C858B /* Register.swift */; };
 		04BBF55626B1BC30009C858B /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BBF55526B1BC30009C858B /* Detail.swift */; };
-		04BBF57B26B2B428009C858B /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BBF57A26B2B428009C858B /* MeViewController.swift */; };
+		04BBF57B26B2B428009C858B /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BBF57A26B2B428009C858B /* SettingViewController.swift */; };
+		04BBF58026B39CE4009C858B /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BBF57E26B39CE4009C858B /* SearchCollectionViewCell.swift */; };
+		04BBF58126B39CE4009C858B /* SearchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BBF57F26B39CE4009C858B /* SearchCollectionViewCell.xib */; };
+		04BBF59126B4012A009C858B /* Myprofile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BBF59026B4012A009C858B /* Myprofile.swift */; };
+		04BBF59426B40852009C858B /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BBF59326B40852009C858B /* Setting.swift */; };
 		88A7E5625B7FCBB6E3B1B301 /* Pods_Movie_2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 975C7E61E1AE536C7C0B40E2 /* Pods_Movie_2.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,7 +72,11 @@
 		04BBF54426B16FC8009C858B /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		04BBF54726B1706B009C858B /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
 		04BBF55526B1BC30009C858B /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
-		04BBF57A26B2B428009C858B /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
+		04BBF57A26B2B428009C858B /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		04BBF57E26B39CE4009C858B /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
+		04BBF57F26B39CE4009C858B /* SearchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCollectionViewCell.xib; sourceTree = "<group>"; };
+		04BBF59026B4012A009C858B /* Myprofile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Myprofile.swift; sourceTree = "<group>"; };
+		04BBF59326B40852009C858B /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		43D7C447DEBCDA8684EFDBB3 /* Pods-Movie 2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movie 2.release.xcconfig"; path = "Target Support Files/Pods-Movie 2/Pods-Movie 2.release.xcconfig"; sourceTree = "<group>"; };
 		86F4D2765AD70CDA9E9C7868 /* Pods-Movie 2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movie 2.debug.xcconfig"; path = "Target Support Files/Pods-Movie 2/Pods-Movie 2.debug.xcconfig"; sourceTree = "<group>"; };
 		975C7E61E1AE536C7C0B40E2 /* Pods_Movie_2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Movie_2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +108,8 @@
 			children = (
 				0451C9672698596200FA4DAC /* HomeCollectionViewCell.swift */,
 				0451C9682698596200FA4DAC /* HomeCollectionViewCell.xib */,
+				04BBF57E26B39CE4009C858B /* SearchCollectionViewCell.swift */,
+				04BBF57F26B39CE4009C858B /* SearchCollectionViewCell.xib */,
 			);
 			path = collectionCell;
 			sourceTree = "<group>";
@@ -179,7 +189,7 @@
 				042324F726A175BD00CD827E /* DetaiViewController.swift */,
 				0403571126A7CFB200277966 /* SeachViewController.swift */,
 				0403571426A7CFC200277966 /* FavViewController.swift */,
-				04BBF57A26B2B428009C858B /* MeViewController.swift */,
+				04BBF57A26B2B428009C858B /* SettingViewController.swift */,
 				040242B026AA96F3004AFE4E /* TableCell */,
 			);
 			path = view;
@@ -191,6 +201,8 @@
 				0403578226A9711500277966 /* Login.swift */,
 				04BBF54726B1706B009C858B /* Register.swift */,
 				04BBF55526B1BC30009C858B /* Detail.swift */,
+				04BBF59326B40852009C858B /* Setting.swift */,
+				04BBF59026B4012A009C858B /* Myprofile.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -282,6 +294,7 @@
 			files = (
 				0451C97B269C173500FA4DAC /* Movie.json in Resources */,
 				0451C93E2698432200FA4DAC /* LaunchScreen.storyboard in Resources */,
+				04BBF58126B39CE4009C858B /* SearchCollectionViewCell.xib in Resources */,
 				0451C96A2698596200FA4DAC /* HomeCollectionViewCell.xib in Resources */,
 				0451C93B2698432200FA4DAC /* Assets.xcassets in Resources */,
 				0451C9652698589800FA4DAC /* HomeTableViewCell.xib in Resources */,
@@ -341,6 +354,7 @@
 			files = (
 				040356D226A67AFE00277966 /* HomeTabBarcontroller.swift in Sources */,
 				0451C9692698596200FA4DAC /* HomeCollectionViewCell.swift in Sources */,
+				04BBF58026B39CE4009C858B /* SearchCollectionViewCell.swift in Sources */,
 				0451C9642698589800FA4DAC /* HomeTableViewCell.swift in Sources */,
 				0403578626A9714400277966 /* LoginViewController.swift in Sources */,
 				04BBF54526B16FC8009C858B /* RegisterViewController.swift in Sources */,
@@ -352,9 +366,11 @@
 				0403578326A9711500277966 /* Login.swift in Sources */,
 				0403571226A7CFB200277966 /* SeachViewController.swift in Sources */,
 				0451C94A2698497000FA4DAC /* MovieDataModel.swift in Sources */,
+				04BBF59426B40852009C858B /* Setting.swift in Sources */,
 				04BBF50F26B15E1C009C858B /* UserData.swift in Sources */,
 				04BBF54826B1706B009C858B /* Register.swift in Sources */,
-				04BBF57B26B2B428009C858B /* MeViewController.swift in Sources */,
+				04BBF59126B4012A009C858B /* Myprofile.swift in Sources */,
+				04BBF57B26B2B428009C858B /* SettingViewController.swift in Sources */,
 				04072775269FDE2800623B41 /* UpTableViewCell.swift in Sources */,
 				0403571526A7CFC200277966 /* FavViewController.swift in Sources */,
 				0407274F269E804900623B41 /* Constants.swift in Sources */,

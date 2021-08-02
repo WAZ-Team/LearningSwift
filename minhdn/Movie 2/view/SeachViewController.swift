@@ -9,9 +9,8 @@ import UIKit
 
 class SeachViewController: UIViewController {
     //  MARK:   - Outlet
-    
-    
     @IBOutlet weak var collectionView: UICollectionView!
+    
     //  MARK: - Variables
     private var timer:Timer?
     // Controls if the list is loading more items
@@ -22,16 +21,16 @@ class SeachViewController: UIViewController {
     
     let searchController = UISearchController()
     var data = String()
-    var selectmovie: MovieDataModel?
-    var movidata: [MovieDataModel] = [MovieDataModel]()
+    var selectmovie : MovieDataModel?
+    var movidata: [MovieDataModel] = []
 //    var data = [MovieDataModel]()
     override func viewDidLoad() {
         super.viewDidLoad()
         movidata = APIService.load("Movie.json")
-//        guard AppDelegate.isDark else { return }
-//        view.backgroundColor = UIColor.black
-        
-        print(data)
+//        print(movidata)
+//        selectmovie = movidata.
+//        data = selectmovie?.title ?? ""
+//        print(selectmovie)
         searchController.loadViewIfNeeded()
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -46,8 +45,6 @@ class SeachViewController: UIViewController {
         collectionView.reloadData()
         self.collectionView.register(UINib(nibName: Constants.homeCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: Constants.homeCollectionViewCell)
     }
-    
-  
 }
     // MARK: - UISearchResultsUpdating
 extension SeachViewController:UISearchResultsUpdating{
@@ -71,19 +68,20 @@ extension SeachViewController:UISearchResultsUpdating{
         }
     }
 }
+
+    //  MARK:   - Delegate
+extension SeachViewController: UICollectionViewDelegate{
+    
+}
 extension SeachViewController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         if searchText.isEmpty == false {
-//            data = movidata..filter({ $0.title(searchText) })
+//            data = movidata.first?.title ?? ""
         }
         
         collectionView.reloadData()
     }
-}
-    //  MARK:   - Delegate
-extension SeachViewController: UICollectionViewDelegate{
-    
 }
     //  MARK:   - DataSource
 extension SeachViewController: UICollectionViewDataSource{
@@ -93,7 +91,7 @@ extension SeachViewController: UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: Constants.homeCollectionViewCell, for: indexPath) as? HomeCollectionViewCell else { return UICollectionViewCell() }
-        cell.imageHomeCell.downloaded(from: selectmovie?.Posterpath ?? "")
+//        cell.configure(model: movidata.first?.backdroppath ?? "")
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

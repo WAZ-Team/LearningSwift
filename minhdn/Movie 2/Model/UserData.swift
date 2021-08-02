@@ -34,6 +34,7 @@ class Favorite: Object{
     @objc dynamic var video: Bool = true
     @objc dynamic var VoteCount: Int = 0
     @objc dynamic var fav: Bool = false
+    @objc dynamic var photo:NSData?
     override static func primaryKey() -> String? {
         "id"
     }

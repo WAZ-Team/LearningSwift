@@ -18,12 +18,6 @@ class DetaiViewController: UIViewController {
     @IBOutlet weak var rateBar: HCSStarRatingView!
     @IBOutlet weak var movieTitle: UILabel!
     @IBOutlet weak var overView: UILabel!
-    //    @IBOutlet weak var timeduration: UILabel!
-    //    @IBOutlet weak var lenghtlabel: UILabel!
-    //    @IBOutlet weak var contrylabel: UILabel!
-    //    @IBOutlet weak var contryval: UILabel!
-    //    @IBOutlet weak var yearlabel: UILabel!
-    //    @IBOutlet weak var yeatval: UILabel!
     @IBOutlet weak var screenShort: UILabel!
     @IBOutlet weak var movieDifference: UICollectionView!
     @IBOutlet weak var coverImage: UIImageView!
@@ -49,20 +43,7 @@ class DetaiViewController: UIViewController {
         addbut.addTarget(self, action: #selector(onfav), for: .touchUpInside)
     }
     
-    func setupViews(movie: MovieDataModel?){
-        coverImage.downloaded(from: movie?.backdroppath ?? "")
-        movieTitle.text = movie?.title?.uppercased()
-        rateBar.value = CGFloat((movie?.VoteAverage!)!/2)
-        overView.text = movie?.overview
-//       let subStr =  movie?.ReleaseDate!.prefix(4)
-        
-    }
     
-    func setupNavigationBar(){
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        title = movieData?.title
-        self.navigationController?.navigationItem.backButtonTitle = "Home"
-    }
 }
 
     //  MARK: - DataSource

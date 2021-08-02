@@ -11,7 +11,7 @@ class FavViewController: UIViewController {
 
     @IBOutlet weak var favCollectionview: UICollectionView!
 //    var movidata =
-    let favdata = Favorite()
+    var favdata = Favorite()
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -31,6 +31,12 @@ class FavViewController: UIViewController {
         }
         return listData
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//        self.favdata = self.getFaviroteSaved()
+//        self.ImageFavorite.reloadData()
+    }
+
 }
 //  MARK:   - DataSource
 extension FavViewController: UICollectionViewDataSource{

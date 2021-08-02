@@ -378,17 +378,32 @@
             </objects>
             <point key="canvasLocation" x="179.71014492753625" y="1539.5089285714284"/>
         </scene>
-        <!--View Controller-->
+        <!--Setting View Controller-->
         <scene sceneID="wEF-LR-TQ9">
             <objects>
-                <viewController id="4Tn-Xq-3DM" sceneMemberID="viewController">
+                <viewController id="4Tn-Xq-3DM" customClass="SettingViewController" customModule="Movie_2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kJc-ac-EuH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="f9i-dV-DIZ">
+                                <rect key="frame" x="0.0" y="140" width="414" height="673"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="HDN-qU-FP4"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="HDN-qU-FP4" firstAttribute="trailing" secondItem="f9i-dV-DIZ" secondAttribute="trailing" id="6zf-ti-o2N"/>
+                            <constraint firstItem="f9i-dV-DIZ" firstAttribute="top" secondItem="HDN-qU-FP4" secondAttribute="top" id="J5z-Fs-mpN"/>
+                            <constraint firstItem="f9i-dV-DIZ" firstAttribute="leading" secondItem="HDN-qU-FP4" secondAttribute="leading" id="ToZ-dU-Ir5"/>
+                            <constraint firstItem="HDN-qU-FP4" firstAttribute="bottom" secondItem="f9i-dV-DIZ" secondAttribute="bottom" id="pwF-wK-IMi"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Oia-ua-OC1"/>
+                    <connections>
+                        <outlet property="SettingTableView" destination="f9i-dV-DIZ" id="FYS-6S-XBU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v7I-Ws-Ave" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

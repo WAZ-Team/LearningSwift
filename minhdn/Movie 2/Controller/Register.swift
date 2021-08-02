@@ -22,7 +22,7 @@ extension RegisterViewController {
     
     func fistnameTextField() -> UITextField {
         fistname.frame = CGRect(x: 0, y: 0, width: self.view!.bounds.width * 0.9, height: 50.0)
-        fistname.placeholder = "fistname"
+        fistname.placeholder = "Fist Name"
         fistname.autocapitalizationType = .none
         fistname.font = UIFont.systemFont(ofSize: 17)
         fistname.borderStyle = UITextField.BorderStyle.roundedRect
@@ -37,7 +37,7 @@ extension RegisterViewController {
     }
     func lastnameTextField() -> UITextField {
         lastname.frame = CGRect(x: 0, y: 0, width: self.view!.bounds.width * 0.9, height: 50.0)
-        lastname.placeholder = "fistname"
+        lastname.placeholder = "Last Name"
         lastname.autocapitalizationType = .none
         lastname.font = UIFont.systemFont(ofSize: 17)
         lastname.borderStyle = UITextField.BorderStyle.roundedRect
@@ -83,7 +83,7 @@ extension RegisterViewController {
     }
     func rePasswordTextField() -> UITextField {
         repasswordText.frame = CGRect(x: 0, y: 0, width: self.view!.bounds.width * 0.9, height: 50.0)
-        repasswordText.placeholder = "Password"
+        repasswordText.placeholder = "Confirm Password"
         repasswordText.font = UIFont.systemFont(ofSize: 17)
         repasswordText.borderStyle = UITextField.BorderStyle.roundedRect
         repasswordText.autocorrectionType = UITextAutocorrectionType.no
