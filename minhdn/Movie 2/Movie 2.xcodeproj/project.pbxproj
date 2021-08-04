@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04031B7926B8E6C200D46761 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04031B7826B8E6C200D46761 /* UILabel.swift */; };
+		04031B8726BA45C900D46761 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04031B8626BA45C900D46761 /* APIService.swift */; };
 		040356D226A67AFE00277966 /* HomeTabBarcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040356D126A67AFE00277966 /* HomeTabBarcontroller.swift */; };
 		0403571226A7CFB200277966 /* SeachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0403571126A7CFB200277966 /* SeachViewController.swift */; };
 		0403571526A7CFC200277966 /* FavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0403571426A7CFC200277966 /* FavViewController.swift */; };
@@ -35,8 +37,6 @@
 		04BBF54826B1706B009C858B /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BBF54726B1706B009C858B /* Register.swift */; };
 		04BBF55626B1BC30009C858B /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BBF55526B1BC30009C858B /* Detail.swift */; };
 		04BBF57B26B2B428009C858B /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BBF57A26B2B428009C858B /* SettingViewController.swift */; };
-		04BBF58026B39CE4009C858B /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BBF57E26B39CE4009C858B /* SearchCollectionViewCell.swift */; };
-		04BBF58126B39CE4009C858B /* SearchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BBF57F26B39CE4009C858B /* SearchCollectionViewCell.xib */; };
 		04BBF59126B4012A009C858B /* Myprofile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BBF59026B4012A009C858B /* Myprofile.swift */; };
 		04BBF59426B40852009C858B /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BBF59326B40852009C858B /* Setting.swift */; };
 		04BBF5A826B7F0D4009C858B /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BBF5A726B7F0D4009C858B /* SettingTableViewCell.swift */; };
@@ -46,6 +46,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04031B7826B8E6C200D46761 /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
+		04031B8626BA45C900D46761 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		040356D126A67AFE00277966 /* HomeTabBarcontroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabBarcontroller.swift; sourceTree = "<group>"; };
 		0403571126A7CFB200277966 /* SeachViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeachViewController.swift; sourceTree = "<group>"; };
 		0403571426A7CFC200277966 /* FavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavViewController.swift; sourceTree = "<group>"; };
@@ -76,8 +78,6 @@
 		04BBF54726B1706B009C858B /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
 		04BBF55526B1BC30009C858B /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		04BBF57A26B2B428009C858B /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
-		04BBF57E26B39CE4009C858B /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
-		04BBF57F26B39CE4009C858B /* SearchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCollectionViewCell.xib; sourceTree = "<group>"; };
 		04BBF59026B4012A009C858B /* Myprofile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Myprofile.swift; sourceTree = "<group>"; };
 		04BBF59326B40852009C858B /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		04BBF5A726B7F0D4009C858B /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
@@ -114,8 +114,6 @@
 			children = (
 				0451C9672698596200FA4DAC /* HomeCollectionViewCell.swift */,
 				0451C9682698596200FA4DAC /* HomeCollectionViewCell.xib */,
-				04BBF57E26B39CE4009C858B /* SearchCollectionViewCell.swift */,
-				04BBF57F26B39CE4009C858B /* SearchCollectionViewCell.xib */,
 			);
 			path = collectionCell;
 			sourceTree = "<group>";
@@ -141,9 +139,19 @@
 			path = CollectionView;
 			sourceTree = "<group>";
 		};
+		04031B8026BA420900D46761 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				0451C96E269BDF6A00FA4DAC /* MovieData.swift */,
+				04031B8626BA45C900D46761 /* APIService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		0451C9252698432000FA4DAC = {
 			isa = PBXGroup;
 			children = (
+				04031B8026BA420900D46761 /* Service */,
 				0451C97D269C227F00FA4DAC /* Extension */,
 				0451C9462698490E00FA4DAC /* Model */,
 				0451C9472698491400FA4DAC /* view */,
@@ -181,7 +189,6 @@
 			children = (
 				0451C97A269C173500FA4DAC /* Movie.json */,
 				0451C9492698497000FA4DAC /* MovieDataModel.swift */,
-				0451C96E269BDF6A00FA4DAC /* MovieData.swift */,
 				04BBF50E26B15E1C009C858B /* UserData.swift */,
 			);
 			path = Model;
@@ -220,6 +227,7 @@
 			children = (
 				040724D3269D277800DC690E /* Imagedownload.swift */,
 				0407274E269E804900623B41 /* Constants.swift */,
+				04031B7826B8E6C200D46761 /* UILabel.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -319,7 +327,6 @@
 			files = (
 				0451C97B269C173500FA4DAC /* Movie.json in Resources */,
 				0451C93E2698432200FA4DAC /* LaunchScreen.storyboard in Resources */,
-				04BBF58126B39CE4009C858B /* SearchCollectionViewCell.xib in Resources */,
 				04BBF5AF26B7F18F009C858B /* SearchCollectionViewCell.xib in Resources */,
 				0451C96A2698596200FA4DAC /* HomeCollectionViewCell.xib in Resources */,
 				0451C93B2698432200FA4DAC /* Assets.xcassets in Resources */,
@@ -381,11 +388,11 @@
 				040356D226A67AFE00277966 /* HomeTabBarcontroller.swift in Sources */,
 				04BBF5A826B7F0D4009C858B /* SettingTableViewCell.swift in Sources */,
 				0451C9692698596200FA4DAC /* HomeCollectionViewCell.swift in Sources */,
-				04BBF58026B39CE4009C858B /* SearchCollectionViewCell.swift in Sources */,
 				0451C9642698589800FA4DAC /* HomeTableViewCell.swift in Sources */,
 				0403578626A9714400277966 /* LoginViewController.swift in Sources */,
 				04BBF54526B16FC8009C858B /* RegisterViewController.swift in Sources */,
 				04BBF55626B1BC30009C858B /* Detail.swift in Sources */,
+				04031B8726BA45C900D46761 /* APIService.swift in Sources */,
 				040724D4269D277800DC690E /* Imagedownload.swift in Sources */,
 				0451C95126984EC800FA4DAC /* HomeMovieViewController.swift in Sources */,
 				0451C96F269BDF6A00FA4DAC /* MovieData.swift in Sources */,
@@ -393,6 +400,7 @@
 				0403578326A9711500277966 /* Login.swift in Sources */,
 				0403571226A7CFB200277966 /* SeachViewController.swift in Sources */,
 				0451C94A2698497000FA4DAC /* MovieDataModel.swift in Sources */,
+				04031B7926B8E6C200D46761 /* UILabel.swift in Sources */,
 				04BBF59426B40852009C858B /* Setting.swift in Sources */,
 				04BBF50F26B15E1C009C858B /* UserData.swift in Sources */,
 				04BBF54826B1706B009C858B /* Register.swift in Sources */,

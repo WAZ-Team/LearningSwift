@@ -62,7 +62,7 @@
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="KR5-rP-MSQ">
                                         <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="iCS-Gb-5BR">
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="er2-MO-DLx">
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </collectionViewCellContentView>
@@ -139,7 +139,7 @@
         <scene sceneID="vd8-Wz-Vrd">
             <objects>
                 <tabBarController restorationIdentifier="HomeTabBarcontroller" storyboardIdentifier="HomeTabBarcontroller" id="r9q-QH-1fh" customClass="HomeTabBarcontroller" customModule="Movie_2" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="K05-FT-BV9" customClass="TabBarVC" customModule="Movie_2" customModuleProvider="target">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="K05-FT-BV9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -487,6 +487,11 @@
             <point key="canvasLocation" x="3108.6956521739135" y="77.678571428571431"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="ze1-T8-t6w">
+            <size key="intrinsicContentSize" width="240" height="44"/>
+        </designable>
+    </designables>
     <resources>
         <image name="add" width="24" height="24"/>
         <image name="favor" width="23" height="23"/>

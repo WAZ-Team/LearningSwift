@@ -60,7 +60,7 @@ extension FavViewController: UICollectionViewDataSource{
 extension FavViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.bounds.width/3.2 , height: view.bounds.height/3)
+        return CGSize(width: view.bounds.width/4.2 , height: view.bounds.height/3)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10

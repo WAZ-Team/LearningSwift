@@ -45,3 +45,21 @@ class Favorite: Object{
         return self
     }
 }
+
+struct Search: Decodable {
+   let adult: Bool?
+    let backdroppath: String?
+    let genreids: [Int]?
+    let id: Int?
+    let Mediatype : String?
+    let OriginalLanguage : String?
+    let OriginalTitle : String?
+    let overview : String?
+    let popularity : Double?
+    let Posterpath : String?
+    let ReleaseDate : String?
+    let title : String?
+    let video: Bool?
+    let VoteAverage: Double?
+    let VoteCount: Int?
+}
