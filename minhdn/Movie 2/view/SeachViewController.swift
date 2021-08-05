@@ -12,18 +12,22 @@ class SeachViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     //  MARK: - Variables
-    private var timer:Timer?
+   
     let searchController = UISearchController()
     var data = String()
-    var selectmovie = [MovieDataModel]()
-    var movidata: MovieDataModel?
-    var movi: MovieDataModel?
-//    var data = [MovieDataModel]()
+    
+    var selectData = [MovieDataModel]()
+    var datamovie = [MovieDataModel]()
     override func viewDidLoad() {
         super.viewDidLoad()
-//        movidata = APIService.load("Movie.json")
+        selectData = APIService.load("Movie.json")
+        print(selectData)
+        print(datamovie)
+        
+//        moviedata = Service.
+//        data = moviedata?.title ?? ""
         searchController.loadViewIfNeeded()
-//        searchController.searchResultsUpdater = self
+       searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.enablesReturnKeyAutomatically = false
         searchController.searchBar.returnKeyType = UIReturnKeyType.done
@@ -36,78 +40,75 @@ class SeachViewController: UIViewController {
         collectionView.reloadData()
         self.collectionView.register(UINib(nibName: Constants.searchCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: Constants.searchCollectionViewCell)
     }
-    fileprivate func performSearch(searchTerm: String) {
-        Service.shared.searchMovies(searchTerm: searchTerm) { [weak self] (result) in
-            switch result {
-            case .failure(let error):
-                print("Error in searching", error)
-            case.success(let response):
-
-                self?.selectmovie = 
-                self?.collectionView.reloadData()
-            }
-        }
-    }
+//    fileprivate func performSearch(searchTerm: String) {
+//        Service.shared.searchMovies(searchTerm: searchTerm) { [weak self] (result) in
+//            switch result {
+//            case .failure(let error):
+//                print("Error in searching", error)
+//            case.success(let response):
+//
+//                self?.data = response.title ?? ""
+//                self?.data = response.Posterpath ?? ""
+//
+//                self?.collectionView.reloadData()
+//            }
+//        }
+//    }
 
 }
     // MARK: - UISearchResultsUpdating
-//extension SeachViewController:UISearchResultsUpdating{
+extension SeachViewController:UISearchResultsUpdating{
+    func updateSearchResults(for searchController: UISearchController) {
+        RequestForText(searchController.searchBar.text ?? "")
+    }
+
+    /// Triggers the timer to execute the filtering
+    private func RequestForText(_ term:String?){
+        guard let text = term, !text.isEmpty else{
+            return
+        }
+
+            print("Filtering movie with name: \(text)...")
+            self.data = text
+
 //
-//
-//
-//    func updateSearchResults(for searchController: UISearchController) {
-//        RequestForText(searchController.searchBar.text)
-//    }
-//
-//    /// Triggers the timer to execute the filtering
-//    private func RequestForText(_ term:String?){
-//        guard let text = term, !text.isEmpty else{
-//            return
-//        }
-//        timer?.invalidate()
-//        timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { [weak self] _ in
-//            print("Filtering movie with name: \(text)...")
-//            self?.data = text
-//
-////
-//        }
-//    }
-//}
+        }
+    }
+
 
     //  MARK:   - Delegate
 extension SeachViewController: UICollectionViewDelegate{
     
 }
 extension SeachViewController: UISearchBarDelegate{
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        guard let searchTerm = searchBar.text, searchTerm.count > 0 else {
-            print("Invalid search term")
-            return
-        }
-
-        performSearch(searchTerm: searchTerm)
-    }
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//
-//        if searchText.isEmpty == false {
-//            self.data = movidata?.title ?? ""
-////            self.movidata = self.selectmovie
+//    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+//        guard let searchTerm = searchBar.text, searchTerm.count > 0 else {
+//            print("Invalid search term")
+//            return
 //        }
 //
-//        collectionView.reloadData()
+//        performSearch(searchTerm: searchTerm)
 //    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty == false {
+            
+            
+        }
+
+        collectionView.reloadData()
+    }
 }
     //  MARK:   - DataSource
 extension SeachViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return selectmovie.count
+        return selectData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: Constants.searchCollectionViewCell, for: indexPath) as? SearchCollectionViewCell else { return UICollectionViewCell() }
-        cell.configure(model: selectmovie[indexPath.row])
-        cell.titleSearch.text = selectmovie[indexPath.row].title
-        cell.releaseSearch.formatAndShowDate(dateString: selectmovie[indexPath.row].ReleaseDate, formatString: "MMM dd YYYY")
+        cell.imageSearch.downloaded(from: selectData[indexPath.row].Posterpath ?? "")
+        cell.titleSearch.text = selectData[indexPath.row].title
+        cell.releaseSearch.formatAndShowDate(dateString: selectData[indexPath.row].ReleaseDate, formatString: "MMM dd YYYY")
         
         return cell
     }

@@ -7,7 +7,7 @@
 
 import Foundation
 
- struct MovieDataModel: Codable{
+ struct MovieDataModel: Decodable{
     public var adult: Bool?
     public var backdroppath: String?
     public var genreids: [Int]?
