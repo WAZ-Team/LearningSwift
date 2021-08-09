@@ -16,12 +16,15 @@ extension DetaiViewController{
                 let realm = try Realm()
                 try realm.write {
                     self.favdata.fav = true
+                    self.favdata.title = self.movieData?.title ?? ""
+                    self.favdata.Posterpath = self.movieData?.Posterpath ?? ""
                     realm.add(self.favdata, update: .all)
-                    
+                   
                 }
+//                self.favdata.Posterpath = self.movieData?.Posterpath ?? ""
                 print("Data saved successfully!")
                 print(Realm.Configuration.defaultConfiguration.fileURL!)
-                let ac = UIAlertController(title: "Conguarate!", message: "Your preferences have been saved.", preferredStyle: .actionSheet)
+                let ac = UIAlertController(title: "Favorite!", message: "Your movie have been saved.", preferredStyle: .actionSheet)
                 ac.addAction(UIAlertAction(title: "OK", style: .default))
                 present(ac, animated: true)
                 
@@ -33,12 +36,13 @@ extension DetaiViewController{
                 let realm = try Realm()
                 try realm.write {
                     self.favdata.fav = false
+                    
                     realm.add(self.favdata, update: .all)
-                   
+                    
                 }
                 print("Data saved successfully!")
                 print(Realm.Configuration.defaultConfiguration.fileURL!)
-                let ac = UIAlertController(title: "Conguarate!", message: "Your preferences have been saved.", preferredStyle: .actionSheet)
+                let ac = UIAlertController(title: "Favorite!", message: "Opp! Your movie has not been saved", preferredStyle: .actionSheet)
                 ac.addAction(UIAlertAction(title: "OK", style: .default))
                 present(ac, animated: true)
                 
@@ -61,5 +65,16 @@ extension DetaiViewController{
         self.navigationController?.navigationBar.prefersLargeTitles = true
         title = movieData?.title
         self.navigationController?.navigationItem.backButtonTitle = "Home"
+    }
+}
+extension Results {
+    func toArray<T>(ofType: T.Type) -> [T] {
+        var array = [T]()
+        for i in 0 ..< count {
+            if let result = self[i] as? T {
+                array.append(result)
+            }
+        }
+        return array
     }
 }

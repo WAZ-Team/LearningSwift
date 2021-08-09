@@ -75,7 +75,7 @@ extension LoginViewController {
         button.layer.cornerRadius = 3
         button.center.x = view.center.x
         button.center.y = 500.0
-        button.addTarget(self, action: #selector(onRegisterPress), for: .touchUpInside)
+         
         return button
     }
     

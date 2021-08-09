@@ -23,27 +23,25 @@ class DetaiViewController: UIViewController {
     @IBOutlet weak var coverImage: UIImageView!
     //  MARK: - Variables
     var delegateView =  HomeTableViewCell()
-    private var moviesdata: [MovieDataModel] = [] {
-        didSet{
-            movieDifference.reloadData()
-        }
-    }
     var movieData: MovieDataModel?
-    var favdata = Favorite()
+    var favdata: Favorite = Favorite()
     override func viewDidLoad() {
         super.viewDidLoad()
-        favdata.id = (movieData?.id)!
+        
         movieDifference.delegate = self
         movieDifference.dataSource = self
         self.movieDifference.register(UINib(nibName: Constants.homeCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: Constants.homeCollectionViewCell)
        setupViews(movie: movieData)
        setupNavigationBar()
-        setupViews(movie: movieData)
         self.coverImage = coverImage.roundImage
         addbut.addTarget(self, action: #selector(onfav), for: .touchUpInside)
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        print(favdata)
+        
+    }
 }
 
     //  MARK: - DataSource
