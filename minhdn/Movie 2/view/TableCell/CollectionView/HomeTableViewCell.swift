@@ -12,9 +12,9 @@ import UIKit
 class HomeTableViewCell: UITableViewCell {
     // MARK: - IBOutlets
     @IBOutlet private weak var homeCollectionview: UICollectionView!
-
+    
     // MARK: - Variables
-   weak var movieDelegate:SelectedMovieDelegate?
+    weak var movieDelegate:SelectedMovieDelegate?
     
     private var movies: [MovieDataModel] = [] {
         didSet{
@@ -24,7 +24,6 @@ class HomeTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         homeCollectionview.delegate = self
         homeCollectionview.dataSource = self
         self.homeCollectionview.register(UINib(nibName: Constants.homeCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: Constants.homeCollectionViewCell)
@@ -33,17 +32,18 @@ class HomeTableViewCell: UITableViewCell {
     }
 }
 
-// MARK: - Config
+    // MARK: - Config
+
 extension HomeTableViewCell {
     func configure(movies: [MovieDataModel]) {
         self.movies = movies
     }
 }
-// MARK: - Delegate
+    // MARK: - Delegate
 
 extension HomeTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            self.movieDelegate?.didSelectMovie(movie: movies[indexPath.row])
+        self.movieDelegate?.didSelectMovie(movie: movies[indexPath.row])
     }
 }
 
@@ -51,13 +51,13 @@ protocol SelectedMovieDelegate: class {
     func didSelectMovie(movie:MovieDataModel)
 }
 
-// MARK: - DataSource
+    // MARK: - DataSource
 extension HomeTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 8
     }
     
-     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = self.homeCollectionview.dequeueReusableCell(withReuseIdentifier: Constants.homeCollectionViewCell, for: indexPath) as? HomeCollectionViewCell else { return UICollectionViewCell() }
         cell.configure(model: movies[indexPath.row])
         return cell
@@ -70,9 +70,10 @@ extension HomeTableViewCell: UICollectionViewDataSource {
     }
     
 }
-// MARK: - UICollectionViewDelegateFlowLayout
-extension HomeTableViewCell: UICollectionViewDelegateFlowLayout {
 
+    // MARK: - UICollectionViewDelegateFlowLayout
+extension HomeTableViewCell: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: contentView.bounds.size.width/2.4 , height: contentView.bounds.size.height/1.2)
     }
@@ -81,7 +82,7 @@ extension HomeTableViewCell: UICollectionViewDelegateFlowLayout {
         return 10
         
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }

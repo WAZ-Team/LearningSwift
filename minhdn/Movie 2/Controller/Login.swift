@@ -18,7 +18,7 @@ extension LoginViewController {
         img.center.y = 200.0
         return img
     }
-
+    
     func usernameTextField() -> UITextField {
         username.frame = CGRect(x: 0, y: 0, width: self.view!.bounds.width * 0.9, height: 50.0)
         username.placeholder = "User Name"
@@ -37,18 +37,18 @@ extension LoginViewController {
     
     func passwordTextField() -> UITextField {
         passwordText.frame = CGRect(x: 0, y: 0, width: self.view!.bounds.width * 0.9, height: 50.0)
-       passwordText.placeholder = "Password"
-       passwordText.font = UIFont.systemFont(ofSize: 17)
-       passwordText.borderStyle = UITextField.BorderStyle.roundedRect
-       passwordText.autocorrectionType = UITextAutocorrectionType.no
-       passwordText.keyboardType = UIKeyboardType.default
-       passwordText.returnKeyType = UIReturnKeyType.send
-       passwordText.clearButtonMode = UITextField.ViewMode.whileEditing
-       passwordText.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
-       passwordText.isSecureTextEntry = true
-       passwordText.center.x = view.center.x
+        passwordText.placeholder = "Password"
+        passwordText.font = UIFont.systemFont(ofSize: 17)
+        passwordText.borderStyle = UITextField.BorderStyle.roundedRect
+        passwordText.autocorrectionType = UITextAutocorrectionType.no
+        passwordText.keyboardType = UIKeyboardType.default
+        passwordText.returnKeyType = UIReturnKeyType.send
+        passwordText.clearButtonMode = UITextField.ViewMode.whileEditing
+        passwordText.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+        passwordText.isSecureTextEntry = true
+        passwordText.center.x = view.center.x
         passwordText.center.y = 360.0
-       return passwordText
+        return passwordText
     }
     
     func signInButton() -> UIButton {
@@ -75,7 +75,7 @@ extension LoginViewController {
         button.layer.cornerRadius = 3
         button.center.x = view.center.x
         button.center.y = 500.0
-         
+        button.addTarget(self, action: #selector(onRegisterPress), for: .touchUpInside)
         return button
     }
     
@@ -94,24 +94,25 @@ extension LoginViewController {
     }
     
     @objc func onSignInPress() {
-        guard self.username.text == UserData.init().username , self.passwordText.text == UserData.init().password else {
+        if self.username.text == login.username ,
+           self.passwordText.text == login.password{
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let vc = storyboard.instantiateViewController(withIdentifier: Constants.homeTabBarController) as? HomeTabBarcontroller else {return}
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }else {
             self.showAlert("wrong email/password ")
-            return
         }
-       
+    }
+    @objc func onRegisterPress() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let vc = storyboard.instantiateViewController(withIdentifier: Constants.homeTabBarController) as? HomeTabBarcontroller else {return}
+        guard let vc = storyboard.instantiateViewController(withIdentifier: Constants.registerViewController) as? RegisterViewController else {return}
         self.navigationController?.pushViewController(vc, animated: true)
     }
-@objc func onRegisterPress() {
-    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    guard let vc = storyboard.instantiateViewController(withIdentifier: Constants.registerViewController) as? RegisterViewController else {return}
-    self.navigationController?.pushViewController(vc, animated: true)
-}
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
 }
 
 

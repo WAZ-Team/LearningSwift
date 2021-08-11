@@ -11,7 +11,7 @@ class Service {
     static let shared = Service()
 
 
-    func getMovidata(closure: @escaping (_ response: [Favorite]?, _ error: Error?) -> Void) {
+    func getMoviedata(closure: @escaping (_ response: [Favorite]?, _ error: Error?) -> Void) {
         guard let path = Bundle.main.path(forResource: "Movie", ofType: "json") else {
             return
         }

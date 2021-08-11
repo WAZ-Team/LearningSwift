@@ -11,14 +11,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="HomeCollectionViewCell" customModule="Movie_2" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="166" height="192"/>
+            <rect key="frame" x="0.0" y="0.0" width="211" height="260"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="166" height="192"/>
+                <rect key="frame" x="0.0" y="0.0" width="211" height="260"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zjt-Kp-xQx">
-                        <rect key="frame" x="0.0" y="0.0" width="166" height="192"/>
+                        <rect key="frame" x="0.0" y="0.0" width="211" height="260"/>
                     </imageView>
                 </subviews>
             </view>
@@ -29,11 +29,11 @@
                 <constraint firstItem="Zjt-Kp-xQx" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="r6c-fy-rpB"/>
                 <constraint firstAttribute="bottom" secondItem="Zjt-Kp-xQx" secondAttribute="bottom" id="yga-7f-0fP"/>
             </constraints>
-            <size key="customSize" width="166" height="192"/>
+            <size key="customSize" width="211" height="260"/>
             <connections>
                 <outlet property="imageHomeCell" destination="Zjt-Kp-xQx" id="l8n-Oj-AiT"/>
             </connections>
-            <point key="canvasLocation" x="221.73913043478262" y="74.330357142857139"/>
+            <point key="canvasLocation" x="254.34782608695653" y="97.098214285714278"/>
         </collectionViewCell>
     </objects>
 </document>

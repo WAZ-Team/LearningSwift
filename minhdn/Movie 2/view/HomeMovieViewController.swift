@@ -12,11 +12,12 @@ class HomeMovieViewControllers: UIViewController, UITableViewDelegate {
     
     //    MARK: - IBoutlet
     @IBOutlet weak var homeTableview: UITableView!
-    var topView: UIView?
+   
     //  MARK: - Variables
-   var movies: [MovieDataModel] = [MovieDataModel]()
+    var topView: UIView?
+    var movies: [MovieDataModel] = [MovieDataModel]()
     var selectedMovie: MovieDataModel?
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +32,6 @@ class HomeMovieViewControllers: UIViewController, UITableViewDelegate {
     }
 }
 
-//  MARK: - Config
 // MARK: - Delegate
 
 extension HomeMovieViewControllers: SelectedMovieDelegate{
@@ -93,7 +93,6 @@ extension HomeMovieViewControllers: UITableViewDataSource {
         headerView.clearsContextBeforeDrawing =  true
         switch section{
         case 0: break
-            
         case 1:
             label.text = "Nowplaying"
         case 2:

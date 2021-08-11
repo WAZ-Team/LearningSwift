@@ -8,14 +8,14 @@
 import UIKit
 
 class HomeCollectionViewCell: UICollectionViewCell {
-//    MARK: - Iboulet
+    //  MARK: - Iboulet
     @IBOutlet weak var imageHomeCell: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         guard AppDelegate.isDark else { return }
         self.contentView.backgroundColor = UIColor.black
     }
-//  MARK: - Variables
+    //  MARK: - Variables
     func configure(model: MovieDataModel) {
         imageHomeCell.downloaded(from: model.Posterpath ?? "" )
     }

@@ -8,11 +8,10 @@
 import UIKit
 
 class SearchCollectionViewCell: UICollectionViewCell {
-
+    //  MARK:   - Outlets
     @IBOutlet weak var imageSearch: UIImageView!
     @IBOutlet weak var titleSearch: UILabel!
     @IBOutlet weak var releaseSearch: UILabel!
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,6 +20,7 @@ class SearchCollectionViewCell: UICollectionViewCell {
         imageSearch.clipsToBounds = true
         imageSearch.layer.borderWidth = 2.0
     }
+    //  MARK:   - configure
     func configure(model: MovieDataModel) {
         imageSearch.downloaded(from: model.Posterpath ?? "" )
     }

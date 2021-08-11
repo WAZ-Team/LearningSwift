@@ -15,10 +15,6 @@ struct Constants {
     static let IMAGES_BASE_URL = "https://image.tmdb.org/t/p/"
     static let BACK_DROP_BASE_URL = IMAGES_BASE_URL + "w500"
     static let POSTER_BASE_URL = IMAGES_BASE_URL + "w185"
-    static let KEY_POPULAR = "popular"
-    static let KEY_UPCOMING = "upcoming"
-    static let KEY_TOP_RATED = "top_rated"
-    static let KEY_NOW_PLAYING = "now_playing"
     static let homeCollectionViewCell = "HomeCollectionViewCell"
     static let homeTableViewCell = "HomeTableViewCell"
     static let upTableViewCell = "UpTableViewCell"
@@ -29,4 +25,7 @@ struct Constants {
     static let loginViewController = "LoginViewController"
     static let registerViewController = "RegisterViewController"
     static let searchCollectionViewCell = "SearchCollectionViewCell"
+    static let standardTableViewCell = "StandardTableViewCell"
+    static let switchTableViewCell = "SwitchTableViewCell"
+    static let profileViewController = "ProfileViewController"
 }

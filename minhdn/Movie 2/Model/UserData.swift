@@ -32,7 +32,6 @@ class Favorite: Object{
     @objc dynamic var ReleaseDate : String = ""
     @objc dynamic var title : String = ""
     @objc dynamic var video: Bool = true
-//    @objc dynamic var VoteAverage: Double = 0.0
     @objc dynamic var VoteCount: Int = 0
     @objc dynamic var fav: Bool = false
     @objc dynamic var photo:NSData?
@@ -50,7 +49,7 @@ class Favorite: Object{
         if let temp = json["ReleaseDate"] as? String { ReleaseDate = temp }
         if let temp = json["title"] as? String { title = temp }
         if let temp = json["video"] as? Bool { video = temp }
-//        if let temp = json["VoteAverage" ] as? Double {VoteAverage = temp }
+
         return self
     }
 }

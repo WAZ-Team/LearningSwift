@@ -21,13 +21,14 @@ class DetaiViewController: UIViewController {
     @IBOutlet weak var screenShort: UILabel!
     @IBOutlet weak var movieDifference: UICollectionView!
     @IBOutlet weak var coverImage: UIImageView!
+    
     //  MARK: - Variables
     var delegateView =  HomeTableViewCell()
     var movieData: MovieDataModel?
-    var favdata: Favorite = Favorite()
+    var favdata = Favorite()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         movieDifference.delegate = self
         movieDifference.dataSource = self
         self.movieDifference.register(UINib(nibName: Constants.homeCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: Constants.homeCollectionViewCell)
@@ -39,8 +40,8 @@ class DetaiViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+//        self.favdata = self.getFavorite()
         print(favdata)
-        
     }
 }
 
@@ -54,7 +55,6 @@ extension DetaiViewController:UICollectionViewDataSource{
         guard let cell = self.movieDifference.dequeueReusableCell(withReuseIdentifier: Constants.homeCollectionViewCell, for: indexPath) as? HomeCollectionViewCell else { return UICollectionViewCell() }
         cell.imageHomeCell.downloaded(from: movieData?.backdroppath ?? "" )
         return cell
-      
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -62,10 +62,6 @@ extension DetaiViewController:UICollectionViewDataSource{
     }
 }
 
-    //  MARK:   - Delegate
-extension DetaiViewController: UICollectionViewDelegate{
-    
-}
     // MARK: - UICollectionViewDelegateFlowLayout
 extension DetaiViewController: UICollectionViewDelegateFlowLayout {
 

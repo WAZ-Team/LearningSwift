@@ -10,7 +10,7 @@ import FSPagerView
 
 class UpTableViewCell: UITableViewCell {
     //  MARK: - IBoutlet
-   
+    
     @IBOutlet weak var FSView: FSPagerView!{
         didSet{
             self.FSView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "UpTableViewCell")
@@ -18,7 +18,7 @@ class UpTableViewCell: UITableViewCell {
         }
     }
     //    MARK: - Veriables
-
+    
     private var cellData = [MovieDataModel](){
         didSet{
             FSView.reloadData()
@@ -30,12 +30,10 @@ class UpTableViewCell: UITableViewCell {
         FSView.dataSource = self
         FSView.delegate = self
         FSView.reloadData()
-        // Initialization code
-        //    FSView.reloadData()
-        //   cellData = APIService.load("Movie.json")
     }
 }
-//  MARK: - DataSource
+    //  MARK: - DataSource
+
 extension UpTableViewCell: FSPagerViewDataSource{
     
     func numberOfItems(in pagerView: FSPagerView) -> Int {
@@ -44,7 +42,7 @@ extension UpTableViewCell: FSPagerViewDataSource{
     
     func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "UpTableViewCell", at: index)
-            cell.imageView?.downloaded(from: cellData[index].backdroppath ?? "")
+        cell.imageView?.downloaded(from: cellData[index].backdroppath ?? "")
         cell.textLabel?.text = (cellData[index].title)!
         cell.textLabel?.font = UIFont(name: "HelveticaNeue-Medium", size: 15.0)
         cell.textLabel?.textAlignment = .center
@@ -52,7 +50,8 @@ extension UpTableViewCell: FSPagerViewDataSource{
         return cell
     }
 }
-//  MARK:   - Delegate
+    //  MARK:   - Delegate
+
 extension UpTableViewCell {
     func configurer(movies: [MovieDataModel]) {
         self.cellData = movies

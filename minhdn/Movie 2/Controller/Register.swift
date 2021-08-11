@@ -68,18 +68,18 @@ extension RegisterViewController {
     
     func passwordTextField() -> UITextField {
         passwordText.frame = CGRect(x: 0, y: 0, width: self.view!.bounds.width * 0.9, height: 50.0)
-       passwordText.placeholder = "Password"
-       passwordText.font = UIFont.systemFont(ofSize: 17)
-       passwordText.borderStyle = UITextField.BorderStyle.roundedRect
-       passwordText.autocorrectionType = UITextAutocorrectionType.no
-       passwordText.keyboardType = UIKeyboardType.default
-       passwordText.returnKeyType = UIReturnKeyType.send
-       passwordText.clearButtonMode = UITextField.ViewMode.whileEditing
-       passwordText.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
-       passwordText.isSecureTextEntry = true
-       passwordText.center.x = view.center.x
+        passwordText.placeholder = "Password"
+        passwordText.font = UIFont.systemFont(ofSize: 17)
+        passwordText.borderStyle = UITextField.BorderStyle.roundedRect
+        passwordText.autocorrectionType = UITextAutocorrectionType.no
+        passwordText.keyboardType = UIKeyboardType.default
+        passwordText.returnKeyType = UIReturnKeyType.send
+        passwordText.clearButtonMode = UITextField.ViewMode.whileEditing
+        passwordText.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+        passwordText.isSecureTextEntry = true
+        passwordText.center.x = view.center.x
         passwordText.center.y = 480.0
-       return passwordText
+        return passwordText
     }
     func rePasswordTextField() -> UITextField {
         repasswordText.frame = CGRect(x: 0, y: 0, width: self.view!.bounds.width * 0.9, height: 50.0)
@@ -94,7 +94,7 @@ extension RegisterViewController {
         repasswordText.isSecureTextEntry = true
         repasswordText.center.x = view.center.x
         repasswordText.center.y = 540.0
-       return repasswordText
+        return repasswordText
     }
     func Register() -> UIButton {
         let button = UIButton()
@@ -109,7 +109,7 @@ extension RegisterViewController {
         button.addTarget(self, action: #selector(onRegister), for: .touchUpInside)
         return button
     }
-
+    
     func setupContentView() {
         view.backgroundColor = .black
         view.addSubview(logoView())
@@ -127,34 +127,33 @@ extension RegisterViewController {
     }
     
     @objc func onRegister() {
-        guard
-            self.lastname.text == "" , self.fistname.text == "" ,
-            self.username.text == "" , self.passwordText.text == "" else {
+        if  self.lastname.text == "" , self.fistname.text == "" ,
+            self.username.text == data.username , self.passwordText.text == "" {
             self.showAlert(" fistname/lastname/email/password can't be empty")
-            return
-        }
-        if self.passwordText.text == self.repasswordText.text {
-            data.username = username.text!
-            data.password = passwordText.text!
-            do {
-                let realm = try Realm()
-                try realm.write {
-                    realm.add(data)
+        }else {
+            if self.passwordText.text == self.repasswordText.text {
+                do {
+                    let realm = try Realm()
+                    try realm.write {
+                        data.username = username.text!
+                        data.password = passwordText.text!
+                        data.fistname = fistname.text!
+                        data.lastname = lastname.text!
+                        realm.add(data)
+                    }
+                    print("Data saved successfully!")
+                    print(Realm.Configuration.defaultConfiguration.fileURL!)
+                    let ac = UIAlertController(title: "Conguarate!", message: "Your preferences have been saved.", preferredStyle: .actionSheet)
+                    ac.addAction(UIAlertAction(title: "OK", style: .default))
+                    present(ac, animated: true)
+                    
+                } catch {
+                    print("Error: \(error)")
                 }
-                print("Data saved successfully!")
-                print(Realm.Configuration.defaultConfiguration.fileURL!)
-                let ac = UIAlertController(title: "Conguarate!", message: "Your preferences have been saved.", preferredStyle: .actionSheet)
-                ac.addAction(UIAlertAction(title: "OK", style: .default))
-                present(ac, animated: true)
-                
-            } catch {
-                print("Error: \(error)")
+            }else{
+                showAlert("wrong password")
             }
-            
-        }else{
-            showAlert("sai pass")
         }
-        
     }
     
     override func didReceiveMemoryWarning() {

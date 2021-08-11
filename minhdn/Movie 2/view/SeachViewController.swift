@@ -12,22 +12,17 @@ class SeachViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     //  MARK: - Variables
-   
+    
     let searchController = UISearchController()
     var data = String()
-    
     var selectData = [MovieDataModel]()
-    var datamovie = [MovieDataModel]()
+    var datamovie: MovieDataModel?
     override func viewDidLoad() {
         super.viewDidLoad()
-        selectData = APIService.load("Movie.json")
-        print(selectData)
-        print(datamovie)
-        
-//        moviedata = Service.
-//        data = moviedata?.title ?? ""
+//        selectData = APIService.load("Movie.json")
+        datamovie = APIService.load("Movie.json")
         searchController.loadViewIfNeeded()
-       searchController.searchResultsUpdater = self
+        searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.enablesReturnKeyAutomatically = false
         searchController.searchBar.returnKeyType = UIReturnKeyType.done
@@ -40,70 +35,44 @@ class SeachViewController: UIViewController {
         collectionView.reloadData()
         self.collectionView.register(UINib(nibName: Constants.searchCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: Constants.searchCollectionViewCell)
     }
-//    fileprivate func performSearch(searchTerm: String) {
-//        Service.shared.searchMovies(searchTerm: searchTerm) { [weak self] (result) in
-//            switch result {
-//            case .failure(let error):
-//                print("Error in searching", error)
-//            case.success(let response):
-//
-//                self?.data = response.title ?? ""
-//                self?.data = response.Posterpath ?? ""
-//
-//                self?.collectionView.reloadData()
-//            }
-//        }
-//    }
-
 }
-    // MARK: - UISearchResultsUpdating
+// MARK: - UISearchResultsUpdating
 extension SeachViewController:UISearchResultsUpdating{
     func updateSearchResults(for searchController: UISearchController) {
         RequestForText(searchController.searchBar.text ?? "")
     }
-
-    /// Triggers the timer to execute the filtering
+    
     private func RequestForText(_ term:String?){
         guard let text = term, !text.isEmpty else{
             return
         }
-
-            print("Filtering movie with name: \(text)...")
-            self.data = text
-
-//
-        }
+        print("Filtering movie with name: \(text)...")
+        self.data = text
+        //
     }
+}
 
 
-    //  MARK:   - Delegate
+//  MARK:   - Delegate
 extension SeachViewController: UICollectionViewDelegate{
     
 }
 extension SeachViewController: UISearchBarDelegate{
-//    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-//        guard let searchTerm = searchBar.text, searchTerm.count > 0 else {
-//            print("Invalid search term")
-//            return
-//        }
-//
-//        performSearch(searchTerm: searchTerm)
-//    }
+
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty == false {
-            
-            
+            data = selectData.first?.title?.filter({$0.lowercased().prefix(searchText.count) == searchText.lowercased()}) ?? ""
+//            data = datamovie?.title?.filter({$0.lowercased().prefix(searchText.count) == searchText.lowercased()}) ?? ""
         }
-
         collectionView.reloadData()
     }
 }
-    //  MARK:   - DataSource
+//  MARK:   - DataSource
 extension SeachViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return selectData.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: Constants.searchCollectionViewCell, for: indexPath) as? SearchCollectionViewCell else { return UICollectionViewCell() }
         cell.imageSearch.downloaded(from: selectData[indexPath.row].Posterpath ?? "")
@@ -119,7 +88,7 @@ extension SeachViewController: UICollectionViewDataSource{
         cell.layer.borderWidth = 2.0
     }
 }
-    // MARK: - UICollectionViewDelegateFlowLayout
+// MARK: - UICollectionViewDelegateFlowLayout
 extension SeachViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -132,6 +101,6 @@ extension SeachViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 5.0
     }
-
-   
+    
+    
 }

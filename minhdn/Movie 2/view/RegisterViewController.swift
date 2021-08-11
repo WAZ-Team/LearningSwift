@@ -25,5 +25,5 @@ class RegisterViewController: UIViewController {
         guard AppDelegate.isDark else { return }
     }
 }
-    
-   
+
+
