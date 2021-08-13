@@ -28,4 +28,5 @@ struct Constants {
     static let standardTableViewCell = "StandardTableViewCell"
     static let switchTableViewCell = "SwitchTableViewCell"
     static let profileViewController = "ProfileViewController"
+    static let polyciViewController = "PolyciViewController"
 }

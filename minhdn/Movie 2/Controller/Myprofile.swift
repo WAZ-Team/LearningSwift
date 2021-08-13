@@ -7,8 +7,23 @@
 
 import UIKit
 import RealmSwift
-extension ProfileViewController {
+extension ProfileViewController: UINavigationControllerDelegate {
     
+    func userImage() -> UIImageView {
+        let img = UIImageView()
+        img.frame = CGRect(x: 0, y: 0, width: 200 , height: 200)
+        img.contentMode = .scaleAspectFit
+        img.layer.cornerRadius = img.frame.size.width/2
+        img.layer.borderWidth = 3
+        img.layer.borderColor = UIColor.black.cgColor
+        img.clipsToBounds = true
+        img.center.x = view.center.x
+        img.center.y = 200.0
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+            img.isUserInteractionEnabled = true
+            img.addGestureRecognizer(tapGestureRecognizer)
+        return img
+    }
     
     func fistnameTextField() -> UITextField {
         fistname.frame = CGRect(x: 0, y: 0, width: self.view!.bounds.width * 0.9, height: 50.0)
@@ -22,7 +37,7 @@ extension ProfileViewController {
         fistname.clearButtonMode = UITextField.ViewMode.whileEditing
         fistname.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         fistname.center.x = view.center.x
-        fistname.center.y = 300.0
+        fistname.center.y = 350.0
         return fistname
     }
     func lastnameTextField() -> UITextField {
@@ -37,7 +52,7 @@ extension ProfileViewController {
         lastname.clearButtonMode = UITextField.ViewMode.whileEditing
         lastname.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         lastname.center.x = view.center.x
-        lastname.center.y = 360.0
+        lastname.center.y = 410.0
         return lastname
     }
     func usernameTextField() -> UITextField {
@@ -52,7 +67,7 @@ extension ProfileViewController {
         username.clearButtonMode = UITextField.ViewMode.whileEditing
         username.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         username.center.x = view.center.x
-        username.center.y = 420.0
+        username.center.y = 470.0
         return username
     }
     
@@ -68,7 +83,7 @@ extension ProfileViewController {
         oldpasswordText.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         oldpasswordText.isSecureTextEntry = true
         oldpasswordText.center.x = view.center.x
-        oldpasswordText.center.y = 480.0
+        oldpasswordText.center.y = 530.0
         return oldpasswordText
     }
     func newPasswordTextField() -> UITextField {
@@ -83,7 +98,7 @@ extension ProfileViewController {
         newpasswordText.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         newpasswordText.isSecureTextEntry = true
         newpasswordText.center.x = view.center.x
-        newpasswordText.center.y = 540.0
+        newpasswordText.center.y = 590.0
         return newpasswordText
     }
     func changePass() -> UIButton {
@@ -95,13 +110,14 @@ extension ProfileViewController {
         button.setTitleColor(UIColor.white, for: .normal)
         button.layer.cornerRadius = 3
         button.center.x = view.center.x
-        button.center.y = 600.0
+        button.center.y = 650.0
         button.addTarget(self, action: #selector(onChange), for: .touchUpInside)
         return button
     }
     
     func setupContentView() {
         view.backgroundColor = .white
+        view.addSubview(userImage())
         view.addSubview(lastnameTextField())
         view.addSubview(fistnameTextField())
         view.addSubview(usernameTextField())
@@ -124,6 +140,7 @@ extension ProfileViewController {
                     data.password = newpasswordText.text!
                     data.fistname = fistname.text!
                     data.lastname = lastname.text!
+//                    data.photo = NSData(data: (userImage().image?.pngData())! )
                     realm.add(data, update: .all)
                 }
                 print("Data saved successfully!")
@@ -131,7 +148,6 @@ extension ProfileViewController {
                 let ac = UIAlertController(title: "Conguarate!", message: "Your preferences have been saved.", preferredStyle: .actionSheet)
                 ac.addAction(UIAlertAction(title: "OK", style: .default))
                 present(ac, animated: true)
-                
             } catch {
                 print("Error: \(error)")
             }
@@ -139,10 +155,28 @@ extension ProfileViewController {
             showAlert("wrong password")
         }
     }
-    
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        let vc = UIImagePickerController()
+        vc.sourceType = .photoLibrary
+        vc.delegate = self
+        vc.allowsEditing = true
+        present(vc, animated: true)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
 }
-
+extension ProfileViewController: UIImagePickerControllerDelegate{
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage
+        {
+            self.userImage().image = image
+    }
+        picker.dismiss(animated: true, completion: nil)
+}
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+}

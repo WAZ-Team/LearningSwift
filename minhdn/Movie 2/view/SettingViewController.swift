@@ -6,16 +6,12 @@
 //
 
 import UIKit
-
+import UserNotifications
 class SettingViewController: UIViewController {
     //  MARK:   - Outlets
     @IBOutlet private weak var SettingTableView: UITableView!
     // MARK:    -   Veriables
-    var sectionText = ["Profile", "Setting"]
-    var setting = ["Notifications", "Dark Mode","Share","Polyci" ]
-    var profile = ["profile edit"]
     var models = [Sections]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -26,9 +22,13 @@ class SettingViewController: UIViewController {
         SettingTableView.dataSource = self
         setupNavigationBar()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        tabBarController?.tabBar.isHidden = false
+    }
 }
 
-    //  MARK:  - Datasource
+//  MARK:  - Datasource
 extension SettingViewController: UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int {
         return models.count
@@ -37,7 +37,7 @@ extension SettingViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return models[section].options.count
     }
-        
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = models[indexPath.section].options[indexPath.row]
         switch model.self {

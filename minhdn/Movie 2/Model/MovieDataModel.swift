@@ -7,7 +7,7 @@
 
 import Foundation
 
- struct MovieDataModel: Decodable{
+struct MovieDataModel: Decodable{
     public var adult: Bool?
     public var backdroppath: String?
     public var genreids: [Int]?
@@ -25,7 +25,7 @@ import Foundation
     public var VoteCount: Int?
     public var duration: String = String(Int.random(in: 90..<150))
     
-     enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case adult = "adult"
         case backdroppath = "backdrop_path"
         case genreids = "genre_ids"
@@ -42,7 +42,7 @@ import Foundation
         case VoteAverage = "vote_average"
         case VoteCount = "vote_count"
     }
-   
+    
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         adult = try values.decodeIfPresent(Bool.self, forKey: .adult)
@@ -62,8 +62,6 @@ import Foundation
         VoteCount = try values.decodeIfPresent(Int.self, forKey: .VoteCount)
     }
     
- 
-
     func posterImageUrl() -> String? {
         if let posterPath = Posterpath {
             return "\(Constants.POSTER_BASE_URL)\(posterPath)"
@@ -77,6 +75,6 @@ import Foundation
         }
         return nil
     }
-
- }
+    
+}
 

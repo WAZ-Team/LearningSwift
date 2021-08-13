@@ -11,13 +11,12 @@ extension UILabel {
     
     func formatAndShowDate(dateString: String?, formatString: String) {
         guard let string = dateString else { return }
-        
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         if let date = formatter.date(from: string) {
             let stringFormatter = DateFormatter()
             stringFormatter.dateFormat = formatString
-            self.text = "Release: \(stringFormatter.string(from: date))"
+            self.text = "Release Date: \(stringFormatter.string(from: date))"
         }
         
     }

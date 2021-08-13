@@ -20,7 +20,9 @@
 		040A2ECA26C2332500DE2D59 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A2EC926C2332500DE2D59 /* SwitchTableViewCell.swift */; };
 		040A2ED626C27A1A00DE2D59 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A2ED526C27A1A00DE2D59 /* ProfileViewController.swift */; };
 		040A2EE126C36B0A00DE2D59 /* HomeTabBarcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A2EE026C36B0A00DE2D59 /* HomeTabBarcontroller.swift */; };
-		040A2F0426C3C93900DE2D59 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A2F0326C3C93900DE2D59 /* APIService.swift */; };
+		040A2F1026C5148100DE2D59 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A2F0F26C5148100DE2D59 /* Favorite.swift */; };
+		040A2F1326C5148E00DE2D59 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A2F1226C5148E00DE2D59 /* Search.swift */; };
+		040A2F1626C5244A00DE2D59 /* PolyciViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A2F1526C5244A00DE2D59 /* PolyciViewController.swift */; };
 		042324F826A175BD00CD827E /* DetaiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042324F726A175BD00CD827E /* DetaiViewController.swift */; };
 		0451C9322698432000FA4DAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0451C9312698432000FA4DAC /* AppDelegate.swift */; };
 		0451C9342698432000FA4DAC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0451C9332698432000FA4DAC /* SceneDelegate.swift */; };
@@ -61,7 +63,9 @@
 		040A2EC926C2332500DE2D59 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
 		040A2ED526C27A1A00DE2D59 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		040A2EE026C36B0A00DE2D59 /* HomeTabBarcontroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabBarcontroller.swift; sourceTree = "<group>"; };
-		040A2F0326C3C93900DE2D59 /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		040A2F0F26C5148100DE2D59 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
+		040A2F1226C5148E00DE2D59 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
+		040A2F1526C5244A00DE2D59 /* PolyciViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyciViewController.swift; sourceTree = "<group>"; };
 		042324F726A175BD00CD827E /* DetaiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetaiViewController.swift; sourceTree = "<group>"; };
 		0451C92E2698432000FA4DAC /* Movie 2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Movie 2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0451C9312698432000FA4DAC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -146,7 +150,6 @@
 		04031B8026BA420900D46761 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				040A2F0326C3C93900DE2D59 /* APIService.swift */,
 				0451C96E269BDF6A00FA4DAC /* MovieData.swift */,
 			);
 			path = Service;
@@ -194,6 +197,8 @@
 				0451C97A269C173500FA4DAC /* Movie.json */,
 				0451C9492698497000FA4DAC /* MovieDataModel.swift */,
 				04BBF50E26B15E1C009C858B /* UserData.swift */,
+				040A2F0F26C5148100DE2D59 /* Favorite.swift */,
+				040A2F1226C5148E00DE2D59 /* Search.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -206,10 +211,11 @@
 				04BBF54426B16FC8009C858B /* RegisterViewController.swift */,
 				0451C95026984EC800FA4DAC /* HomeMovieViewController.swift */,
 				042324F726A175BD00CD827E /* DetaiViewController.swift */,
-				0403571126A7CFB200277966 /* SeachViewController.swift */,
 				0403571426A7CFC200277966 /* FavViewController.swift */,
+				0403571126A7CFB200277966 /* SeachViewController.swift */,
 				04BBF57A26B2B428009C858B /* SettingViewController.swift */,
 				040A2ED526C27A1A00DE2D59 /* ProfileViewController.swift */,
+				040A2F1526C5244A00DE2D59 /* PolyciViewController.swift */,
 				040242B026AA96F3004AFE4E /* TableCell */,
 			);
 			path = view;
@@ -393,8 +399,8 @@
 			files = (
 				0451C9692698596200FA4DAC /* HomeCollectionViewCell.swift in Sources */,
 				0451C9642698589800FA4DAC /* HomeTableViewCell.swift in Sources */,
-				040A2F0426C3C93900DE2D59 /* APIService.swift in Sources */,
 				0403578626A9714400277966 /* LoginViewController.swift in Sources */,
+				040A2F1626C5244A00DE2D59 /* PolyciViewController.swift in Sources */,
 				04BBF54526B16FC8009C858B /* RegisterViewController.swift in Sources */,
 				04BBF55626B1BC30009C858B /* Detail.swift in Sources */,
 				040724D4269D277800DC690E /* Imagedownload.swift in Sources */,
@@ -406,6 +412,8 @@
 				040A2ED626C27A1A00DE2D59 /* ProfileViewController.swift in Sources */,
 				0403571226A7CFB200277966 /* SeachViewController.swift in Sources */,
 				0451C94A2698497000FA4DAC /* MovieDataModel.swift in Sources */,
+				040A2F1326C5148E00DE2D59 /* Search.swift in Sources */,
+				040A2F1026C5148100DE2D59 /* Favorite.swift in Sources */,
 				04031B7926B8E6C200D46761 /* UILabel.swift in Sources */,
 				04BBF59426B40852009C858B /* Setting.swift in Sources */,
 				04BBF50F26B15E1C009C858B /* UserData.swift in Sources */,

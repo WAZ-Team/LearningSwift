@@ -9,7 +9,7 @@ import UIKit
 import RealmSwift
 extension RegisterViewController {
     
-    func logoView() -> UIImageView {
+    private func logoView() -> UIImageView {
         let img = UIImageView()
         img.frame = CGRect(x: 0, y: 0, width: 300, height: 200)
         img.contentMode = .scaleAspectFit
@@ -20,7 +20,7 @@ extension RegisterViewController {
         return img
     }
     
-    func fistnameTextField() -> UITextField {
+    private func fistnameTextField() -> UITextField {
         fistname.frame = CGRect(x: 0, y: 0, width: self.view!.bounds.width * 0.9, height: 50.0)
         fistname.placeholder = "Fist Name"
         fistname.autocapitalizationType = .none
@@ -35,7 +35,7 @@ extension RegisterViewController {
         fistname.center.y = 300.0
         return fistname
     }
-    func lastnameTextField() -> UITextField {
+    private func lastnameTextField() -> UITextField {
         lastname.frame = CGRect(x: 0, y: 0, width: self.view!.bounds.width * 0.9, height: 50.0)
         lastname.placeholder = "Last Name"
         lastname.autocapitalizationType = .none
@@ -50,7 +50,7 @@ extension RegisterViewController {
         lastname.center.y = 360.0
         return lastname
     }
-    func usernameTextField() -> UITextField {
+    private func usernameTextField() -> UITextField {
         username.frame = CGRect(x: 0, y: 0, width: self.view!.bounds.width * 0.9, height: 50.0)
         username.placeholder = "User Name"
         username.autocapitalizationType = .none
@@ -66,7 +66,7 @@ extension RegisterViewController {
         return username
     }
     
-    func passwordTextField() -> UITextField {
+    private func passwordTextField() -> UITextField {
         passwordText.frame = CGRect(x: 0, y: 0, width: self.view!.bounds.width * 0.9, height: 50.0)
         passwordText.placeholder = "Password"
         passwordText.font = UIFont.systemFont(ofSize: 17)
@@ -81,7 +81,7 @@ extension RegisterViewController {
         passwordText.center.y = 480.0
         return passwordText
     }
-    func rePasswordTextField() -> UITextField {
+    private func rePasswordTextField() -> UITextField {
         repasswordText.frame = CGRect(x: 0, y: 0, width: self.view!.bounds.width * 0.9, height: 50.0)
         repasswordText.placeholder = "Confirm Password"
         repasswordText.font = UIFont.systemFont(ofSize: 17)
@@ -96,7 +96,7 @@ extension RegisterViewController {
         repasswordText.center.y = 540.0
         return repasswordText
     }
-    func Register() -> UIButton {
+    private func Register() -> UIButton {
         let button = UIButton()
         button.frame = CGRect(x: 0, y: 0, width: view!.bounds.width * 0.9, height: 50)
         button.backgroundColor = .red
@@ -110,7 +110,7 @@ extension RegisterViewController {
         return button
     }
     
-    func setupContentView() {
+     func setupContentView() {
         view.backgroundColor = .black
         view.addSubview(logoView())
         view.addSubview(lastnameTextField())
@@ -120,13 +120,13 @@ extension RegisterViewController {
         view.addSubview(rePasswordTextField())
         view.addSubview(Register())
     }
-    func showAlert(_ message: String) {
+    private func showAlert(_ message: String) {
         let alertController = UIAlertController(title: "Message", message: message, preferredStyle: UIAlertController.Style.alert)
         alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }
     
-    @objc func onRegister() {
+    @objc private func onRegister() {
         if  self.lastname.text == "" , self.fistname.text == "" ,
             self.username.text == data.username , self.passwordText.text == "" {
             self.showAlert(" fistname/lastname/email/password can't be empty")

@@ -27,8 +27,7 @@ class HomeTableViewCell: UITableViewCell {
         homeCollectionview.delegate = self
         homeCollectionview.dataSource = self
         self.homeCollectionview.register(UINib(nibName: Constants.homeCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: Constants.homeCollectionViewCell)
-        guard AppDelegate.isDark else { return }
-        homeCollectionview.backgroundColor = UIColor.black
+
     }
 }
 

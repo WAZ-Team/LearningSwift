@@ -22,7 +22,7 @@ class RegisterViewController: UIViewController {
         setupContentView()
         self.navigationController?.navigationBar.isHidden =  false
         self.navigationController?.navigationBar.barTintColor = .clear
-        guard AppDelegate.isDark else { return }
+        
     }
 }
 

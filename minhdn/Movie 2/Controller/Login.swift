@@ -8,7 +8,7 @@ import UIKit
 
 extension LoginViewController {
     
-    func logoView() -> UIImageView {
+   private func logoView() -> UIImageView {
         let img = UIImageView()
         img.frame = CGRect(x: 0, y: 0, width: 300, height: 200)
         img.contentMode = .scaleAspectFit
@@ -19,7 +19,7 @@ extension LoginViewController {
         return img
     }
     
-    func usernameTextField() -> UITextField {
+    private func usernameTextField() -> UITextField {
         username.frame = CGRect(x: 0, y: 0, width: self.view!.bounds.width * 0.9, height: 50.0)
         username.placeholder = "User Name"
         username.autocapitalizationType = .none
@@ -35,7 +35,7 @@ extension LoginViewController {
         return username
     }
     
-    func passwordTextField() -> UITextField {
+    private func passwordTextField() -> UITextField {
         passwordText.frame = CGRect(x: 0, y: 0, width: self.view!.bounds.width * 0.9, height: 50.0)
         passwordText.placeholder = "Password"
         passwordText.font = UIFont.systemFont(ofSize: 17)
@@ -51,7 +51,7 @@ extension LoginViewController {
         return passwordText
     }
     
-    func signInButton() -> UIButton {
+    private func signInButton() -> UIButton {
         let button = UIButton()
         button.frame = CGRect(x: 0, y: 0, width: view!.bounds.width * 0.9, height: 50)
         button.backgroundColor = .red
@@ -65,7 +65,7 @@ extension LoginViewController {
         return button
     }
     
-    func Register() -> UIButton {
+    private func Register() -> UIButton {
         let button = UIButton()
         button.frame = CGRect(x: 0, y: 0, width: view!.bounds.width * 0.9, height: 50)
         button.backgroundColor = .red
@@ -79,7 +79,7 @@ extension LoginViewController {
         return button
     }
     
-    func setupContentView() {
+     func setupContentView() {
         view.backgroundColor = .black
         view.addSubview(logoView())
         view.addSubview(usernameTextField())
@@ -87,13 +87,13 @@ extension LoginViewController {
         view.addSubview(signInButton())
         view.addSubview( Register())
     }
-    func showAlert(_ message: String) {
+    private func showAlert(_ message: String) {
         let alertController = UIAlertController(title: "Message", message: message, preferredStyle: UIAlertController.Style.alert)
         alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }
     
-    @objc func onSignInPress() {
+    @objc private func onSignInPress() {
         if self.username.text == login.username ,
            self.passwordText.text == login.password{
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -104,7 +104,7 @@ extension LoginViewController {
             self.showAlert("wrong email/password ")
         }
     }
-    @objc func onRegisterPress() {
+    @objc private func onRegisterPress() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let vc = storyboard.instantiateViewController(withIdentifier: Constants.registerViewController) as? RegisterViewController else {return}
         self.navigationController?.pushViewController(vc, animated: true)

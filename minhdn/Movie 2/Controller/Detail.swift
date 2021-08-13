@@ -9,56 +9,44 @@ import Foundation
 import RealmSwift
 
 extension DetaiViewController{
-    
-//    func getFavorite() -> Favorite{
-//        let realm = try! Realm()
-//        let user:Results<Favorite> = realm.objects(Favorite.self)
-//        let listData:Favorite = Favorite()
-//        for item in user{
-//            if item.fav == true{
-//                favdata.title = item.title
-//                favdata.Posterpath = item.Posterpath
-//                favdata.id = item.id
-//                favdata.fav = item.fav
-//            }
-//        }
-//        return listData
-//    }
+    private func saveMovie(){
+        do{
+             let realm = try! Realm()
+             try realm.write {
+                self.favdata.title = self.movieData?.title ?? ""
+                self.favdata.Posterpath = self.movieData?.Posterpath ?? ""
+                 realm.add(favdata, update: .all)
+             }
+        }catch{
+            print("error")
+    }
+    }
     
     @objc func onfav() {
-        if favdata.fav == false{
-//           if self.favdata.id != self.movieData?.id {
-//            self.favdata.fav = true
-//            self.favdata.title = self.movieData?.title ?? ""
-//            self.favdata.Posterpath = self.movieData?.Posterpath ?? ""
-            do{
+        if self.favdata.fav == false{
                  let realm = try! Realm()
-                 try realm.write {
+                 try! realm.write {
+                    self.favdata.fav = true
+                    self.favdata.id = (self.movieData?.id)!
+                    self.favdata.title = self.movieData?.title ?? ""
+                    self.favdata.Posterpath = self.movieData?.Posterpath ?? ""
                      realm.add(favdata, update: .all)
                  }
                  print("Data saved successfully!")
-                 let ac = UIAlertController(title: "Favorite!", message: "Your movie have been saved.", preferredStyle: .actionSheet)
+                 let ac = UIAlertController(title: "Favorite!", message: "I Like It.", preferredStyle: .actionSheet)
                  ac.addAction(UIAlertAction(title: "OK", style: .default))
                  present(ac, animated: true)
-            }catch{
-                print("error")
-            }
-           }else{
-//            return
-//           }
-//        }else{
+        }else{
                 let realm = try! Realm()
                 try! realm.write {
                     self.favdata.fav = false
                     realm.add(favdata, update: .all)
-                    
                 }
                 print("Data saved successfully!")
                 print(Realm.Configuration.defaultConfiguration.fileURL!)
                 let ac = UIAlertController(title: "Favorite!", message: "Opp! Your movie has not been saved", preferredStyle: .actionSheet)
                 ac.addAction(UIAlertAction(title: "OK", style: .default))
                 present(ac, animated: true)
-                
         }
     }
     
@@ -67,6 +55,7 @@ extension DetaiViewController{
         movieTitle.text = movie?.title?.uppercased()
         rateBar.value = CGFloat((movie?.VoteAverage!)!/2)
         overView.text = movie?.overview
+        ReleaseDate.formatAndShowDate(dateString: movie?.ReleaseDate, formatString: "MMM dd YYYY")
     }
     
     func setupNavigationBar(){

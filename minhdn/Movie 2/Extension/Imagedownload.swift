@@ -12,6 +12,7 @@ import UIKit
 let imageCache = NSCache<NSString, UIImage>()
 
 extension UIImageView {
+//  MARK:   -   Imagedowload
     func downloaded(from url: URL, contentMode mode: ContentMode = .scaleAspectFit) {
         contentMode = mode
         URLSession.shared.dataTask(with: url) { data, response, error in
@@ -30,6 +31,8 @@ extension UIImageView {
         guard let url = URL(string: Constants.BACK_DROP_BASE_URL + link) else { return }
         downloaded(from: url, contentMode: mode)
     }
+//  MARK:   -   ImageDetail
+    
     var roundImage: UIImageView {
         let curvedPercent = 0.15 as CGFloat
         let maskLayer = CAShapeLayer(layer: self.layer)
@@ -40,7 +43,6 @@ extension UIImageView {
         arrowPath.addQuadCurve(to: CGPoint(x:0, y:self.bounds.size.height - (self.bounds.size.height * curvedPercent)), controlPoint: CGPoint(x:self.bounds.size.width/2, y:self.bounds.size.height))
         arrowPath.addLine(to: CGPoint(x:0, y:0))
         arrowPath.close()
-
         maskLayer.path = arrowPath.cgPath
         maskLayer.frame = self.bounds
         maskLayer.masksToBounds = true

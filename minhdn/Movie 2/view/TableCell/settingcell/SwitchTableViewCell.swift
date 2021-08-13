@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import UserNotifications
 class SwitchTableViewCell: UITableViewCell {
     
     // MARK: - Elements
@@ -39,29 +39,33 @@ class SwitchTableViewCell: UITableViewCell {
         return mySwitch
     }()
     
-    @objc func switchChanged(_ sender: UISwitch!) {
-        let center = UNUserNotificationCenter.current()
-        
-        let content = UNMutableNotificationContent()
-        content.title = "Notifiaction on a certail date"
-        content.body = "This is a local notification on certain date"
-        content.sound = .default
-        content.userInfo = ["value": "Data with local notification"]
-        
-        
-        let fireDate = Calendar.current.dateComponents([.day, .month, .year, .hour, .minute, .second], from: Date().addingTimeInterval(10))
-        
-        let trigger = UNCalendarNotificationTrigger(dateMatching: fireDate, repeats: false)
-        //UNTimeIntervalNotificationTrigger(timeInterval: 20, repeats: false)
-        
-        let request = UNNotificationRequest(identifier: "reminder", content: content, trigger: trigger)
-        center.add(request) { (error) in
-            if error != nil {
-                print("Error = \(error?.localizedDescription ?? "error local notification")")
+    @objc private func switchChanged(_ sender: UISwitch!) {
+        if sender.isOn {
+            let center = UNUserNotificationCenter.current()
+            
+            let content = UNMutableNotificationContent()
+            content.title = "Notifiaction on a certail date"
+            content.body = "This is a local notification on certain date"
+            content.sound = .default
+            content.userInfo = ["value": "Data with local notification"]
+            
+            
+            let fireDate = Calendar.current.dateComponents([.day, .month, .year, .hour, .minute, .second], from: Date().addingTimeInterval(10))
+            
+            let trigger = UNCalendarNotificationTrigger(dateMatching: fireDate, repeats: false)
+//            UNTimeIntervalNotificationTrigger(timeInterval: 20, repeats: false)
+            
+            let request = UNNotificationRequest(identifier: "reminder", content: content, trigger: trigger)
+            center.add(request) { (error) in
+                if error != nil {
+                    print("Error = \(error?.localizedDescription ?? "error local notification")")
+                }
             }
+            print("Table row switch Changed \(sender.tag)")
+            print("The switch is \(sender.isOn ? "ON" : "OFF")")
+        }else{
+            return 
         }
-        print("Table row switch Changed \(sender.tag)")
-        print("The switch is \(sender.isOn ? "ON" : "OFF")")
         
     }
     // MARK: - Init
@@ -111,7 +115,7 @@ class SwitchTableViewCell: UITableViewCell {
         label.text = model.title
         iconImageView.image = model.icon
         iconContainer.backgroundColor = model.iconBackgroundColor
-        mySwitch.isOn = model.isOn
+//       mySwitch.isOn = model.isOn
     }
 }
 

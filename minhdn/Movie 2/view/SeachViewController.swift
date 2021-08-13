@@ -9,17 +9,19 @@ import UIKit
 
 class SeachViewController: UIViewController {
     //  MARK:   - Outlet
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
     
     //  MARK: - Variables
-    
+    weak var searchMovieDelegate:SelectedMovieSearchDelegate?
     let searchController = UISearchController()
     var data = String()
-    var selectData = [MovieDataModel]()
-    var datamovie: MovieDataModel?
+    var datamovie: [MovieDataModel] = [MovieDataModel]()
+    var getMovieSearch : [MovieDataModel] = [MovieDataModel]()
+    var select : MovieDataModel?
+    var searchActive = false
     override func viewDidLoad() {
         super.viewDidLoad()
-//        selectData = APIService.load("Movie.json")
+        //        selectData = APIService.load("Movie.json")
         datamovie = APIService.load("Movie.json")
         searchController.loadViewIfNeeded()
         searchController.searchResultsUpdater = self
@@ -34,6 +36,10 @@ class SeachViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.reloadData()
         self.collectionView.register(UINib(nibName: Constants.searchCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: Constants.searchCollectionViewCell)
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        tabBarController?.tabBar.isHidden = false
     }
 }
 // MARK: - UISearchResultsUpdating
@@ -55,29 +61,62 @@ extension SeachViewController:UISearchResultsUpdating{
 
 //  MARK:   - Delegate
 extension SeachViewController: UICollectionViewDelegate{
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.searchMovieDelegate?.didSelectSearchMovie(movie: getMovieSearch[indexPath.row])
+    }
+}
+extension SeachViewController: SelectedMovieSearchDelegate {
+    func didSelectSearchMovie(movie: MovieDataModel) {
+        self.select = movie
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let vc = storyboard.instantiateViewController(withIdentifier: Constants.detaiViewController) as? DetaiViewController else{return}
+        vc.movieData = select
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
 }
-extension SeachViewController: UISearchBarDelegate{
 
+protocol SelectedMovieSearchDelegate: class {
+    func didSelectSearchMovie(movie:MovieDataModel)
+}
+
+extension SeachViewController: UISearchBarDelegate{
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty == false {
-            data = selectData.first?.title?.filter({$0.lowercased().prefix(searchText.count) == searchText.lowercased()}) ?? ""
-//            data = datamovie?.title?.filter({$0.lowercased().prefix(searchText.count) == searchText.lowercased()}) ?? ""
+            searchActive = true
+            getMovieSearch.removeAll()
+            for item in datamovie {
+                if item.title?.uppercased().contains(data.uppercased()) == true{
+                    getMovieSearch.append(item)
+                }
+                print(item)
+            }
+            
+        }else{
+            searchActive = false
+            getMovieSearch.removeAll()
+            getMovieSearch = datamovie
         }
+        collectionView.reloadData()
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
+        getMovieSearch.removeAll()
         collectionView.reloadData()
     }
 }
 //  MARK:   - DataSource
 extension SeachViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return selectData.count
+        return getMovieSearch.count
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: Constants.searchCollectionViewCell, for: indexPath) as? SearchCollectionViewCell else { return UICollectionViewCell() }
-        cell.imageSearch.downloaded(from: selectData[indexPath.row].Posterpath ?? "")
-        cell.titleSearch.text = selectData[indexPath.row].title
-        cell.releaseSearch.formatAndShowDate(dateString: selectData[indexPath.row].ReleaseDate, formatString: "MMM dd YYYY")
+        cell.imageSearch.downloaded(from: getMovieSearch[indexPath.row].Posterpath ?? "" )
+        cell.titleSearch.text = getMovieSearch[indexPath.row].title
+        cell.releaseSearch.formatAndShowDate(dateString: getMovieSearch[indexPath.row].ReleaseDate, formatString: "MMM dd YYYY")
         
         return cell
     }
@@ -101,6 +140,4 @@ extension SeachViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 5.0
     }
-    
-    
 }

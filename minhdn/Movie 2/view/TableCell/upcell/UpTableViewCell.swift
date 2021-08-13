@@ -37,7 +37,7 @@ class UpTableViewCell: UITableViewCell {
 extension UpTableViewCell: FSPagerViewDataSource{
     
     func numberOfItems(in pagerView: FSPagerView) -> Int {
-        return 10
+        return cellData.count
     }
     
     func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {

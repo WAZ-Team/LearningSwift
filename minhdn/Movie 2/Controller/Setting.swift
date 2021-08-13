@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import MessageUI
 import StoreKit
+import UserNotifications
 extension SettingViewController:MFMailComposeViewControllerDelegate{
     
     // MARK: - Type of cell
@@ -34,7 +35,7 @@ extension SettingViewController:MFMailComposeViewControllerDelegate{
         let icon: UIImage?
         let iconBackgroundColor: UIColor
         let handler: (() -> Void)
-        var isOn: Bool
+//        var isOn: Bool
     }
     
     struct SettingLabelOptions {
@@ -57,6 +58,7 @@ extension SettingViewController:MFMailComposeViewControllerDelegate{
         alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }
+//  MARK:   -   notification
     func Notification(){
         let center = UNUserNotificationCenter.current()
         
@@ -79,6 +81,7 @@ extension SettingViewController:MFMailComposeViewControllerDelegate{
             }
         }
     }
+//  MARK:   -Email
     func sendEmail() {
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
@@ -93,6 +96,7 @@ extension SettingViewController:MFMailComposeViewControllerDelegate{
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true)
     }
+//  MARK:   - Share
      func tapFunctionShare() {
         if let name = URL(string: "https://itunes.apple.com/us/app/myapp/1537280676?ls=1&mt=8"), !name.absoluteString.isEmpty {
             let objectsToShare = [name]
@@ -102,7 +106,7 @@ extension SettingViewController:MFMailComposeViewControllerDelegate{
             self.showAlert("error")
         }
     }
-    
+//  MARK:   -Rate
     @objc func tapFunctionRateApp() {
         print("tap tapFunctionRateApp")
         SKStoreReviewController.requestReview()
@@ -129,16 +133,17 @@ extension SettingViewController:MFMailComposeViewControllerDelegate{
             
             .switchCell(model: SettingSwitchOptions(
                             title: "Notification",
-                            icon: UIImage(systemName: "ellipsis.bubble.fill"),
-                            iconBackgroundColor: .systemBlue,
+                            icon: UIImage(named: "notification"),
+                            iconBackgroundColor: .white,
                             handler: {
                                 self.Notification()
-                            }, isOn: false)),
-            
+                                
+                            })),
+          
             .standardCell(model: SettingStandardOption(
                             title: "Feed Back",
-                            icon: UIImage(systemName: "mail.fill"),
-                            iconBackgroundColor: .systemBlue,
+                            icon: UIImage(named: "feedback"),
+                            iconBackgroundColor: .white,
                             handler: {
                                 self.sendEmail()
                             })),
@@ -146,24 +151,27 @@ extension SettingViewController:MFMailComposeViewControllerDelegate{
             .standardCell(model: SettingStandardOption(
                             title: "Shared",
                             icon: UIImage(named: "share"),
-                            iconBackgroundColor: .systemBlue,
+                            iconBackgroundColor: .white,
                             handler: {
                                 self.tapFunctionShare()
                             })),
             
             .standardCell(model: SettingStandardOption(
                             title: "Rate App",
-                            icon: UIImage(systemName: "star"),
-                            iconBackgroundColor: .systemBlue,
+                            icon: UIImage(named: "rate"),
+                            iconBackgroundColor: .white,
                             handler: {
                                 self.tapFunctionRateApp()
                             })),
             .standardCell(model: SettingStandardOption(
-                            title: "Polyci",
-                            icon: UIImage(systemName: "book"),
-                            iconBackgroundColor: .systemBlue,
+                            title: "Policy",
+                            icon: UIImage(named: "book"),
+                            iconBackgroundColor: .white,
                             handler: {
-                                self.tapFunctionRateApp()
+                                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                                guard let vc = storyboard.instantiateViewController(withIdentifier: Constants.polyciViewController) as? PolyciViewController else{return}
+                                self.navigationController?.pushViewController(vc, animated: true)
+                                
                             })),
             .standardCell(model: SettingStandardOption(
                             title: "Logout",
