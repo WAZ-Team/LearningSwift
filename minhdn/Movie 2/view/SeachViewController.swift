@@ -12,16 +12,15 @@ class SeachViewController: UIViewController {
     @IBOutlet private weak var collectionView: UICollectionView!
     
     //  MARK: - Variables
-    weak var searchMovieDelegate:SelectedMovieSearchDelegate?
     let searchController = UISearchController()
     var data = String()
     var datamovie: [MovieDataModel] = [MovieDataModel]()
     var getMovieSearch : [MovieDataModel] = [MovieDataModel]()
-    var select : MovieDataModel?
+//    var select : MovieDataModel?
     var searchActive = false
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        selectData = APIService.load("Movie.json")
+        view.backgroundColor = UIColor(red: 0.91, green: 0.96, blue: 1.00, alpha: 1.00)
         datamovie = APIService.load("Movie.json")
         searchController.loadViewIfNeeded()
         searchController.searchResultsUpdater = self
@@ -54,34 +53,19 @@ extension SeachViewController:UISearchResultsUpdating{
         }
         print("Filtering movie with name: \(text)...")
         self.data = text
-        //
     }
 }
-
-
 //  MARK:   - Delegate
 extension SeachViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.searchMovieDelegate?.didSelectSearchMovie(movie: getMovieSearch[indexPath.row])
-    }
-}
-extension SeachViewController: SelectedMovieSearchDelegate {
-    func didSelectSearchMovie(movie: MovieDataModel) {
-        self.select = movie
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let vc = storyboard.instantiateViewController(withIdentifier: Constants.detaiViewController) as? DetaiViewController else{return}
-        vc.movieData = select
+        vc.movieData = getMovieSearch[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
-}
-
-protocol SelectedMovieSearchDelegate: class {
-    func didSelectSearchMovie(movie:MovieDataModel)
 }
 
 extension SeachViewController: UISearchBarDelegate{
-    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty == false {
             searchActive = true
@@ -141,3 +125,4 @@ extension SeachViewController: UICollectionViewDelegateFlowLayout {
         return 5.0
     }
 }
+

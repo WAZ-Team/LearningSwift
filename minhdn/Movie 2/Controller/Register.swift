@@ -11,10 +11,13 @@ extension RegisterViewController {
     
     private func logoView() -> UIImageView {
         let img = UIImageView()
-        img.frame = CGRect(x: 0, y: 0, width: 300, height: 200)
-        img.contentMode = .scaleAspectFit
+        img.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+        img.contentMode = .scaleToFill
+        img.layer.cornerRadius = img.frame.size.width/2
+        img.layer.borderWidth = 3
+        img.layer.borderColor = UIColor.black.cgColor
         img.clipsToBounds = true
-        img.image = UIImage(named: "Logo")
+        img.image = UIImage(named: "logo")
         img.center.x = view.center.x
         img.center.y = 200.0
         return img
@@ -32,7 +35,7 @@ extension RegisterViewController {
         fistname.clearButtonMode = UITextField.ViewMode.whileEditing
         fistname.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         fistname.center.x = view.center.x
-        fistname.center.y = 300.0
+        fistname.center.y = 360.0
         return fistname
     }
     private func lastnameTextField() -> UITextField {
@@ -47,7 +50,7 @@ extension RegisterViewController {
         lastname.clearButtonMode = UITextField.ViewMode.whileEditing
         lastname.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         lastname.center.x = view.center.x
-        lastname.center.y = 360.0
+        lastname.center.y = 420.0
         return lastname
     }
     private func usernameTextField() -> UITextField {
@@ -62,7 +65,7 @@ extension RegisterViewController {
         username.clearButtonMode = UITextField.ViewMode.whileEditing
         username.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         username.center.x = view.center.x
-        username.center.y = 420.0
+        username.center.y = 480.0
         return username
     }
     
@@ -78,7 +81,7 @@ extension RegisterViewController {
         passwordText.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         passwordText.isSecureTextEntry = true
         passwordText.center.x = view.center.x
-        passwordText.center.y = 480.0
+        passwordText.center.y = 540.0
         return passwordText
     }
     private func rePasswordTextField() -> UITextField {
@@ -93,25 +96,25 @@ extension RegisterViewController {
         repasswordText.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         repasswordText.isSecureTextEntry = true
         repasswordText.center.x = view.center.x
-        repasswordText.center.y = 540.0
+        repasswordText.center.y = 600.0
         return repasswordText
     }
     private func Register() -> UIButton {
         let button = UIButton()
         button.frame = CGRect(x: 0, y: 0, width: view!.bounds.width * 0.9, height: 50)
-        button.backgroundColor = .red
+        button.backgroundColor = .systemBlue
         button.titleLabel?.font = UIFont(name: "Arial", size: 15)
         button.setTitle("Register", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.layer.cornerRadius = 3
         button.center.x = view.center.x
-        button.center.y = 600.0
+        button.center.y = 660.0
         button.addTarget(self, action: #selector(onRegister), for: .touchUpInside)
         return button
     }
     
      func setupContentView() {
-        view.backgroundColor = .black
+        
         view.addSubview(logoView())
         view.addSubview(lastnameTextField())
         view.addSubview(fistnameTextField())
@@ -141,12 +144,12 @@ extension RegisterViewController {
                         data.lastname = lastname.text!
                         realm.add(data)
                     }
-                    print("Data saved successfully!")
-                    print(Realm.Configuration.defaultConfiguration.fileURL!)
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    guard let vc = storyboard.instantiateViewController(withIdentifier: Constants.loginViewController) as? LoginViewController else {return}
+                    self.navigationController?.pushViewController(vc, animated: true)
                     let ac = UIAlertController(title: "Conguarate!", message: "Your preferences have been saved.", preferredStyle: .actionSheet)
                     ac.addAction(UIAlertAction(title: "OK", style: .default))
                     present(ac, animated: true)
-                    
                 } catch {
                     print("Error: \(error)")
                 }

@@ -120,7 +120,7 @@ extension SettingViewController:MFMailComposeViewControllerDelegate{
             .standardCell(model: SettingStandardOption(
                             title: "profile",
                             icon: UIImage(named: "account"),
-                            iconBackgroundColor: .white,
+                            iconBackgroundColor: UIColor(red: 0.91, green: 0.96, blue: 1.00, alpha: 1.00),
                             handler: {
                                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                                 guard let vc = storyboard.instantiateViewController(withIdentifier: Constants.profileViewController) as? ProfileViewController else{return}
@@ -134,7 +134,7 @@ extension SettingViewController:MFMailComposeViewControllerDelegate{
             .switchCell(model: SettingSwitchOptions(
                             title: "Notification",
                             icon: UIImage(named: "notification"),
-                            iconBackgroundColor: .white,
+                            iconBackgroundColor: UIColor(red: 0.91, green: 0.96, blue: 1.00, alpha: 1.00),
                             handler: {
                                 self.Notification()
                                 
@@ -143,7 +143,7 @@ extension SettingViewController:MFMailComposeViewControllerDelegate{
             .standardCell(model: SettingStandardOption(
                             title: "Feed Back",
                             icon: UIImage(named: "feedback"),
-                            iconBackgroundColor: .white,
+                            iconBackgroundColor: UIColor(red: 0.91, green: 0.96, blue: 1.00, alpha: 1.00),
                             handler: {
                                 self.sendEmail()
                             })),
@@ -151,7 +151,7 @@ extension SettingViewController:MFMailComposeViewControllerDelegate{
             .standardCell(model: SettingStandardOption(
                             title: "Shared",
                             icon: UIImage(named: "share"),
-                            iconBackgroundColor: .white,
+                            iconBackgroundColor: UIColor(red: 0.91, green: 0.96, blue: 1.00, alpha: 1.00),
                             handler: {
                                 self.tapFunctionShare()
                             })),
@@ -159,14 +159,14 @@ extension SettingViewController:MFMailComposeViewControllerDelegate{
             .standardCell(model: SettingStandardOption(
                             title: "Rate App",
                             icon: UIImage(named: "rate"),
-                            iconBackgroundColor: .white,
+                            iconBackgroundColor: UIColor(red: 0.91, green: 0.96, blue: 1.00, alpha: 1.00),
                             handler: {
                                 self.tapFunctionRateApp()
                             })),
             .standardCell(model: SettingStandardOption(
                             title: "Policy",
                             icon: UIImage(named: "book"),
-                            iconBackgroundColor: .white,
+                            iconBackgroundColor: UIColor(red: 0.91, green: 0.96, blue: 1.00, alpha: 1.00),
                             handler: {
                                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                                 guard let vc = storyboard.instantiateViewController(withIdentifier: Constants.polyciViewController) as? PolyciViewController else{return}
@@ -176,7 +176,7 @@ extension SettingViewController:MFMailComposeViewControllerDelegate{
             .standardCell(model: SettingStandardOption(
                             title: "Logout",
                             icon: UIImage(named: "logout"),
-                            iconBackgroundColor: .white,
+                            iconBackgroundColor: UIColor(red: 0.91, green: 0.96, blue: 1.00, alpha: 1.00),
                             handler: {
                                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                                 guard let vc = storyboard.instantiateViewController(withIdentifier: Constants.loginViewController) as? LoginViewController else{return}

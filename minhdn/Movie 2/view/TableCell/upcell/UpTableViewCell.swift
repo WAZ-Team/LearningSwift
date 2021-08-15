@@ -15,6 +15,9 @@ class UpTableViewCell: UITableViewCell {
         didSet{
             self.FSView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "UpTableViewCell")
             self.FSView.transformer = FSPagerViewTransformer(type: .overlap)
+            self.FSView.automaticSlidingInterval = 3.0
+            self.FSView.decelerationDistance = 2
+           
         }
     }
     //    MARK: - Veriables

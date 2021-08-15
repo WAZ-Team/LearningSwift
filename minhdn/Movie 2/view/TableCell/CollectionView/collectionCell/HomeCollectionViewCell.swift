@@ -16,7 +16,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
         imageHomeCell.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
         imageHomeCell.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
         imageHomeCell.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
- 
+        
     }
     //  MARK: - Variables
     func configure(model: MovieDataModel) {

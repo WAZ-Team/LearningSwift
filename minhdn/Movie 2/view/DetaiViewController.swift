@@ -11,79 +11,59 @@ import RealmSwift
 class DetaiViewController: UIViewController {
     //    MARK: - Outlet
     
-    @IBOutlet weak var coverView: UIView!
-    @IBOutlet weak var detailView: UIView!
-    @IBOutlet weak var addbut: UIButton!
-    @IBOutlet weak var sharebut: UIButton!
-    @IBOutlet weak var rateBar: HCSStarRatingView!
-    @IBOutlet weak var ReleaseDate: UILabel!
-    @IBOutlet weak var movieTitle: UILabel!
-    @IBOutlet weak var overView: UILabel!
-    @IBOutlet weak var screenShort: UILabel!
-    @IBOutlet weak var movieDifference: UICollectionView!
-    @IBOutlet weak var coverImage: UIImageView!
+    @IBOutlet private weak var coverView: UIView?
+    @IBOutlet private weak var addbut: UIButton?
+    @IBOutlet private weak var sharebut: UIButton?
+    @IBOutlet private weak var rateBar: HCSStarRatingView!
+    @IBOutlet private weak var ReleaseDate: UILabel?
+    @IBOutlet private weak var movieTitle: UILabel?
+    @IBOutlet weak var overView: UITextView!
+    @IBOutlet private weak var coverImage: UIImageView?
     
     //  MARK: - Variables
     var delegateView =  HomeTableViewCell()
     var allMovie: [MovieDataModel] = [MovieDataModel]()
     var movieData: MovieDataModel?
-    var favdata = Favorite()
+    var favData = Favorite()
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBarController?.tabBar.isHidden = true
-        movieDifference.delegate = self
-        movieDifference.dataSource = self
-        allMovie = APIService.load("Movie.json")
-        self.movieDifference.register(UINib(nibName: Constants.homeCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: Constants.homeCollectionViewCell)
-        addbut.addTarget(self, action: #selector(onfav), for: .touchUpInside)
+        addbut?.addTarget(self, action: #selector(onfav), for: .touchUpInside)
+        sharebut?.addTarget(self, action: #selector(functionShare), for: .touchUpInside)
+        self.favData = self.getDataFavorite()
+        rateBar?.addTarget(self, action: #selector(changeRateBar), for: .touchUpInside)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         setupViews(movie: movieData)
         setupNavigationBar()
-        self.coverImage = coverImage.roundImage
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-//        movieData.removeAll()
-    }
-}
-
-//  MARK: - DataSource
-extension DetaiViewController:UICollectionViewDataSource{
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return allMovie.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = self.movieDifference.dequeueReusableCell(withReuseIdentifier: Constants.homeCollectionViewCell, for: indexPath) as? HomeCollectionViewCell else { return UICollectionViewCell() }
-        cell.imageHomeCell.downloaded(from: allMovie[indexPath.row].backdroppath ?? "" )
-        return cell
+        self.coverImage = coverImage?.roundImage
+        setupRateBar()
+       
         
     }
+    //  MARK:   -   Config
+    func setupRateBar() {
+        rateBar.maximumValue = 10
+        rateBar.minimumValue = 0
+        rateBar.allowsHalfStars = true
+        rateBar.backgroundColor = UIColor(red: 0.91, green: 0.96, blue: 1.00, alpha: 1.00)
+        self.rateBar?.value = CGFloat(favData.VoteAverage)
+    }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+    func setupViews(movie: MovieDataModel?){
+        coverImage?.downloaded(from: movie?.backdroppath ?? "")
+        movieTitle?.text = movie?.title?.uppercased()
+        overView?.text = movie?.overview
+        ReleaseDate?.formatAndShowDate(dateString: movie?.ReleaseDate, formatString: "MMM dd YYYY")
+    }
+    //    MARK: -   Rate
+    @objc func changeRateBar() {
+        let realm = try! Realm()
+        try! realm.write {
+            self.favData.VoteAverage = Double(self.rateBar.value)
+            realm.add(favData, update: .all)
+        }
     }
 }
-
-// MARK: - UICollectionViewDelegateFlowLayout
-extension DetaiViewController: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.bounds.size.width/2.4, height: view.bounds.size.height/1.1)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
-    }
-}
-
-
-
-

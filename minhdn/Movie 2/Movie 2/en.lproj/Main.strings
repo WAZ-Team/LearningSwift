@@ -1,0 +1,27 @@
+
+/* Class = "UITabBarItem"; title = "Favorite"; ObjectID = "1PK-wR-xDB"; */
+"1PK-wR-xDB.title" = "Favorite";
+
+/* Class = "UITabBarItem"; title = "Home"; ObjectID = "6Rk-UC-Zru"; */
+"6Rk-UC-Zru.title" = "Home";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "6r6-WC-Cdb"; */
+"6r6-WC-Cdb.text" = "Label";
+
+/* Class = "UITabBarItem"; title = "Setting"; ObjectID = "8di-ef-b2N"; */
+"8di-ef-b2N.title" = "Setting";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "HtV-BU-ooa"; */
+"HtV-BU-ooa.text" = "Label";
+
+/* Class = "UILabel"; text = "Lable"; ObjectID = "jsi-5O-uKu"; */
+"jsi-5O-uKu.text" = "Lable";
+
+/* Class = "UITextView"; text = "Last Modified: August 12, 2021\n\nPersonal Information:\nApp design by Minhdev\n\nAcceptance of the terms\n    By using our applications, you agree to the terms of this policy. If you do not accept the terms in this policy, please do not install or use our applications. The continued use of our products after any amendment of this privacy policy will be deemed your acceptance of the changes and/or new terms.\n\n\nContact Information\n\n\n   If you have any questions or comments about this Policy or our privacy practices, or to report any violations of the Policy or abuse of an Application, please contact us at Minhptit5896@gmail.com\n\n\nPolicy Updates\n\n\n   We may modify or update this Privacy Policy from time to time, so please review it periodically. We may provide you additional forms of notice of modifications or updates as appropriate under the circumstances.\n\n"; ObjectID = "lnC-za-8dr"; */
+"lnC-za-8dr.text" = "Last Modified: August 12, 2021\n\nPersonal Information:\nApp design by Minhdev\n\nAcceptance of the terms\n    By using our applications, you agree to the terms of this policy. If you do not accept the terms in this policy, please do not install or use our applications. The continued use of our products after any amendment of this privacy policy will be deemed your acceptance of the changes and/or new terms.\n\n\nContact Information\n\n\n   If you have any questions or comments about this Policy or our privacy practices, or to report any violations of the Policy or abuse of an Application, please contact us at Minhptit5896@gmail.com\n\n\nPolicy Updates\n\n\n   We may modify or update this Privacy Policy from time to time, so please review it periodically. We may provide you additional forms of notice of modifications or updates as appropriate under the circumstances.\n\n";
+
+/* Class = "UINavigationItem"; title = "Seach"; ObjectID = "qMf-Wz-gWP"; */
+"qMf-Wz-gWP.title" = "Seach";
+
+/* Class = "UITabBarItem"; title = "Seach"; ObjectID = "yrY-IM-1SF"; */
+"yrY-IM-1SF.title" = "Seach";

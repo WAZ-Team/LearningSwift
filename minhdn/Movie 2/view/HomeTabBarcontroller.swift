@@ -11,6 +11,7 @@ class HomeTabBarcontroller: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBar.tintColor  = UIColor.red
+        self.tabBar.tintColor  = UIColor.green
+        
     }
 }

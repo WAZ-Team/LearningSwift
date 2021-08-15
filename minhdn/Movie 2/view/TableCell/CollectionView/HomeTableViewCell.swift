@@ -24,6 +24,7 @@ class HomeTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        contentView.backgroundColor = UIColor(red: 0.91, green: 0.96, blue: 1.00, alpha: 1.00)
         homeCollectionview.delegate = self
         homeCollectionview.dataSource = self
         self.homeCollectionview.register(UINib(nibName: Constants.homeCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: Constants.homeCollectionViewCell)
@@ -34,8 +35,21 @@ class HomeTableViewCell: UITableViewCell {
     // MARK: - Config
 
 extension HomeTableViewCell {
-    func configure(movies: [MovieDataModel]) {
-        self.movies = movies
+    func nowPlay(movies: [MovieDataModel]) {
+        self.movies = movies.sorted{
+            $0.VoteCount ?? 0 < $1.VoteCount ?? 0}
+    }
+    func hightRate(movies: [MovieDataModel]){
+        self.movies = movies.sorted{
+            $0.VoteAverage ?? 0.0 < $1.VoteAverage ?? 0.0}
+    }
+    func upComing(movies: [MovieDataModel]){
+        self.movies = movies.sorted{
+            $0.id ?? 0 < $1.id ?? 0}
+    }
+    func popular(movies: [MovieDataModel]){
+        self.movies = movies.sorted{
+            $0.popularity ?? 0.0 < $1.popularity ?? 0.0}
     }
 }
     // MARK: - Delegate
@@ -53,7 +67,7 @@ protocol SelectedMovieDelegate: class {
     // MARK: - DataSource
 extension HomeTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
+        return movies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

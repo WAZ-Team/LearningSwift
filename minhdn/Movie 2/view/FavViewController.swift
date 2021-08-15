@@ -12,11 +12,12 @@ class FavViewController: UIViewController {
     @IBOutlet private weak var favCollectionview: UICollectionView!
     
     //  MARK:-  Variables
-    var moviedata = [MovieDataModel]()
+    var moviedata: [MovieDataModel] = [MovieDataModel]()
+    var getMovieFav:[MovieDataModel] = [MovieDataModel]()
     var favoritedataa = [Favorite]()
-    weak var favmovieDelegate:SelectedMoviefavoriteDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
+        moviedata = APIService.load("Movie.json")
         navigationController?.navigationBar.prefersLargeTitles = true
         title = "Favorite"
         favCollectionview.topAnchor.constraint(equalTo: view.topAnchor, constant: 40.0).isActive = true
@@ -26,6 +27,7 @@ class FavViewController: UIViewController {
         favCollectionview.delegate = self
         favCollectionview.dataSource =  self
         self.favCollectionview.register(UINib(nibName: Constants.homeCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: Constants.homeCollectionViewCell)
+       
     }
     //  MARK:-  Config
     
@@ -40,28 +42,40 @@ class FavViewController: UIViewController {
         }
         return listData
     }
+    func getmovie() -> [MovieDataModel]{
+        for item in moviedata{
+            for i in favoritedataa{
+                if item.id == i.id{
+                    getMovieFav.append(item)
+                }
+            }
+        }
+        return getMovieFav
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         moviedata = APIService.load("Movie.json")
-        //        self.favoritedata.removeAll()
         self.favoritedataa = self.getFavorite()
-        print(favoritedataa)
+        self.getMovieFav = self.getmovie()
         favCollectionview.reloadData()
         tabBarController?.tabBar.isHidden = false
-        
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        self.getMovieFav = []
     }
     
 }
 //  MARK:   - DataSource
 extension FavViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return favoritedataa.count
+        return getMovieFav.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = self.favCollectionview.dequeueReusableCell(withReuseIdentifier: Constants.homeCollectionViewCell, for: indexPath) as? HomeCollectionViewCell else { return UICollectionViewCell() }
-        cell.imageHomeCell.downloaded(from: favoritedataa[indexPath.row].Posterpath )
+        cell.imageHomeCell.downloaded(from: getMovieFav[indexPath.row].Posterpath ?? "" )
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -74,7 +88,7 @@ extension FavViewController: UICollectionViewDataSource{
 extension FavViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.bounds.width/2.1 - 40  , height: view.bounds.height/4.2)
+        return CGSize(width: view.bounds.width/2.1 - 40  , height: view.bounds.height/4.1)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10.0
@@ -87,21 +101,13 @@ extension FavViewController: UICollectionViewDelegateFlowLayout {
 //  MARK:   - Delegate
 extension FavViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.favmovieDelegate?.didSelectMovie(movie: favoritedataa[indexPath.row])
-    }
-}
-
-protocol SelectedMoviefavoriteDelegate: class {
-    func didSelectMovie(movie:Favorite)
-}
-
-extension FavViewController: SelectedMoviefavoriteDelegate{
-    func didSelectMovie(movie: Favorite) {
-        self.favoritedataa = [movie]
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let vc = storyboard.instantiateViewController(withIdentifier: Constants.detaiViewController) as? DetaiViewController else{return}
-//        vc.getfav = favoritedataa
+        vc.movieData = getMovieFav[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
+
+
+
 

@@ -21,7 +21,8 @@ class RegisterViewController: UIViewController {
         super.viewDidLoad()
         setupContentView()
         self.navigationController?.navigationBar.isHidden =  false
-        self.navigationController?.navigationBar.barTintColor = .clear
+        self.navigationController?.navigationBar.barTintColor = .none
+        self.navigationController?.navigationBar.backgroundColor = .none
         
     }
 }

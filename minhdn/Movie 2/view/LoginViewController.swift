@@ -19,7 +19,6 @@ class LoginViewController: UIViewController {
     func getuser() -> UserData{
         let realm = try! Realm()
         let user:Results<UserData> = realm.objects(UserData.self)
-        
         if user.count >= 0 {
             if let user = user.first {
                 self.login.username = user.username

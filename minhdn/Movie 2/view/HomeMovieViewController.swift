@@ -16,10 +16,12 @@ class HomeMovieViewControllers: UIViewController, UITableViewDelegate {
     var topView: UIView?
     var movies: [MovieDataModel] = [MovieDataModel]()
     var selectedMovie: MovieDataModel?
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         movies = APIService.load("Movie.json")
-        print(movies)
+        
         navigationController?.navigationBar.prefersLargeTitles = true
         title = "Movie TV"
         self.homeTableview.delegate = self
@@ -56,17 +58,38 @@ extension HomeMovieViewControllers: UITableViewDataSource {
         
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0{
+        switch indexPath.section {
+        case 0:
             guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier:Constants.upTableViewCell , for: indexPath) as? UpTableViewCell else {return UITableViewCell()}
             cell.configurer(movies: movies)
             return cell
-        }
-        else{
+        case 1:
             guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier: Constants.homeTableViewCell , for: indexPath) as? HomeTableViewCell else  { return UITableViewCell()}
-            cell.configure(movies: movies)
+            cell.nowPlay(movies: movies)
+            cell.movieDelegate = self
+            return cell
+        case 2:
+            guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier: Constants.homeTableViewCell , for: indexPath) as? HomeTableViewCell else  { return UITableViewCell()}
+            cell.hightRate(movies: movies)
+            cell.movieDelegate = self
+            return cell
+        case 3:
+            guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier: Constants.homeTableViewCell , for: indexPath) as? HomeTableViewCell else  { return UITableViewCell()}
+            cell.upComing(movies: movies)
+            cell.movieDelegate = self
+            return cell
+        case 4:
+            guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier: Constants.homeTableViewCell , for: indexPath) as? HomeTableViewCell else  { return UITableViewCell()}
+            cell.popular(movies: movies)
+            cell.movieDelegate = self
+            return cell
+        default:
+            guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier: Constants.homeTableViewCell , for: indexPath) as? HomeTableViewCell else  { return UITableViewCell()}
+            cell.nowPlay(movies: movies)
             cell.movieDelegate = self
             return cell
         }
+       
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0{
@@ -85,11 +108,11 @@ extension HomeMovieViewControllers: UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 40.0))
+        headerView.backgroundColor = UIColor(red: 0.91, green: 0.96, blue: 1.00, alpha: 1.00)
         let label = UILabel()
         label.frame = CGRect.init(x: 10, y: 0, width: headerView.frame.width-10, height: headerView.frame.height)
         label.font = UIFont(name: "HelveticaNeue-Bold", size: 35.0)
         label.textColor = #colorLiteral(red: 0.1568627451, green: 0.1568627451, blue: 0.1568627451, alpha: 1)
-        headerView.backgroundColor = .white
         headerView.addSubview(label)
         headerView.clearsContextBeforeDrawing =  true
         switch section{
