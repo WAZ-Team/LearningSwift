@@ -159,7 +159,6 @@
         <!--Detai View Controller-->
         <scene sceneID="VWS-vo-GGC">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GsK-hl-7m6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="DetaiViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="A9h-lm-1NC" customClass="DetaiViewController" customModule="Movie_2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VXc-7U-p5v">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -266,6 +265,7 @@
                         <outlet property="sharebut" destination="XvQ-pr-x8C" id="i1E-nA-btJ"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GsK-hl-7m6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2318.840579710145" y="77.678571428571431"/>
         </scene>
@@ -405,7 +405,7 @@ Policy Updates
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="f9i-dV-DIZ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="f9i-dV-DIZ">
                                 <rect key="frame" x="0.0" y="140" width="414" height="673"/>
                                 <color key="backgroundColor" red="0.91539170719999996" green="0.95885849430000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.91539170719999996" green="0.95885849430000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
