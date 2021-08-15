@@ -16,7 +16,6 @@ class SeachViewController: UIViewController {
     var data = String()
     var datamovie: [MovieDataModel] = [MovieDataModel]()
     var getMovieSearch : [MovieDataModel] = [MovieDataModel]()
-//    var select : MovieDataModel?
     var searchActive = false
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,7 +75,6 @@ extension SeachViewController: UISearchBarDelegate{
                 }
                 print(item)
             }
-            
         }else{
             searchActive = false
             getMovieSearch.removeAll()
@@ -101,11 +99,9 @@ extension SeachViewController: UICollectionViewDataSource{
         cell.imageSearch.downloaded(from: getMovieSearch[indexPath.row].Posterpath ?? "" )
         cell.titleSearch.text = getMovieSearch[indexPath.row].title
         cell.releaseSearch.formatAndShowDate(dateString: getMovieSearch[indexPath.row].ReleaseDate, formatString: "MMM dd YYYY")
-        
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        
         cell.layer.cornerRadius = 20.0
         cell.clipsToBounds = true
         cell.layer.borderWidth = 2.0

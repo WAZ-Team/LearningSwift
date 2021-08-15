@@ -11,17 +11,15 @@ class HomeMovieViewControllers: UIViewController, UITableViewDelegate {
     
     //    MARK: - IBoutlet
     @IBOutlet private weak var homeTableview: UITableView!
-   
+    
     //  MARK: - Variables
     var topView: UIView?
     var movies: [MovieDataModel] = [MovieDataModel]()
     var selectedMovie: MovieDataModel?
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         movies = APIService.load("Movie.json")
-        
         navigationController?.navigationBar.prefersLargeTitles = true
         title = "Movie TV"
         self.homeTableview.delegate = self
@@ -34,7 +32,7 @@ class HomeMovieViewControllers: UIViewController, UITableViewDelegate {
         super.viewWillAppear(true)
         tabBarController?.tabBar.isHidden = false
     }
-    }
+}
 // MARK: - Delegate
 
 extension HomeMovieViewControllers: SelectedMovieDelegate{
@@ -89,7 +87,7 @@ extension HomeMovieViewControllers: UITableViewDataSource {
             cell.movieDelegate = self
             return cell
         }
-       
+        
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0{

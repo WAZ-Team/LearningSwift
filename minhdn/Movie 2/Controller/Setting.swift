@@ -35,7 +35,7 @@ extension SettingViewController:MFMailComposeViewControllerDelegate{
         let icon: UIImage?
         let iconBackgroundColor: UIColor
         let handler: (() -> Void)
-//        var isOn: Bool
+        //        var isOn: Bool
     }
     
     struct SettingLabelOptions {
@@ -46,7 +46,7 @@ extension SettingViewController:MFMailComposeViewControllerDelegate{
         let handler: (() -> Void)
     }
     
-//  MARK:   - Config
+    //  MARK:   - Config
     func setupNavigationBar(){
         self.navigationController?.navigationBar.prefersLargeTitles = true
         title = "Setting"
@@ -58,7 +58,7 @@ extension SettingViewController:MFMailComposeViewControllerDelegate{
         alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }
-//  MARK:   -   notification
+    //  MARK:   -   notification
     func Notification(){
         let center = UNUserNotificationCenter.current()
         
@@ -81,7 +81,7 @@ extension SettingViewController:MFMailComposeViewControllerDelegate{
             }
         }
     }
-//  MARK:   -Email
+    //  MARK:   -Email
     func sendEmail() {
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
@@ -96,8 +96,8 @@ extension SettingViewController:MFMailComposeViewControllerDelegate{
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true)
     }
-//  MARK:   - Share
-     func tapFunctionShare() {
+    //  MARK:   - Share
+    func tapFunctionShare() {
         if let name = URL(string: "https://itunes.apple.com/us/app/myapp/1537280676?ls=1&mt=8"), !name.absoluteString.isEmpty {
             let objectsToShare = [name]
             let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
@@ -106,7 +106,7 @@ extension SettingViewController:MFMailComposeViewControllerDelegate{
             self.showAlert("error")
         }
     }
-//  MARK:   -Rate
+    //  MARK:   -Rate
     @objc func tapFunctionRateApp() {
         print("tap tapFunctionRateApp")
         SKStoreReviewController.requestReview()
@@ -139,7 +139,7 @@ extension SettingViewController:MFMailComposeViewControllerDelegate{
                                 self.Notification()
                                 
                             })),
-          
+            
             .standardCell(model: SettingStandardOption(
                             title: "Feed Back",
                             icon: UIImage(named: "feedback"),

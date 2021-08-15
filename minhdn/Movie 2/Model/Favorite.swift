@@ -16,11 +16,9 @@ class Favorite: Object{
         "id"
     }
     func initLoad(_ json:  [String: Any]) -> Favorite{
-        
         if let temp = json["VoteAverage"] as? Double { VoteAverage = temp }
         if let temp = json["fav"] as? Bool { fav = temp }
         if let temp = json["id"] as? Int { id = temp }
-
         return self
     }
 }

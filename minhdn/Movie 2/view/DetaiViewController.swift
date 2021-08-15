@@ -40,8 +40,6 @@ class DetaiViewController: UIViewController {
         setupNavigationBar()
         self.coverImage = coverImage?.roundImage
         setupRateBar()
-       
-        
     }
     //  MARK:   -   Config
     func setupRateBar() {

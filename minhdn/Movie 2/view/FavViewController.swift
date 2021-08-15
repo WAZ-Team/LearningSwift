@@ -27,7 +27,7 @@ class FavViewController: UIViewController {
         favCollectionview.delegate = self
         favCollectionview.dataSource =  self
         self.favCollectionview.register(UINib(nibName: Constants.homeCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: Constants.homeCollectionViewCell)
-       
+        
     }
     //  MARK:-  Config
     
@@ -107,7 +107,3 @@ extension FavViewController: UICollectionViewDelegate{
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
-
-
-
-
