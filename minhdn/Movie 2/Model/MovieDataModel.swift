@@ -62,19 +62,5 @@ struct MovieDataModel: Decodable{
         VoteCount = try values.decodeIfPresent(Int.self, forKey: .VoteCount)
     }
     
-    func posterImageUrl() -> String? {
-        if let posterPath = Posterpath {
-            return "\(Constants.POSTER_BASE_URL)\(posterPath)"
-        }
-        return nil
-    }
-    
-    func backDropImageUrl() -> String? {
-        if let backdropPath = backdroppath {
-            return "\(Constants.BACK_DROP_BASE_URL)\(backdropPath)"
-        }
-        return nil
-    }
-    
 }
 
