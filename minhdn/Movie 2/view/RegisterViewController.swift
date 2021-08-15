@@ -135,6 +135,7 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupContentView()
+        self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.navigationBar.isHidden =  false
         self.navigationController?.navigationBar.barTintColor = .none
         self.navigationController?.navigationBar.backgroundColor = .none
