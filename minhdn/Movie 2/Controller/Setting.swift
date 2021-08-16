@@ -35,7 +35,7 @@ extension SettingViewController:MFMailComposeViewControllerDelegate{
         let icon: UIImage?
         let iconBackgroundColor: UIColor
         let handler: (() -> Void)
-        //        var isOn: Bool
+        var isOn: Bool
     }
     
     struct SettingLabelOptions {
@@ -58,7 +58,7 @@ extension SettingViewController:MFMailComposeViewControllerDelegate{
         alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }
-    //  MARK:   -   notification
+    //  MARK:   -   Notification
     func Notification(){
         let center = UNUserNotificationCenter.current()
         
@@ -137,8 +137,7 @@ extension SettingViewController:MFMailComposeViewControllerDelegate{
                             iconBackgroundColor: UIColor(red: 0.91, green: 0.96, blue: 1.00, alpha: 1.00),
                             handler: {
                                 self.Notification()
-                                
-                            })),
+                            }, isOn: true)),
             
             .standardCell(model: SettingStandardOption(
                             title: "Feed Back",
