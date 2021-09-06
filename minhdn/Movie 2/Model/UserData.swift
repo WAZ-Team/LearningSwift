@@ -14,6 +14,7 @@ class UserData: Object {
     @objc dynamic var lastname: String = ""
     @objc dynamic var username: String = ""
     @objc dynamic var password: String = ""
+//    @objc dynamic var Favorite: List<Favorite>
     override static func primaryKey() -> String? {
         "username"
     }

@@ -23,7 +23,6 @@ struct MovieDataModel: Decodable{
     public var video: Bool?
     public var VoteAverage: Double?
     public var VoteCount: Int?
-    public var duration: String = String(Int.random(in: 90..<150))
     
     enum CodingKeys: String, CodingKey {
         case adult = "adult"

@@ -503,6 +503,11 @@ Policy Updates
             <point key="canvasLocation" x="179.71014492753625" y="2274.7767857142858"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="ze1-T8-t6w">
+            <size key="intrinsicContentSize" width="240" height="44"/>
+        </designable>
+    </designables>
     <resources>
         <image name="add" width="24" height="24"/>
         <image name="favor" width="23" height="23"/>

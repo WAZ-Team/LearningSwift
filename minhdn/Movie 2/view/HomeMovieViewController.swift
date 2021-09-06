@@ -16,21 +16,24 @@ class HomeMovieViewControllers: UIViewController, UITableViewDelegate {
     var topView: UIView?
     var movies: [MovieDataModel] = [MovieDataModel]()
     var selectedMovie: MovieDataModel?
-    
+    var sectionMovie: [SectionType] = [SectionType.AllMovie, .HighRate, .NowPlaying, .Popular, .UpComing]
     override func viewDidLoad() {
         super.viewDidLoad()
         movies = APIService.load("Movie.json")
-        navigationController?.navigationBar.prefersLargeTitles = true
-        title = "Movie TV"
+       
         self.homeTableview.delegate = self
         self.homeTableview.dataSource = self
         homeTableview.register(UINib(nibName: Constants.homeTableViewCell, bundle: nil), forCellReuseIdentifier: Constants.homeTableViewCell)
         homeTableview.register(UINib(nibName: Constants.upTableViewCell, bundle: nil), forCellReuseIdentifier: Constants.upTableViewCell)
         homeTableview.reloadData()
+        navigationSearch()
+        
+        print(sectionMovie)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         tabBarController?.tabBar.isHidden = false
+        homeTableview.reloadData()
     }
 }
 // MARK: - Delegate
@@ -48,42 +51,38 @@ extension HomeMovieViewControllers: SelectedMovieDelegate{
 // MARK: - DataSource
 extension HomeMovieViewControllers: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+        return sectionMovie.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
-        
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case 0:
+        
+        switch sectionMovie[indexPath.section] {
+        case .AllMovie:
             guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier:Constants.upTableViewCell , for: indexPath) as? UpTableViewCell else {return UITableViewCell()}
             cell.configurer(movies: movies)
             return cell
-        case 1:
+        case .NowPlaying:
             guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier: Constants.homeTableViewCell , for: indexPath) as? HomeTableViewCell else  { return UITableViewCell()}
             cell.nowPlay(movies: movies)
             cell.movieDelegate = self
             return cell
-        case 2:
+        case .HighRate:
             guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier: Constants.homeTableViewCell , for: indexPath) as? HomeTableViewCell else  { return UITableViewCell()}
             cell.hightRate(movies: movies)
             cell.movieDelegate = self
             return cell
-        case 3:
+        case .UpComing:
             guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier: Constants.homeTableViewCell , for: indexPath) as? HomeTableViewCell else  { return UITableViewCell()}
             cell.upComing(movies: movies)
             cell.movieDelegate = self
             return cell
-        case 4:
+        case .Popular:
             guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier: Constants.homeTableViewCell , for: indexPath) as? HomeTableViewCell else  { return UITableViewCell()}
             cell.popular(movies: movies)
-            cell.movieDelegate = self
-            return cell
-        default:
-            guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier: Constants.homeTableViewCell , for: indexPath) as? HomeTableViewCell else  { return UITableViewCell()}
-            cell.nowPlay(movies: movies)
             cell.movieDelegate = self
             return cell
         }
@@ -113,19 +112,11 @@ extension HomeMovieViewControllers: UITableViewDataSource {
         label.textColor = #colorLiteral(red: 0.1568627451, green: 0.1568627451, blue: 0.1568627451, alpha: 1)
         headerView.addSubview(label)
         headerView.clearsContextBeforeDrawing =  true
-        switch section{
-        case 0: break
-        case 1:
-            label.text = "Nowplaying"
-        case 2:
-            label.text = "HighestRated"
-        case 3:
-            label.text = "Upcoming"
-        case 4:
-            label.text = "Popular"
-        default:
-            break
+//        label.text = sectionMovie[0].title
+        let data = sectionMovie[section].title
+        if data.count > 0 {
+            label.text = data
         }
         return headerView
-    }
+    } 
 }

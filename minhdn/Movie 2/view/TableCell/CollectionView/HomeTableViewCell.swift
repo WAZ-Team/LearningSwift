@@ -15,7 +15,7 @@ class HomeTableViewCell: UITableViewCell {
     
     // MARK: - Variables
     weak var movieDelegate:SelectedMovieDelegate?
-    
+    var moviepopular: [MovieDataModel] = []
     private var movies: [MovieDataModel] = [] {
         didSet{
             homeCollectionview.reloadData()
@@ -28,7 +28,7 @@ class HomeTableViewCell: UITableViewCell {
         homeCollectionview.delegate = self
         homeCollectionview.dataSource = self
         self.homeCollectionview.register(UINib(nibName: Constants.homeCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: Constants.homeCollectionViewCell)
-
+        print(moviepopular)
     }
 }
 
@@ -44,6 +44,13 @@ extension HomeTableViewCell {
             $0.VoteAverage ?? 0.0 < $1.VoteAverage ?? 0.0}
     }
     func upComing(movies: [MovieDataModel]){
+//        for item in movies{
+//            for item1 in item.genreids ?? [] {
+//                if item1 == 28{
+//                    self.movies.append(item)
+//                }
+//            }
+//        }
         self.movies = movies.sorted{
             $0.id ?? 0 < $1.id ?? 0}
     }

@@ -9,20 +9,17 @@ import UIKit
 import RealmSwift
 extension ProfileViewController: UINavigationControllerDelegate {
     //  MARK:   - Getdata
-    func getchange() -> UserData{
+    func getchange() -> [UserData]{
         let realm = try! Realm()
-        let user:Results<UserData> = realm.objects(UserData.self)
-        if user.count > 0 {
-            if let user = user.first {
-                self.data.username = user.username
-                self.data.password = user.password
-                self.data.fistname = user.fistname
-                self.data.lastname = user.lastname
+        let user = realm.objects(UserData.self).toArray(ofType: UserData.self)
+        if dataUserCheck.count >= 0 {
+            for item in user{
+                dataUserCheck.append(item)
             }
         } else {
             print("Error")
         }
-        return data
+        return dataUserCheck
     }
     //  MARK:   -   Alert
     func showAlert(_ message: String) {
@@ -32,16 +29,16 @@ extension ProfileViewController: UINavigationControllerDelegate {
     }
     //    MARK:     -   ChangePassWord
     @objc func onChange() {
-        if self.oldpasswordText.text == data.password {
-            data.password = newpasswordText.text!
+        if self.oldpasswordText.text == dataUser.password {
+            dataUser.password = newpasswordText.text ?? ""
             do {
                 let realm = try Realm()
                 try realm.write {
-                    data.password = newpasswordText.text!
-                    data.fistname = fistname.text!
-                    data.lastname = lastname.text!
+                    dataUser.password = newpasswordText.text ?? ""
+                    dataUser.fistname = fistname.text ?? ""
+                    dataUser.lastname = lastname.text ?? ""
                     //                    data.photo = NSData(data: (userImage().image?.pngData())! )
-                    realm.add(data, update: .all)
+                    realm.add(dataUser, update: .all)
                 }
                 print("Data saved successfully!")
                 print(Realm.Configuration.defaultConfiguration.fileURL!)

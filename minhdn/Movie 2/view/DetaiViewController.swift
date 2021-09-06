@@ -17,7 +17,7 @@ class DetaiViewController: UIViewController {
     @IBOutlet private weak var rateBar: HCSStarRatingView!
     @IBOutlet private weak var ReleaseDate: UILabel?
     @IBOutlet private weak var movieTitle: UILabel?
-    @IBOutlet weak var overView: UITextView!
+    @IBOutlet private weak var overView: UITextView!
     @IBOutlet private weak var coverImage: UIImageView?
     
     //  MARK: - Variables

@@ -14,6 +14,7 @@ class LoginViewController: UIViewController {
     var username =  UITextField()
     var passwordText =  UITextField()
     var vSpinner : UIView?
+    var userlogin = [UserData]()
     var login = UserData()
     //  MARK:   -   Setup View
     
@@ -91,6 +92,7 @@ class LoginViewController: UIViewController {
         button.addTarget(self, action: #selector(onRegisterPress), for: .touchUpInside)
         return button
     }
+   
     
     func setupContentView() {
         view.addSubview(logoView())
@@ -104,11 +106,14 @@ class LoginViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = true
         print(getuser())
+        print(userlogin)
+        print(login)
         setupContentView()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         setupContentView()
+        userlogin = getuser()
     }
 }
 

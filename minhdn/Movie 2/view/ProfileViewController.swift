@@ -16,13 +16,14 @@ class ProfileViewController: UIViewController {
     var oldpasswordText =  UITextField()
     var newpasswordText =  UITextField()
     var vSpinner : UIView?
-    var data = UserData()
+    var dataUser = UserData()
+    var dataUserCheck = [UserData]()
     
     //  MARK:   -   Setup View
     
     func fistnameTextField() -> UITextField {
         fistname.frame = CGRect(x: 0, y: 0, width: self.view!.bounds.width * 0.9, height: 50.0)
-        fistname.text = data.fistname
+        fistname.text = dataUser.fistname
         fistname.autocapitalizationType = .none
         fistname.font = UIFont.systemFont(ofSize: 17)
         fistname.borderStyle = UITextField.BorderStyle.roundedRect
@@ -37,7 +38,7 @@ class ProfileViewController: UIViewController {
     }
     func lastnameTextField() -> UITextField {
         lastname.frame = CGRect(x: 0, y: 0, width: self.view!.bounds.width * 0.9, height: 50.0)
-        lastname.text = data.lastname
+        lastname.text = dataUser.lastname
         lastname.autocapitalizationType = .none
         lastname.font = UIFont.systemFont(ofSize: 17)
         lastname.borderStyle = UITextField.BorderStyle.roundedRect
@@ -53,7 +54,7 @@ class ProfileViewController: UIViewController {
     
     func usernameTextField() -> UITextField {
         username.frame = CGRect(x: 0, y: 0, width: self.view!.bounds.width * 0.9, height: 50.0)
-        username.text = data.username
+        username.text = dataUser.username
         username.autocapitalizationType = .none
         username.font = UIFont.systemFont(ofSize: 17)
         username.borderStyle = UITextField.BorderStyle.roundedRect
@@ -125,10 +126,10 @@ class ProfileViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         setupContentView()
-        self.data = self.getchange()
+//        self.dataUser = self.getchange()
         username.isEnabled = false
-        username.text = data.username
-        fistname.text = data.fistname
-        lastname.text = data.lastname
+        username.text = dataUser.username
+        fistname.text = dataUser.fistname
+        lastname.text = dataUser.lastname
     }
 }

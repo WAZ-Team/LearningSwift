@@ -10,10 +10,11 @@ import UIKit
 import MessageUI
 import StoreKit
 import UserNotifications
+
 extension SettingViewController:MFMailComposeViewControllerDelegate{
     
     // MARK: - Type of cell
-    struct Sections {
+    struct Sections{
         let options: [SettingsOptionType]
     }
     
@@ -36,14 +37,6 @@ extension SettingViewController:MFMailComposeViewControllerDelegate{
         let iconBackgroundColor: UIColor
         let handler: (() -> Void)
         var isOn: Bool
-    }
-    
-    struct SettingLabelOptions {
-        let title: String
-        let icon: UIImage?
-        let iconBackgroundColor: UIColor
-        var label: String
-        let handler: (() -> Void)
     }
     
     //  MARK:   - Config

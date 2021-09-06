@@ -45,6 +45,7 @@
 		04BBF59426B40852009C858B /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BBF59326B40852009C858B /* Setting.swift */; };
 		04BBF5AE26B7F18F009C858B /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BBF5AC26B7F18F009C858B /* SearchCollectionViewCell.swift */; };
 		04BBF5AF26B7F18F009C858B /* SearchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BBF5AD26B7F18F009C858B /* SearchCollectionViewCell.xib */; };
+		04F271DF26CDFD27005D30BA /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F271DE26CDFD27005D30BA /* Home.swift */; };
 		88A7E5625B7FCBB6E3B1B301 /* Pods_Movie_2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 975C7E61E1AE536C7C0B40E2 /* Pods_Movie_2.framework */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +90,7 @@
 		04BBF59326B40852009C858B /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		04BBF5AC26B7F18F009C858B /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
 		04BBF5AD26B7F18F009C858B /* SearchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCollectionViewCell.xib; sourceTree = "<group>"; };
+		04F271DE26CDFD27005D30BA /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		43D7C447DEBCDA8684EFDBB3 /* Pods-Movie 2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movie 2.release.xcconfig"; path = "Target Support Files/Pods-Movie 2/Pods-Movie 2.release.xcconfig"; sourceTree = "<group>"; };
 		86F4D2765AD70CDA9E9C7868 /* Pods-Movie 2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movie 2.debug.xcconfig"; path = "Target Support Files/Pods-Movie 2/Pods-Movie 2.debug.xcconfig"; sourceTree = "<group>"; };
 		975C7E61E1AE536C7C0B40E2 /* Pods_Movie_2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Movie_2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -223,6 +225,7 @@
 			children = (
 				0403578226A9711500277966 /* Login.swift */,
 				04BBF54726B1706B009C858B /* Register.swift */,
+				04F271DE26CDFD27005D30BA /* Home.swift */,
 				04BBF55526B1BC30009C858B /* Detail.swift */,
 				04BBF59326B40852009C858B /* Setting.swift */,
 				04BBF59026B4012A009C858B /* Myprofile.swift */,
@@ -395,6 +398,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0451C9692698596200FA4DAC /* HomeCollectionViewCell.swift in Sources */,
+				04F271DF26CDFD27005D30BA /* Home.swift in Sources */,
 				0451C9642698589800FA4DAC /* HomeTableViewCell.swift in Sources */,
 				0403578626A9714400277966 /* LoginViewController.swift in Sources */,
 				040A2F1626C5244A00DE2D59 /* PolyciViewController.swift in Sources */,
