@@ -20,6 +20,7 @@ class MainViewController: UIViewController, URLSessionTaskDelegate,
         super.viewDidLoad()
         clearImageView()
         download()
+        chooseRandom()
         updateImageView()
     }
     //    Clear image
@@ -34,12 +35,34 @@ class MainViewController: UIViewController, URLSessionTaskDelegate,
         imageChange.image = image
         
     }
-    
+    //The lists of items
+   let items = ["blue","red","purple", "gold", "yellow", "orange","light blue", "green", "pink", "white", "black"]
+
+   //array to hold the index we have already traversed
+   var seenIndex = [Int]()
+
+
+   func chooseRandom() -> String {
+
+       if seenIndex.count == items.count { return "" } //we don't want to process if we have all items accounted for (Can handle this somewhere else)
+
+       let index = Int(arc4random_uniform(UInt32(items.count))) //get the random index
+
+       //check if this index is already seen by us
+       if seenIndex.contains(index) {
+           return chooseRandom() //repeat
+       }
+
+       //if not we get the element out and add that index to seen
+       let requiredItem = items[index]
+       seenIndex.append(index)
+       return requiredItem
+   }
+
     func radomDownload(){
         
     }
    private func download() {
-        
         /**
          * Prepare the session configuration
          */
@@ -67,6 +90,7 @@ class MainViewController: UIViewController, URLSessionTaskDelegate,
         // Start downloading
         task.resume()
     }
+    
     
 }
 // MARK: - Path
