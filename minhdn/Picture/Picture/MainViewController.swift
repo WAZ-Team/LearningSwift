@@ -94,7 +94,7 @@ extension MainViewController {
      */
     static func unzipPath() -> String {
         let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0];
-        
+        print(path)
         return path
     }
     
@@ -107,7 +107,7 @@ extension MainViewController {
     /**
      * Session completed
      */
-   private func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         print("URLSession didComplete")
         session.finishTasksAndInvalidate()  // Session termination processing
         guard error == nil else {
@@ -135,7 +135,7 @@ extension MainViewController {
     /**
      * Download task process
      */
-   private func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
         
         // Check progress
         print("\(totalBytesWritten) / \(totalBytesExpectedToWrite)")
