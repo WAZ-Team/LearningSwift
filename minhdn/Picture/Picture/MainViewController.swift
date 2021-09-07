@@ -34,7 +34,11 @@ class MainViewController: UIViewController, URLSessionTaskDelegate,
         imageChange.image = image
         
     }
-    func download() {
+    
+    func radomDownload(){
+        
+    }
+   private func download() {
         
         /**
          * Prepare the session configuration
@@ -63,6 +67,7 @@ class MainViewController: UIViewController, URLSessionTaskDelegate,
         // Start downloading
         task.resume()
     }
+    
 }
 // MARK: - Path
 extension MainViewController {
@@ -102,7 +107,7 @@ extension MainViewController {
     /**
      * Session completed
      */
-    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+   private func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         print("URLSession didComplete")
         session.finishTasksAndInvalidate()  // Session termination processing
         guard error == nil else {
@@ -130,7 +135,7 @@ extension MainViewController {
     /**
      * Download task process
      */
-    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+   private func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
         
         // Check progress
         print("\(totalBytesWritten) / \(totalBytesExpectedToWrite)")
