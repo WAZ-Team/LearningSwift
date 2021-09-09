@@ -1,0 +1,20 @@
+PODS:
+  - Kingfisher (6.3.1)
+  - SSZipArchive (2.4.2)
+
+DEPENDENCIES:
+  - Kingfisher
+  - SSZipArchive
+
+SPEC REPOS:
+  trunk:
+    - Kingfisher
+    - SSZipArchive
+
+SPEC CHECKSUMS:
+  Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
+  SSZipArchive: e7b4f3d9e780c2acc1764cd88fbf2de28f26e5b2
+
+PODFILE CHECKSUM: ccfc499d41ec7446f0ce77b3e10b274d5f328114
+
+COCOAPODS: 1.10.1
