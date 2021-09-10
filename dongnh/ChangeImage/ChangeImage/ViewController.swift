@@ -27,7 +27,6 @@ class ViewController: UIViewController, SSZipArchiveDelegate,  URLSessionTaskDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        clearImageView()
         download()
         updateImageView()
     }
@@ -43,10 +42,7 @@ class ViewController: UIViewController, SSZipArchiveDelegate,  URLSessionTaskDel
         img.image = image
     }
     
-    
-    
     private func download() {
-        
         //create session configuration
         let config = URLSessionConfiguration.default
         config.requestCachePolicy = .reloadIgnoringLocalCacheData // reload cache
@@ -65,23 +61,6 @@ class ViewController: UIViewController, SSZipArchiveDelegate,  URLSessionTaskDel
         
         // Start downloading
         task.resume()
-    }
-}
-
-extension ViewController {
-    
-    //delete file
-    func removeItem(_ path: String) {
-        guard FileManager.default.fileExists(atPath: path) else {
-            return
-        }
-        do {
-            try FileManager.default.removeItem(atPath: path)
-        }
-        catch _ {
-            print("removeItem error.")
-            return
-        }
     }
 }
 
@@ -126,9 +105,6 @@ extension ViewController {
      // Download task completed
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         let unzipPath = self.unzipPath()
-        
-        // Delete the old destination folder
-        removeItem(unzipPath!)
         
         // Prepare the extraction folder
         do {
