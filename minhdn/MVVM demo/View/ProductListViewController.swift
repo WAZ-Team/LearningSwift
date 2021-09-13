@@ -10,6 +10,7 @@ import UIKit
 class ProductListViewController: UIViewController {
     
     @IBOutlet private weak var tableview: UITableView!
+    
     var viewModel: ProductListViewModelProtocol? {
         didSet {
             self.viewModel?.productsDidChange = { [self] viewModel in

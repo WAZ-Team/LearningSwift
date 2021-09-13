@@ -7,8 +7,7 @@
 
 import UIKit
 import SSZipArchive
-class MainViewController: UIViewController, URLSessionTaskDelegate,
-                          URLSessionDownloadDelegate{
+class MainViewController: UIViewController{
     //    MARK:-    Iboutlet
     @IBOutlet private weak var imageChange: UIImageView!
     //    Source
@@ -19,8 +18,9 @@ class MainViewController: UIViewController, URLSessionTaskDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         clearImageView()
-        chooseRandom()
+        saveLink()
         download()
+        unzip()
         updateImageView()
     }
     //    Clear image
@@ -29,89 +29,57 @@ class MainViewController: UIViewController, URLSessionTaskDelegate,
     }
     //  UpdateView
     func updateImageView() {
-        let unzipPath = MainViewController.unzipPath() as NSString
-        let imagePath = unzipPath.appendingPathComponent(chooseRandom().images)
-        let image = UIImage.init(contentsOfFile: imagePath)
-        imageChange.image = image
-        
-    }
-    
-    @objcMembers class items: NSObject {
-        var id: Int
-        let zipUrl: String
-        let images : String
-        
-        init(id: Int, zipUrl: String, images: String) {
-            self.id = id
-            self.zipUrl = zipUrl
-            self.images = images
-        }
-    }
-    //The lists of items
-    var item: [items] = [items(id: 1, zipUrl: MainViewController.zipURL1, images:            MainViewController.imageFile),
-                         items(id: 2, zipUrl: MainViewController.zipURL2, images: MainViewController.imageFile2 )]
-    var seenindex = 0
-    
-    
-    func chooseRandom() -> items {
-        var chose: items?
-        if seenindex == 0{
-            chose = item.randomElement() ?? items.init(id: 2, zipUrl: MainViewController.zipURL2, images: MainViewController.imageFile2)
-            seenindex = chose?.id ?? 0
+        if UserDefaults.standard.object(forKey: "zipURL") as? String  == MainViewController.zipURL1{
+            let unzipPath = self.unzipPath() as NSString
+            let imagePath = unzipPath.appendingPathComponent(MainViewController.imageFile)
+            let image = UIImage.init(contentsOfFile: imagePath)
+            imageChange.image = image
         }else{
-            chose = item.randomElement() ?? items.init(id: 2, zipUrl: MainViewController.zipURL2, images: MainViewController.imageFile2)
-            if chose?.id == seenindex{
-                return chooseRandom()
+            let unzipPath = self.unzipPath() as NSString
+            let imagePath = unzipPath.appendingPathComponent(MainViewController.imageFile2)
+            let image = UIImage.init(contentsOfFile: imagePath)
+            imageChange.image = image
+        }
+       
+        
+    }
+    
+    func saveLink() {
+        if UserDefaults.standard.object(forKey: "zipURL") as? String  == nil {
+            UserDefaults.standard.setValue(MainViewController.zipURL1, forKey: "zipURL")
+        }else{
+            if UserDefaults.standard.object(forKey: "zipURL") as? String == MainViewController.zipURL1{
+                UserDefaults.standard.removeObject(forKey: "zipURL")
+                UserDefaults.standard.setValue(MainViewController.zipURL2, forKey: "zipURL")
             }else{
-                seenindex = chose?.id ?? 0
+                UserDefaults.standard.removeObject(forKey: "zipURL")
+                UserDefaults.standard.setValue(MainViewController.zipURL1, forKey: "zipURL")
             }
         }
-        
-        
-        print(seenindex)
-        return chose ?? items.init(id: 2, zipUrl: MainViewController.zipURL2, images: MainViewController.imageFile2)
-        
     }
-        
-        
+
         private func download() {
-            /**
-             * Prepare the session configuration
-             */
+            // Prepare the session configuration
             let config = URLSessionConfiguration.default
             config.requestCachePolicy = .reloadIgnoringLocalCacheData // reload cache
             config.timeoutIntervalForRequest = 50 // Timeout time to start request transfer(s)
             config.timeoutIntervalForResource = 60 * 60 // Timeout time until all transfers are completed(s)
-            
-            /**
-             * Prepare a session
-             */
-            let session = URLSession.init(configuration: config,
-                                          delegate: self,
-                                          delegateQueue: OperationQueue.main)
-            
-            /**
-             * Prepare the download task
-             */
-            guard let url = URL.init(string: chooseRandom().zipUrl) else {
+
+            // Prepare the download task
+            guard let url = URL(string: UserDefaults.standard.object(forKey: "zipURL") as? String ?? "") else {
                 return
             }
-            
-            let task = session.downloadTask(with: url)
-            
+            let task = URLSession.shared.downloadTask(with: url)
             // Start downloading
             task.resume()
+            
         }
         
         
-    }
     // MARK: - Path
-    extension MainViewController {
-        
-        /**
-         * Delete files / folders: thêm /xoá file
-         */
-        static func removeItem(_ path: String) {
+   
+        //  Delete files / folders: thêm /xoá file
+         func removeItem(_ path: String) {
             guard FileManager.default.fileExists(atPath: path) else {
                 return
             }
@@ -125,65 +93,42 @@ class MainViewController: UIViewController, URLSessionTaskDelegate,
         }
         
         
-        /**
-         * The path to which the Zip file is extracted: Đường dẫn đến file zip
-         */
-        static func unzipPath() -> String {
+        //    The path to which the Zip file is extracted: Đường dẫn đến file zip
+         func unzipPath() -> String {
             let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0];
             return path
         }
         
-    }
+
     
     
     // MARK: - URLSessionTaskDelegate
-    extension MainViewController {
+
         
-        /**
-         * Session completed
-         */
-        func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-            print("URLSession didComplete")
-            session.finishTasksAndInvalidate()  // Session termination processing
-            guard error == nil else {
-                
-                // error
-                print("Error \(String(describing: error))")
-                return
-            }
-            
-            // success
-            print("Success")
-            if Thread.isMainThread {
-                updateImageView()
-            }
-            else {
-                DispatchQueue.main.sync {
-                    updateImageView()
-                }
-            }
-        }
-    }
+//        //   Session completed
+//        func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+//            print("URLSession didComplete")
+//            session.finishTasksAndInvalidate()  // Session termination processing
+//            guard error == nil else {
+//                // error
+//                print("Error \(String(describing: error))")
+//                return
+//            }
+//            // success
+//                DispatchQueue.main.sync {
+//                    self.updateImageView()
+//                }
+//            }
+    
     // MARK: - URLSessionDownloadDelegate
-    extension MainViewController {
-        
-        /**
-         * Download task process
-         */
-        func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
-            
-            // Check progress
-            print("\(totalBytesWritten) / \(totalBytesExpectedToWrite)")
-        }
-        
-        /**
-         * Download task completed
-         */
-        func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-            let unzipPath = MainViewController.unzipPath()
+    
+        // Download task completed
+//        func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+    func unzip(){
+            let unzipPath = self.unzipPath()
             
             // Delete the old destination folder
-            MainViewController.removeItem(unzipPath)
+            self.removeItem(unzipPath)
             
             // Prepare the extraction folder
             do {
@@ -193,9 +138,11 @@ class MainViewController: UIViewController, URLSessionTaskDelegate,
                 print("createDirectory error.")
                 return
             }
-            
+            guard let url = URL(string: UserDefaults.standard.object(forKey: "zipURL") as? String ?? "") else {
+                return
+            }
             // Unzip
-            SSZipArchive.unzipFile(atPath: location.path, toDestination: unzipPath)
+            SSZipArchive.unzipFile(atPath: url.path, toDestination: unzipPath)
         }
     }
 

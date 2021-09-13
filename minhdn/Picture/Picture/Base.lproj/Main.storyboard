@@ -16,23 +16,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wg9-16-PHr">
-                                <rect key="frame" x="40" y="94" width="334" height="400"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="R6V-o5-S7K"/>
-                                </constraints>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EgG-Xu-3ip">
+                                <rect key="frame" x="87" y="271" width="240" height="302"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="wg9-16-PHr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="Dow-n2-0sm"/>
-                            <constraint firstItem="wg9-16-PHr" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="Y6I-AI-t1t"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wg9-16-PHr" secondAttribute="trailing" constant="40" id="uur-CB-tve"/>
+                            <constraint firstItem="EgG-Xu-3ip" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="K4U-Fb-Huq"/>
+                            <constraint firstItem="EgG-Xu-3ip" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="tCv-GH-nio"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="EgG-Xu-3ip" secondAttribute="bottom" constant="289" id="wn6-6d-ijL"/>
+                            <constraint firstItem="EgG-Xu-3ip" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="227" id="zMc-Dp-BG5"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="imageChange" destination="wg9-16-PHr" id="qTU-0A-bnm"/>
+                        <outlet property="imageChange" destination="EgG-Xu-3ip" id="2ou-I4-MHI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
