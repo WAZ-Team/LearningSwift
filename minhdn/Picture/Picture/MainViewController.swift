@@ -51,6 +51,7 @@ class MainViewController: UIViewController{
             if UserDefaults.standard.object(forKey: "zipURL") as? String == MainViewController.zipURL1{
                 UserDefaults.standard.removeObject(forKey: "zipURL")
                 UserDefaults.standard.setValue(MainViewController.zipURL2, forKey: "zipURL")
+                
             }else{
                 UserDefaults.standard.removeObject(forKey: "zipURL")
                 UserDefaults.standard.setValue(MainViewController.zipURL1, forKey: "zipURL")
@@ -69,7 +70,6 @@ class MainViewController: UIViewController{
         guard let url = URL(string: UserDefaults.standard.object(forKey: "zipURL") as? String ?? "") else {
             return
         }
-        print(url)
         let session = URLSession.init(configuration: config,
                                       delegate: self,
                                       delegateQueue: OperationQueue.main)
