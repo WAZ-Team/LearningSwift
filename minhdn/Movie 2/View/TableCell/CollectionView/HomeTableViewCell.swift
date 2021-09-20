@@ -15,8 +15,8 @@ class HomeTableViewCell: UITableViewCell {
     
     // MARK: - Variables
     weak var movieDelegate:SelectedMovieDelegate?
-//    var moviepopular: [MovieDataModel] = []
-    var moviesTBVC: [MovieDataModel] = [] {
+    
+    var moviesTBVC = [MovieDataModel]() {
         didSet{
             homeCollectionview.reloadData()
         }
@@ -31,33 +31,6 @@ class HomeTableViewCell: UITableViewCell {
     }
 }
 
-    // MARK: - Config
-
-//extension HomeTableViewCell {
-//    func nowPlay(movies: [MovieDataModel]) {
-//        self.movies = movies.sorted{
-//            $0.VoteCount ?? 0 < $1.VoteCount ?? 0}
-//    }
-//    func hightRate(movies: [MovieDataModel]){
-//        self.movies = movies.sorted{
-//            $0.VoteAverage ?? 0.0 < $1.VoteAverage ?? 0.0}
-//    }
-//    func upComing(movies: [MovieDataModel]){
-////        for item in movies{
-////            for item1 in item.genreids ?? [] {
-////                if item1 == 28{
-////                    self.movies.append(item)
-////                }
-////            }
-////        }
-//        self.movies = movies.sorted{
-//            $0.id ?? 0 < $1.id ?? 0}
-//    }
-//    func popular(movies: [MovieDataModel]){
-//        self.movies = movies.sorted{
-//            $0.popularity ?? 0.0 < $1.popularity ?? 0.0}
-//    }
-//}
     // MARK: - Delegate
 
 extension HomeTableViewCell: UICollectionViewDelegate {

@@ -13,33 +13,30 @@ class HomeMovieViewControllers: UIViewController, UITableViewDelegate {
     @IBOutlet private weak var homeTableview: UITableView!
     
     //  MARK: - Variables
-//    var topView: UIView?
     var viewModel = MoviesViewModel()
 //    var movies: [MovieDataModel] = [MovieDataModel]()
-    var movies = [MovieDataModel]()
+    var movies = [[String:[MovieDataModel]]]()
     var selectedMovie: MovieDataModel?
-//    var sectionMovie: [SectionType] = [SectionType.AllMovie, .HighRate, .NowPlaying, .Popular, .UpComing]
+    var sectionMovie: [SectionType] = [SectionType.AllMovie, .HighRate, .NowPlaying, .Popular, .UpComing]
+//    typealias result = MovieDataModel
     override func viewDidLoad() {
         super.viewDidLoad()
-//        movies = APIService.load("Movie.json")
-       
         self.homeTableview.delegate = self
         self.homeTableview.dataSource = self
         homeTableview.register(UINib(nibName: Constants.homeTableViewCell, bundle: nil), forCellReuseIdentifier: Constants.homeTableViewCell)
         homeTableview.register(UINib(nibName: Constants.upTableViewCell, bundle: nil), forCellReuseIdentifier: Constants.upTableViewCell)
         viewModel.delegate = self
-        navigationSearch()
-
+        
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         tabBarController?.tabBar.isHidden = false
         getAllData()
-        homeTableview.reloadData()
-       
     }
     
     func getAllData(){
+        viewModel.getMovies(type: .AllMovie)
         viewModel.getMovies(type: .HighestRated)
         viewModel.getMovies(type: .NowPlaying)
         viewModel.getMovies(type: .Popular)
@@ -47,7 +44,13 @@ class HomeMovieViewControllers: UIViewController, UITableViewDelegate {
     }
 }
 // MARK: - Delegate
+extension HomeMovieViewControllers:ViewModelDelegate{
 
+    func reloadTable(movieArr: [[String:[MovieDataModel]]]) {
+        movies.append(contentsOf: movieArr)
+        homeTableview.reloadData()
+    }
+}
 extension HomeMovieViewControllers: SelectedMovieDelegate{
     func didSelectMovie(movie: MovieDataModel) {
         self.selectedMovie = movie
@@ -68,15 +71,15 @@ extension HomeMovieViewControllers: UITableViewDataSource {
         return 1
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0{
             guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier:Constants.upTableViewCell , for: indexPath) as? UpTableViewCell else {return UITableViewCell()}
-            cell.cellData = [movies[indexPath.section]]
+            cell.cellData = movies[indexPath.section].randomElement()?.value ?? []
             return cell
         } else{
             guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier: Constants.homeTableViewCell , for: indexPath) as? HomeTableViewCell else  { return UITableViewCell()}
-            
-            cell.moviesTBVC = [movies[indexPath.section]]
+            cell.moviesTBVC = movies[indexPath.section].randomElement()?.value ?? []
             cell.movieDelegate = self
             return cell
         }
@@ -84,30 +87,33 @@ extension HomeMovieViewControllers: UITableViewDataSource {
 //        switch sectionMovie[indexPath.section] {
 //        case .AllMovie:
 //            guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier:Constants.upTableViewCell , for: indexPath) as? UpTableViewCell else {return UITableViewCell()}
-//            cell.configurer(movies: movies)
+//            cell.cellData = movies[indexPath.section].first?.value ?? []
 //            return cell
 //        case .NowPlaying:
 //            guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier: Constants.homeTableViewCell , for: indexPath) as? HomeTableViewCell else  { return UITableViewCell()}
-//            cell.nowPlay(movies: movies)
+//            cell.moviesTBVC = movies[indexPath.section].first?.value ?? []
 //            cell.movieDelegate = self
 //            return cell
 //        case .HighRate:
 //            guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier: Constants.homeTableViewCell , for: indexPath) as? HomeTableViewCell else  { return UITableViewCell()}
-//            cell.hightRate(movies: movies)
+//            cell.moviesTBVC = movies
+////            cell.hightRate(movies: movies)
 //            cell.movieDelegate = self
 //            return cell
 //        case .UpComing:
 //            guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier: Constants.homeTableViewCell , for: indexPath) as? HomeTableViewCell else  { return UITableViewCell()}
-//            cell.upComing(movies: movies)
+//            cell.moviesTBVC = movies
+////            cell.upComing(movies: movies)
 //            cell.movieDelegate = self
 //            return cell
 //        case .Popular:
 //            guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier: Constants.homeTableViewCell , for: indexPath) as? HomeTableViewCell else  { return UITableViewCell()}
-//            cell.popular(movies: movies)
+//            cell.moviesTBVC = movies
+////            cell.popular(movies: movies)
 //            cell.movieDelegate = self
 //            return cell
 //        }
-        
+//
 //    }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0{
@@ -125,6 +131,10 @@ extension HomeMovieViewControllers: UITableViewDataSource {
         }
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 {
+            let view = UIView()
+           return view
+        } else{
         let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 40.0))
         headerView.backgroundColor = UIColor(red: 0.91, green: 0.96, blue: 1.00, alpha: 1.00)
         let label = UILabel()
@@ -134,19 +144,12 @@ extension HomeMovieViewControllers: UITableViewDataSource {
         headerView.addSubview(label)
         headerView.clearsContextBeforeDrawing =  true
 //        label.text = sectionMovie[0].title
-//        let data = sectionMovie[section].title
-//        let data = Array(movies[section])
-//        if data.count > 0 {
-//            label.text = data
-//        }
+       let data = sectionMovie[section].title
+        if data.count > 0 {
+            label.text = data
+        }
         return headerView
-    } 
-}
-extension HomeMovieViewControllers:ViewModelDelegate{
-
-    func reloadTable(movieArr: [MovieDataModel]) {
-        movies.append(contentsOf: movieArr)
-        homeTableview.reloadData()
     }
-   
+    }
 }
+

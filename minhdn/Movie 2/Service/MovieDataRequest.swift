@@ -9,44 +9,66 @@ import Foundation
 public struct MovieDataRequest{
     
     static let shared = MovieDataRequest()
-    func getHighestRatedMovies(_ handler:@escaping ([MovieDataModel?]) -> Void){
-        var arr = [MovieDataModel]()
-        for item in arr{
-            for item1 in item.genreids ?? [] {
-                       if item1 == 28{
-                           arr.append(item)
+    var movieRequest :  [MovieDataModel] = APIService.load("Movie.json")
+//   typealias completion = MovieDataModel
+    
+    func getAllMovie( completionHandler:@escaping ([MovieDataModel]) -> Void ){
+        var listMovieRequest = [MovieDataModel]()
+        for item in movieRequest{
+                        listMovieRequest.append(item)
                        }
-                   }
-               }
+        completionHandler(listMovieRequest)
+        
     }
-    func getNowPlayingMovies(_ handler:@escaping ([MovieDataModel?]) -> Void){
-        var arr = [MovieDataModel]()
-        for item in arr{
+    
+    func getHighestRatedMovies(completionHandler:@escaping ([MovieDataModel]) -> Void){
+        var listMovieRequest = [MovieDataModel]()
+        for item in movieRequest{
             for item1 in item.genreids ?? [] {
                        if item1 == 28{
-                           arr.append(item)
+                        listMovieRequest.append(item)
                        }
                    }
                }
+        completionHandler(listMovieRequest)
     }
-    func getPopularMovies(_ handler:@escaping ([MovieDataModel?]) -> Void){
-        var arr = [MovieDataModel]()
-        for item in arr{
+    
+    func getNowPlayingMovies( completionHandler:@escaping ([MovieDataModel]) -> Void){
+        var listMovieRequest = [MovieDataModel]()
+        listMovieRequest.removeAll()
+        for item in movieRequest{
             for item1 in item.genreids ?? [] {
-                       if item1 == 28{
-                           arr.append(item)
+                       if item1 == 35{
+                        listMovieRequest.append(item)
                        }
                    }
                }
+        completionHandler(listMovieRequest)
     }
-    func getUpcomingMovies(_ handler:@escaping ([MovieDataModel?]) -> Void){
-        var arr = [MovieDataModel]()
-        for item in arr{
+    
+    func getPopularMovies(completionHandler:@escaping ([MovieDataModel]) -> Void){
+        var listMovieRequest = [MovieDataModel]()
+        listMovieRequest.removeAll()
+        for item in movieRequest{
             for item1 in item.genreids ?? [] {
-                       if item1 == 28{
-                           arr.append(item)
+                       if item1 == 878{
+                        listMovieRequest.append(item)
                        }
                    }
                }
+        completionHandler(listMovieRequest)
+    }
+    
+    func getUpcomingMovies(completionHandler:@escaping ([MovieDataModel]) -> Void){
+        var listMovieRequest = [MovieDataModel]()
+        listMovieRequest.removeAll()
+        for item in movieRequest{
+            for item1 in item.genreids ?? [] {
+                       if item1 == 12{
+                        listMovieRequest.append(item)
+                       }
+                   }
+               }
+        completionHandler(listMovieRequest)
     }
 }
