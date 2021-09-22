@@ -6,57 +6,81 @@
 //
 
 import Foundation
-enum ListType: String{
-    case AllMovie
-    case HighestRated
-    case NowPlaying
-    case Popular
-    case Upcoming
+enum ListType: String,CaseIterable{
+    case allMovie
+    case highestRated
+    case nowPlaying
+    case popular
+    case upComing
+    
+    func getTitle() -> String {
+        switch self {
+        case .allMovie:
+            return ""
+        case .highestRated:
+            return ""
+        case .nowPlaying:
+            return ""
+        case .popular:
+            return ""
+        case .upComing:
+            return ""
+        }
+    }
 }
 
 protocol ViewModelDelegate: class {
-    func reloadTable(movieArr:[[String:[MovieDataModel]]])
+    func reloadTable(movieArr:[ListType:[MovieDataModel]])
 }
 class MoviesViewModel {
     
-    var moviesVM = [[String:[MovieDataModel]]]()
+    
     weak var delegate: ViewModelDelegate?
     
     func getMovies(type:ListType)  {
-        
+        let group = DispatchGroup()
+        var moviesVM = [ListType:[MovieDataModel]]()
         switch type {
-            case .AllMovie:
-                MovieDataRequest.shared.getAllMovie { [unowned self] (details) in
-                    self.delegate?.reloadTable(movieArr:[["All Movie": details]])
-                }
-                break
-                
-            case .HighestRated:
-                MovieDataRequest.shared.getHighestRatedMovies { [unowned self] (details) in
-                    self.delegate?.reloadTable(movieArr: [["HighestRated": details]])
-                
+            case .allMovie:
+                group.enter()
+                MovieDataRequest.shared.getAllMovie { (details) in
+                    moviesVM = [.allMovie : details]
+                    group.leave()
                 }
                 
-                break
-            
-            case .NowPlaying:
-                MovieDataRequest.shared.getNowPlayingMovies { [unowned self] (details) in
-                    self.delegate?.reloadTable(movieArr:  [["NowPlaying": details]])
-                    print(details)
+            case .highestRated:
+                group.enter()
+                MovieDataRequest.shared.getHighestRatedMovies { (details) in
+                    moviesVM = [.highestRated: details]
+                    group.leave()
                 }
-                break
+
             
-            case .Popular:
-                MovieDataRequest.shared.getPopularMovies() { [unowned self] (details) in
-                    self.delegate?.reloadTable(movieArr:  [["Popular": details]])
+            case .nowPlaying:
+                group.enter()
+                MovieDataRequest.shared.getNowPlayingMovies { (details) in
+                    moviesVM = [.nowPlaying: details]
+                    group.leave()
                 }
-                break
             
-            case .Upcoming:
-                MovieDataRequest.shared.getUpcomingMovies()  { [unowned self] (details) in
-                    self.delegate?.reloadTable(movieArr: [["Upcoming": details]])
+            case .popular:
+                group.enter()
+                MovieDataRequest.shared.getPopularMovies() { (details) in
+                    moviesVM = [.popular: details]
+                    group.leave()
                 }
-                break
+               
+            
+            case .upComing:
+                group.enter()
+                MovieDataRequest.shared.getUpcomingMovies()  { (details) in
+                    moviesVM = [.upComing: details]
+                    group.leave()
+                }
+                
+        }
+        group.notify(queue: .main) {
+            self.delegate?.reloadTable(movieArr: moviesVM)
         }
     }
 }

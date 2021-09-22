@@ -16,10 +16,14 @@ class HomeTableViewCell: UITableViewCell {
     // MARK: - Variables
     weak var movieDelegate:SelectedMovieDelegate?
     
-    var moviesTBVC = [MovieDataModel]() {
+    private var moviesTBVC = [MovieDataModel]() {
         didSet{
             homeCollectionview.reloadData()
         }
+    }
+    
+    func configure(viewModel: [MovieDataModel]) {
+        moviesTBVC = viewModel
     }
     
     override func awakeFromNib() {

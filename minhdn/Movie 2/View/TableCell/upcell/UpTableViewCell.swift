@@ -22,12 +22,15 @@ class UpTableViewCell: UITableViewCell {
     }
     //    MARK: - Veriables
     
-    var cellData = [MovieDataModel](){
+   private var cellData = [MovieDataModel](){
         didSet{
             FSView.reloadData()
         }
     }
     
+    func configure(viewModel: [MovieDataModel]) {
+        cellData = viewModel
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -52,13 +55,13 @@ extension UpTableViewCell: FSPagerViewDataSource{
 }
 //    //  MARK:   - Delegate
 //
-extension UpTableViewCell {
-    func configurer(movies: [MovieDataModel]) {
-        self.cellData = movies
-    }
-}
-extension UpTableViewCell: FSPagerViewDelegate{
-    func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
-
-    }
-}
+//extension UpTableViewCell {
+//    func configurer(movies: [MovieDataModel]) {
+//        self.cellData = movies
+//    }
+//}
+//extension UpTableViewCell: FSPagerViewDelegate{
+//    func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
+//
+//    }
+//}

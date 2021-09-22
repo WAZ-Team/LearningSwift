@@ -22,7 +22,7 @@ class DetaiViewController: UIViewController {
     
     //  MARK: - Variables
     var delegateView =  HomeTableViewCell()
-    var allMovie: [MovieDataModel] = [MovieDataModel]()
+//    var allMovie: [MovieDataModel] = [MovieDataModel]()
     var movieData: MovieDataModel?
     var favData = Favorite()
     override func viewDidLoad() {
