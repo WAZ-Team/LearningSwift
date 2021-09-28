@@ -15,24 +15,24 @@ class UpTableViewCell: UITableViewCell {
         didSet{
             self.FSView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "UpTableViewCell")
             self.FSView.transformer = FSPagerViewTransformer(type: .overlap)
+//            time to change picture
             self.FSView.automaticSlidingInterval = 3.0
             self.FSView.decelerationDistance = 2
-           
         }
     }
     //    MARK: - Veriables
-    
+    func configurer(viewModel: [MovieDataModel]) {
+        cellData = viewModel
+    }
    private var cellData = [MovieDataModel](){
         didSet{
             FSView.reloadData()
         }
     }
     
-    func configure(viewModel: [MovieDataModel]) {
-        cellData = viewModel
-    }
     override func awakeFromNib() {
         super.awakeFromNib()
+        FSView.dataSource = self
     }
 }
     //  MARK: - DataSource
@@ -53,8 +53,8 @@ extension UpTableViewCell: FSPagerViewDataSource{
         return cell
     }
 }
-//    //  MARK:   - Delegate
-//
+//  MARK:   - Delegate
+
 //extension UpTableViewCell {
 //    func configurer(movies: [MovieDataModel]) {
 //        self.cellData = movies

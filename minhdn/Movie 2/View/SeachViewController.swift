@@ -12,15 +12,29 @@ class SeachViewController: UIViewController {
     @IBOutlet private weak var collectionView: UICollectionView!
     
     //  MARK: - Variables
-    let searchController = UISearchController()
-    var data = String()
-    var datamovie: [MovieDataModel] = [MovieDataModel]()
-    var getMovieSearch : [MovieDataModel] = [MovieDataModel]()
-    var searchActive = false
+    private let searchController = UISearchController()
+    private var data = String()
+    private var searchViewModel = MoviesViewModel()
+    private var datamovie = [ListType:[MovieDataModel]]()
+    private var getMovieSearch : [MovieDataModel] = [MovieDataModel]()
+    private var searchActive = false
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.91, green: 0.96, blue: 1.00, alpha: 1.00)
-        datamovie = APIService.load("Movie.json")
+        searchViewModel.delegate = self
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.reloadData()
+        self.collectionView.register(UINib(nibName: Constants.searchCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: Constants.searchCollectionViewCell)
+        setUpSearch()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        tabBarController?.tabBar.isHidden = false
+        searchViewModel.getMovies()
+    }
+    func setUpSearch(){
+        searchController.searchBar.delegate = self
         searchController.loadViewIfNeeded()
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -29,15 +43,6 @@ class SeachViewController: UIViewController {
         definesPresentationContext = true
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
-        searchController.searchBar.delegate = self
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.reloadData()
-        self.collectionView.register(UINib(nibName: Constants.searchCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: Constants.searchCollectionViewCell)
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        tabBarController?.tabBar.isHidden = false
     }
 }
 // MARK: - UISearchResultsUpdating
@@ -55,6 +60,14 @@ extension SeachViewController:UISearchResultsUpdating{
     }
 }
 //  MARK:   - Delegate
+extension SeachViewController:ViewModelDelegate{
+
+    func reloadTable(movieArr: [ListType:[MovieDataModel]]) {
+        datamovie = movieArr
+        collectionView.reloadData()
+    }
+}
+
 extension SeachViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -69,7 +82,7 @@ extension SeachViewController: UISearchBarDelegate{
         if searchText.isEmpty == false {
             searchActive = true
             getMovieSearch.removeAll()
-            for item in datamovie {
+            for item in datamovie[.allMovie] ?? []{
                 if item.title?.uppercased().contains(data.uppercased()) == true{
                     getMovieSearch.append(item)
                 }
@@ -78,12 +91,11 @@ extension SeachViewController: UISearchBarDelegate{
         }else{
             searchActive = false
             getMovieSearch.removeAll()
-            getMovieSearch = datamovie
+            getMovieSearch = datamovie[.allMovie] ?? []
         }
         collectionView.reloadData()
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        
         getMovieSearch.removeAll()
         collectionView.reloadData()
     }

@@ -7,7 +7,6 @@
 
 import Foundation
 
-typealias completion = MovieDataModel
 struct MovieDataModel: Decodable{
     public var adult: Bool?
     public var backdroppath: String?

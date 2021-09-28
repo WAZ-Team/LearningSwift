@@ -44,6 +44,7 @@ extension SettingViewController:MFMailComposeViewControllerDelegate{
         self.navigationController?.navigationBar.prefersLargeTitles = true
         title = "Setting"
         self.navigationController?.navigationItem.backButtonTitle = "Home"
+        UserDefaults.standard.setValue( false , forKey: "isOn")
     }
     
     func showAlert(_ message: String) {
@@ -51,22 +52,38 @@ extension SettingViewController:MFMailComposeViewControllerDelegate{
         alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }
+    func showAlertNotification() {
+        if UserDefaults.standard.object(forKey: "isOn") as! Bool == false{
+            let alertController = UIAlertController(title: "Meseage", message: "you are turn on Notification", preferredStyle: UIAlertController.Style.alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+            UserDefaults.standard.setValue(true , forKey: "isOn")
+            self.Notification()
+        }else{
+            let alertController = UIAlertController(title: "Meseage", message: "you are turn off Notification", preferredStyle: UIAlertController.Style.alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+            UserDefaults.standard.setValue(false , forKey: "isOn")
+            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        }
+    }
     //  MARK:   -   Notification
     func Notification(){
+        
         let center = UNUserNotificationCenter.current()
-        
         let content = UNMutableNotificationContent()
-        content.title = "Notifiaction on a certail date"
-        content.body = "This is a local notification on certain date"
-        content.sound = .default
+        content.title = "Notifiaction on a Movie"
+        content.body = "This is a local notification on Movie"
+        content.sound = .default        // setting sound
         content.userInfo = ["value": "Data with local notification"]
-        
-        
-        let fireDate = Calendar.current.dateComponents([.day, .month, .year, .hour, .minute, .second], from: Date().addingTimeInterval(10))
-        
-        let trigger = UNCalendarNotificationTrigger(dateMatching: fireDate, repeats: false)
-        //UNTimeIntervalNotificationTrigger(timeInterval: 20, repeats: false)
-        
+//        a repeating alarm at 21:00 pm every day
+        var dateComponents = DateComponents()
+        dateComponents.hour = 21
+        dateComponents.minute = 00
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+//        test 5s
+//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+
         let request = UNNotificationRequest(identifier: "reminder", content: content, trigger: trigger)
         center.add(request) { (error) in
             if error != nil {
@@ -124,14 +141,13 @@ extension SettingViewController:MFMailComposeViewControllerDelegate{
         
         models.append(Sections(options: [
             
-            .switchCell(model: SettingSwitchOptions(
+            .standardCell(model: SettingStandardOption(
                             title: "Notification",
                             icon: UIImage(named: "notification"),
                             iconBackgroundColor: UIColor(red: 0.91, green: 0.96, blue: 1.00, alpha: 1.00),
                             handler: {
-                                self.Notification()
-                            }, isOn: true)),
-            
+                                self.showAlertNotification()
+                            })),
             .standardCell(model: SettingStandardOption(
                             title: "Feed Back",
                             icon: UIImage(named: "feedback"),

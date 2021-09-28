@@ -6,12 +6,12 @@
 //
 
 import Foundation
+import RealmSwift
 public struct MovieDataRequest{
     
     static let shared = MovieDataRequest()
     var movieRequest :  [MovieDataModel] = APIService.load("Movie.json")
-//   typealias completion = MovieDataModel
-    
+    private init() {}
     func getAllMovie( completionHandler:@escaping ([MovieDataModel]) -> Void ){
         var listMovieRequest = [MovieDataModel]()
         for item in movieRequest{
@@ -71,4 +71,17 @@ public struct MovieDataRequest{
                }
         completionHandler(listMovieRequest)
     }
+    func getFavoriteMovie(completionHandler:@escaping ([Favorite]) -> Void){
+        var listMovieRequest = [Favorite]()
+        listMovieRequest.removeAll()
+        for item in movieRequest{
+            for item1 in item.genreids ?? [] {
+                       if item1 == 12{
+                        listMovieRequest.append(item)
+                       }
+                   }
+               }
+        completionHandler(listMovieRequest)
+    })
 }
+

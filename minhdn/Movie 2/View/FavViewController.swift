@@ -12,14 +12,17 @@ class FavViewController: UIViewController {
     @IBOutlet private weak var favCollectionview: UICollectionView!
     
     //  MARK:-  Variables
-    var moviedata: [MovieDataModel] = [MovieDataModel]()
+//    var favViewModel = MoviesViewModel()
+//    var moviedata = [ListType:[MovieDataModel]]()
+    var favViewModel = FavoriteViewModel()
+    var movidata = [MovieDataModel]
     var getMovieFav:[MovieDataModel] = [MovieDataModel]()
     var favoritedataa = [Favorite]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        moviedata = APIService.load("Movie.json")
         navigationController?.navigationBar.prefersLargeTitles = true
         title = "Favorite"
+        favViewModel.delegate = self
         favCollectionview.topAnchor.constraint(equalTo: view.topAnchor, constant: 40.0).isActive = true
         favCollectionview.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10.0).isActive = true
         favCollectionview.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  -20.0).isActive = true
@@ -43,7 +46,7 @@ class FavViewController: UIViewController {
         return listData
     }
     func getmovie() -> [MovieDataModel]{
-        for item in moviedata{
+        for item in moviedata[.allMovie] ?? []{
             for i in favoritedataa{
                 if item.id == i.id{
                     getMovieFav.append(item)
@@ -55,10 +58,10 @@ class FavViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        moviedata = APIService.load("Movie.json")
-        self.favoritedataa = self.getFavorite()
-        self.getMovieFav = self.getmovie()
+        favViewModel.getMovies()
         favCollectionview.reloadData()
+        self.getMovieFav = self.getmovie()
+        self.favoritedataa = self.getFavorite()
         tabBarController?.tabBar.isHidden = false
     }
     override func viewDidDisappear(_ animated: Bool) {
@@ -105,5 +108,12 @@ extension FavViewController: UICollectionViewDelegate{
         guard let vc = storyboard.instantiateViewController(withIdentifier: Constants.detaiViewController) as? DetaiViewController else{return}
         vc.movieData = getMovieFav[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+extension FavViewController:ViewModelDelegate{
+
+    func reloadTable(movieArr: [ListType:[MovieDataModel]]) {
+        moviedata = movieArr
+        favCollectionview.reloadData()
     }
 }

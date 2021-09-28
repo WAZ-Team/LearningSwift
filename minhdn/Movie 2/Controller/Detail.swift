@@ -33,7 +33,7 @@ extension DetaiViewController{
             let realm = try! Realm()
             try! realm.write {
                 self.favData.fav = true
-                self.favData.id = self.favData.id
+                //                self.favData.id = self.favData.id
                 realm.add(favData, update: .all)
                 print(favData)
             }
@@ -46,6 +46,7 @@ extension DetaiViewController{
             try! realm.write {
                 self.favData.fav = false
                 realm.add(favData, update: .all)
+                //                realm.upda
             }
             print("Data saved successfully!")
             print(Realm.Configuration.defaultConfiguration.fileURL!)
@@ -55,7 +56,7 @@ extension DetaiViewController{
         }
     }
     
-    // MARK:    -   Config
+    // MARK:    - Config
     func setupNavigationBar(){
         self.navigationController?.navigationBar.prefersLargeTitles = true
         title = movieData?.title

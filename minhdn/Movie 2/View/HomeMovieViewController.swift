@@ -23,38 +23,32 @@ class HomeMovieViewControllers: UIViewController, UITableViewDelegate {
         homeTableview.register(UINib(nibName: Constants.homeTableViewCell, bundle: nil), forCellReuseIdentifier: Constants.homeTableViewCell)
         homeTableview.register(UINib(nibName: Constants.upTableViewCell, bundle: nil), forCellReuseIdentifier: Constants.upTableViewCell)
         viewModel.delegate = self
-        
+        title = "MovieTV"
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         tabBarController?.tabBar.isHidden = false
-        getAllData()
-        
+        viewModel.getMovies()
+        homeTableview.reloadData()
     }
     
-    func getAllData(){
-        viewModel.getMovies(type: .allMovie)
-        viewModel.getMovies(type: .highestRated)
-        viewModel.getMovies(type: .nowPlaying)
-        viewModel.getMovies(type: .popular)
-        viewModel.getMovies(type: .upComing)
-    }
+    
 }
 // MARK: - Delegate
 extension HomeMovieViewControllers:ViewModelDelegate{
 
-    func reloadTable(movieArr: [ListType: [MovieDataModel]]) {
+    func reloadTable(movieArr: [ListType:[MovieDataModel]]) {
         movies = movieArr
-print(movies)
         homeTableview.reloadData()
     }
 }
+
 extension HomeMovieViewControllers: SelectedMovieDelegate{
     func didSelectMovie(movie: MovieDataModel) {
         self.selectedMovie = movie
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let vc = storyboard.instantiateViewController(withIdentifier: Constants.detaiViewController) as? DetaiViewController else{return}
+        guard let vc = storyboard.instantiateViewController(withIdentifier: Constants.detaiViewController) as? DetaiViewController else {return}
         vc.movieData = selectedMovie
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -63,63 +57,61 @@ extension HomeMovieViewControllers: SelectedMovieDelegate{
 // MARK: - DataSource
 extension HomeMovieViewControllers: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return movies.count
+        return movies.keys.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print(movies.keys.count)
-       
-        if indexPath.section == 0{
+        switch indexPath.section {
+        case 0:
             guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier:Constants.upTableViewCell , for: indexPath) as? UpTableViewCell else {return UITableViewCell()}
-//            print(type1)
-//            cell.configure(viewModel: type1 )
+            cell.configurer(viewModel: movies[.allMovie] ?? [])
                 return cell
-                
-        } else{
+        case 1:
             guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier: Constants.homeTableViewCell , for: indexPath) as? HomeTableViewCell else  { return UITableViewCell()}
-//           let type = Array(movies.values)[indexPath.item]
-//        print(type1)
-//            cell.configure(viewModel: type1 )
+            cell.configure(viewModel: movies[.highestRated] ?? [])
+            cell.movieDelegate = self
+        case 2:
+            guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier: Constants.homeTableViewCell , for: indexPath) as? HomeTableViewCell else  { return UITableViewCell()}
+            cell.configure(viewModel: movies[.nowPlaying] ?? [])
+            cell.movieDelegate = self
+        case 3:guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier: Constants.homeTableViewCell , for: indexPath) as? HomeTableViewCell else  { return UITableViewCell()}
+            cell.configure(viewModel: movies[.popular] ?? [])
+            cell.movieDelegate = self
+        case 4:
+            guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier: Constants.homeTableViewCell , for: indexPath) as? HomeTableViewCell else  { return UITableViewCell()}
+            cell.configure(viewModel: movies[.upComing] ?? [])
+            cell.movieDelegate = self
+            
+        default:
+            guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier: Constants.homeTableViewCell , for: indexPath) as? HomeTableViewCell else  { return UITableViewCell()}
+            cell.configure(viewModel: movies[.highestRated] ?? [])
             cell.movieDelegate = self
             return cell
         }
+        return UITableViewCell()
     }
-//        switch sectionMovie[indexPath.section] {
-//        case .AllMovie:
+//        if indexPath.section == 0{
 //            guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier:Constants.upTableViewCell , for: indexPath) as? UpTableViewCell else {return UITableViewCell()}
-//            cell.cellData = movies[indexPath.section].first?.value ?? []
-//            return cell
-//        case .NowPlaying:
+//            let type = Array(movies.keys)[indexPath.section]
+//            cell.configurer(viewModel: movies[type] ?? [])
+//                return cell
+//
+//        } else{
 //            guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier: Constants.homeTableViewCell , for: indexPath) as? HomeTableViewCell else  { return UITableViewCell()}
-//            cell.moviesTBVC = movies[indexPath.section].first?.value ?? []
-//            cell.movieDelegate = self
-//            return cell
-//        case .HighRate:
-//            guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier: Constants.homeTableViewCell , for: indexPath) as? HomeTableViewCell else  { return UITableViewCell()}
-//            cell.moviesTBVC = movies
-////            cell.hightRate(movies: movies)
-//            cell.movieDelegate = self
-//            return cell
-//        case .UpComing:
-//            guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier: Constants.homeTableViewCell , for: indexPath) as? HomeTableViewCell else  { return UITableViewCell()}
-//            cell.moviesTBVC = movies
-////            cell.upComing(movies: movies)
-//            cell.movieDelegate = self
-//            return cell
-//        case .Popular:
-//            guard let cell = self.homeTableview.dequeueReusableCell(withIdentifier: Constants.homeTableViewCell , for: indexPath) as? HomeTableViewCell else  { return UITableViewCell()}
-//            cell.moviesTBVC = movies
-////            cell.popular(movies: movies)
+//            for i in ListType.allCases{
+//                let type = Array(movies.)
+//            }
+////            let type1 = Array(movies.keys)[indexPath.section]
+////            cell.configure(viewModel: movies[type1] ?? [])
 //            cell.movieDelegate = self
 //            return cell
 //        }
-//
 //    }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0{
             return 0.0
@@ -148,11 +140,11 @@ extension HomeMovieViewControllers: UITableViewDataSource {
         label.textColor = #colorLiteral(red: 0.1568627451, green: 0.1568627451, blue: 0.1568627451, alpha: 1)
         headerView.addSubview(label)
         headerView.clearsContextBeforeDrawing =  true
-//        label.text = sectionMovie[0].title
-            let data = Array(movies.keys)[section]
-//            if data.hashValue > 0 {
-            label.text = data.getTitle()
-//        }
+            var header = [String]()
+            for i in ListType.allCases{
+                header.append(i.getTitle())
+            }
+            label.text = header[section]
         return headerView
     }
     }

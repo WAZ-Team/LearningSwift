@@ -35,12 +35,14 @@ class SwitchTableViewCell: UITableViewCell {
     private let mySwitch: UISwitch = {
         let mySwitch =  UISwitch()
         mySwitch.onTintColor = .systemGreen
-        mySwitch.addTarget(self, action: #selector(switchChanged(_:)), for: .valueChanged)
+        if mySwitch.isOn{
+            mySwitch.addTarget(self, action: #selector(switchChanged(_:)), for: .valueChanged)
+        }else{}
+        
         return mySwitch
     }()
     
     @objc private func switchChanged(_ sender: UISwitch!) {
-        if sender.isOn {
             let center = UNUserNotificationCenter.current()
             
             let content = UNMutableNotificationContent()
@@ -50,7 +52,7 @@ class SwitchTableViewCell: UITableViewCell {
             content.userInfo = ["value": "Data with local notification"]
             
             
-            let fireDate = Calendar.current.dateComponents([.day, .month, .year, .hour, .minute, .second], from: Date().addingTimeInterval(10))
+            let fireDate = Calendar.current.dateComponents([.day, .month, .year, .hour, .minute, .second], from: Date().addingTimeInterval(3))
             
             let trigger = UNCalendarNotificationTrigger(dateMatching: fireDate, repeats: false)
 //            UNTimeIntervalNotificationTrigger(timeInterval: 20, repeats: false)
@@ -63,9 +65,6 @@ class SwitchTableViewCell: UITableViewCell {
             }
             print("Table row switch Changed \(sender.tag)")
             print("The switch is \(sender.isOn ? "ON" : "OFF")")
-        }else{
-            return 
-        }
         
     }
     // MARK: - Init

@@ -38,9 +38,9 @@ class LoginViewController: UIViewController {
         username.autocapitalizationType = .none
         username.font = UIFont(name: "Helvetica Neue", size: 15)
         username.borderStyle = UITextField.BorderStyle.roundedRect
-        username.autocorrectionType = UITextAutocorrectionType.no
-        username.keyboardType = UIKeyboardType.emailAddress
-        username.returnKeyType = UIReturnKeyType.next
+//        username.autocorrectionType = UITextAutocorrectionType.no
+//        username.keyboardType = UIKeyboardType.emailAddress
+//        username.returnKeyType = UIReturnKeyType.next
         username.clearButtonMode = UITextField.ViewMode.whileEditing
         username.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         username.center.x = view.center.x
@@ -54,9 +54,9 @@ class LoginViewController: UIViewController {
         passwordText.backgroundColor = .white
         passwordText.font = UIFont(name: "Helvetica Neue", size: 15)
         passwordText.borderStyle = UITextField.BorderStyle.roundedRect
-        passwordText.autocorrectionType = UITextAutocorrectionType.no
-        passwordText.keyboardType = UIKeyboardType.default
-        passwordText.returnKeyType = UIReturnKeyType.send
+//        passwordText.autocorrectionType = UITextAutocorrectionType.no
+//        passwordText.keyboardType = UIKeyboardType.default
+//        passwordText.returnKeyType = UIReturnKeyType.send
         passwordText.clearButtonMode = UITextField.ViewMode.whileEditing
         passwordText.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         passwordText.isSecureTextEntry = true

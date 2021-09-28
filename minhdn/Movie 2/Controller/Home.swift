@@ -7,29 +7,7 @@
 
 import Foundation
 import UIKit
-    enum SectionType {
-        case AllMovie
-        case NowPlaying
-        case HighRate
-        case UpComing
-        case Popular
-    }
-    extension SectionType{
-        var title: String {
-            switch self {
-            case .AllMovie:
-                return " All Movie "
-            case .NowPlaying:
-                return " Now Playing"
-            case .HighRate:
-                return " High Rate "
-            case .UpComing:
-                return " UpComing "
-            case .Popular:
-                return " Popular "
-            }
-        }
-    }
+ 
 extension HomeMovieViewControllers{
      func navigationSearch(){
         self.navigationController?.navigationBar.prefersLargeTitles = true
